@@ -38,6 +38,99 @@
     animation: background-shift 8s ease-in-out infinite;
   }
 
+  /* CULT DARKNESS OVERLAY - Gets darker as you scroll down */
+  .darkness-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+      rgba(0, 0, 0, 0) 0%,
+      rgba(5, 0, 10, 0.3) 30%,
+      rgba(10, 0, 5, 0.6) 60%,
+      rgba(15, 0, 0, 0.8) 80%,
+      rgba(20, 0, 0, 0.95) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Satanic symbols that appear on scroll */
+  .cult-symbols {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .cult-symbol {
+    position: absolute;
+    font-size: 2rem;
+    color: #660000;
+    text-shadow: 0 0 20px #ff0000;
+    animation: cult-float 8s ease-in-out infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes cult-float {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.7;
+    }
+    50% { 
+      transform: translateY(-20px) rotate(180deg);
+      opacity: 1;
+    }
+  }
+
+  /* Dark particles for cult effect */
+  .dark-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .dark-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #990000;
+    border-radius: 50%;
+    animation: dark-float 6s linear infinite;
+    box-shadow: 0 0 10px #ff0000;
+  }
+
+  @keyframes dark-float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
   @keyframes background-shift {
     0%, 100% { 
       background: radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.2) 0%, transparent 50%),
@@ -878,6 +971,15 @@
 <!-- Matrix Rain Effect -->
 <div class="matrix-rain" id="matrixRain"></div>
 
+<!-- CULT DARKNESS OVERLAY -->
+<div class="darkness-overlay" id="darknessOverlay"></div>
+
+<!-- SATANIC CULT SYMBOLS -->
+<div class="cult-symbols" id="cultSymbols"></div>
+
+<!-- DARK PARTICLES -->
+<div class="dark-particles" id="darkParticles"></div>
+
 <!-- Floating Particles -->
 <div class="floating-particles" id="particles"></div>
 
@@ -1023,7 +1125,105 @@ function createParticles() {
   }, 200);
 }
 
-// Create matrix rain effect
+// Create dark cult symbols
+function createCultSymbols() {
+  const cultContainer = document.getElementById('cultSymbols');
+  const symbols = ['⛧', '🜏', '☾', '☽', '🕯️', '⚰️', '👁️', '🔥', '⚡', '☠️', '🗡️', '🌙'];
+  
+  // Create static symbols positioned around the page
+  for (let i = 0; i < 15; i++) {
+    const symbol = document.createElement('div');
+    symbol.className = 'cult-symbol';
+    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    symbol.style.left = Math.random() * 90 + '%';
+    symbol.style.top = Math.random() * 90 + '%';
+    symbol.style.fontSize = (1 + Math.random() * 2) + 'rem';
+    symbol.style.animationDelay = Math.random() * 8 + 's';
+    cultContainer.appendChild(symbol);
+  }
+}
+
+// Create dark particles
+function createDarkParticles() {
+  const darkContainer = document.getElementById('darkParticles');
+  
+  setInterval(() => {
+    if (darkContainer.children.length > 20) return;
+    
+    const particle = document.createElement('div');
+    particle.className = 'dark-particle';
+    particle.style.left = Math.random() * 100 + '%';
+    
+    darkContainer.appendChild(particle);
+    
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 6000);
+  }, 300);
+}
+
+// Scroll-based darkness effect
+function handleCultScroll() {
+  const scrollPosition = window.scrollY;
+  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercentage = Math.min(scrollPosition / documentHeight, 1);
+  
+  // Get elements
+  const darknessOverlay = document.getElementById('darknessOverlay');
+  const cultSymbols = document.getElementById('cultSymbols');
+  const darkParticles = document.getElementById('darkParticles');
+  const regularParticles = document.getElementById('particles');
+  const matrixRain = document.getElementById('matrixRain');
+  
+  // Calculate darkness intensity based on scroll
+  const darknessIntensity = Math.pow(scrollPercentage, 0.7); // Exponential curve for dramatic effect
+  
+  // Apply darkness overlay
+  darknessOverlay.style.opacity = darknessIntensity;
+  
+  // Show cult symbols when scrolling down
+  if (scrollPercentage > 0.2) {
+    cultSymbols.style.opacity = Math.min((scrollPercentage - 0.2) * 1.5, 1);
+  } else {
+    cultSymbols.style.opacity = 0;
+  }
+  
+  // Show dark particles
+  if (scrollPercentage > 0.3) {
+    darkParticles.style.opacity = Math.min((scrollPercentage - 0.3) * 1.2, 0.8);
+  } else {
+    darkParticles.style.opacity = 0;
+  }
+  
+  // Fade out colorful elements as it gets darker
+  const colorfulOpacity = Math.max(1 - darknessIntensity * 1.5, 0.1);
+  regularParticles.style.opacity = colorfulOpacity;
+  matrixRain.style.opacity = colorfulOpacity * 0.3;
+  
+  // Change background colors to darker/redder tones
+  if (scrollPercentage > 0.5) {
+    document.body.style.filter = `hue-rotate(${scrollPercentage * 60}deg) brightness(${1 - scrollPercentage * 0.7}) saturate(${1 + scrollPercentage})`;
+  } else {
+    document.body.style.filter = '';
+  }
+  
+  // Add ominous red glow to timer cards when deep in darkness
+  const timeCards = document.querySelectorAll('.time-card');
+  if (scrollPercentage > 0.6) {
+    timeCards.forEach(card => {
+      card.style.boxShadow += `, 0 0 50px rgba(150, 0, 0, ${scrollPercentage * 0.8})`;
+      card.style.borderColor = `rgba(150, 0, 0, ${0.5 + scrollPercentage * 0.5})`;
+    });
+  }
+  
+  // Change title color to blood red in deep darkness
+  const title = document.querySelector('.title');
+  if (scrollPercentage > 0.7) {
+    title.style.filter = `hue-rotate(${-180 + scrollPercentage * 60}deg) brightness(${0.8 + scrollPercentage * 0.4})`;
+  }
+}
 function createMatrixRain() {
   const matrixContainer = document.getElementById('matrixRain');
   const characters = '01ニカモトサシ時間空間∞∆Ψ';
