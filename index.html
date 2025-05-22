@@ -923,7 +923,354 @@
     }
   }
 
-  /* Footer */
+  /* CULT SECTIONS - APPEAR AS YOU SCROLL DOWN */
+  .cult-transition {
+    min-height: 50vh;
+    background: linear-gradient(180deg, var(--dark-bg), #1a0000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-top: 3px solid #660000;
+  }
+
+  .cult-warning {
+    animation: warning-pulse 2s ease-in-out infinite;
+  }
+
+  .cult-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    color: #ff4444;
+    text-shadow: 0 0 30px #ff0000;
+    margin-bottom: 1rem;
+    animation: flicker 3s ease-in-out infinite;
+  }
+
+  .cult-subtitle {
+    font-size: 1.5rem;
+    color: #cc6666;
+    text-shadow: 0 0 15px #990000;
+  }
+
+  @keyframes warning-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+    75% { opacity: 0.9; }
+  }
+
+  /* MAIN CULT SECTION */
+  .cult-section {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a0000, #000000);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cult-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(150, 0, 0, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(100, 0, 0, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .pentagram-container {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: pentagram-spin 10s linear infinite;
+  }
+
+  .pentagram {
+    font-size: 8rem;
+    color: #cc0000;
+    text-shadow: 0 0 50px #ff0000;
+    animation: pentagram-glow 2s ease-in-out infinite;
+  }
+
+  .cult-flames {
+    font-size: 2rem;
+    margin-top: 1rem;
+    animation: flames-dance 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pentagram-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes pentagram-glow {
+    0%, 100% { 
+      color: #cc0000;
+      text-shadow: 0 0 50px #ff0000;
+    }
+    50% { 
+      color: #ff0000;
+      text-shadow: 0 0 80px #ff0000, 0 0 120px #cc0000;
+    }
+  }
+
+  @keyframes flames-dance {
+    0%, 100% { transform: scale(1) rotate(-2deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+  }
+
+  .cult-main-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    color: #ff0000;
+    text-align: center;
+    text-shadow: 0 0 40px #cc0000;
+    margin-bottom: 2rem;
+    animation: title-blood 3s ease-in-out infinite;
+  }
+
+  .cult-chant {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #cc6666;
+    margin-bottom: 4rem;
+    font-style: italic;
+    text-shadow: 0 0 20px #990000;
+  }
+
+  @keyframes title-blood {
+    0%, 100% { color: #ff0000; }
+    50% { color: #990000; }
+  }
+
+  /* DEATH COUNTERS */
+  .death-counters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .death-card {
+    background: linear-gradient(135deg, rgba(150, 0, 0, 0.3), rgba(100, 0, 0, 0.2));
+    border: 3px solid #990000;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    animation: death-float 4s ease-in-out infinite;
+    backdrop-filter: blur(10px);
+  }
+
+  .death-card:nth-child(odd) { animation-delay: 0s; }
+  .death-card:nth-child(even) { animation-delay: 2s; }
+
+  @keyframes death-float {
+    0%, 100% { 
+      transform: translateY(0px);
+      box-shadow: 0 0 30px rgba(150, 0, 0, 0.5);
+    }
+    50% { 
+      transform: translateY(-10px);
+      box-shadow: 0 10px 40px rgba(150, 0, 0, 0.7);
+    }
+  }
+
+  .death-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: icon-pulse 2s ease-in-out infinite;
+  }
+
+  .death-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ff3333;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px #cc0000;
+    animation: value-glow 3s ease-in-out infinite;
+  }
+
+  .death-label {
+    font-size: 1rem;
+    color: #cc9999;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @keyframes icon-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  @keyframes value-glow {
+    0%, 100% { 
+      color: #ff3333;
+      text-shadow: 0 0 20px #cc0000;
+    }
+    50% { 
+      color: #ff6666;
+      text-shadow: 0 0 30px #ff0000;
+    }
+  }
+
+  /* RITUAL TEXT */
+  .ritual-text {
+    background: rgba(50, 0, 0, 0.5);
+    border: 2px solid #660000;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 4rem auto;
+    max-width: 600px;
+    backdrop-filter: blur(15px);
+  }
+
+  .ritual-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    color: #ff6666;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 25px #cc0000;
+  }
+
+  .prophecy-scroll {
+    text-align: center;
+  }
+
+  .prophecy-line {
+    font-size: 1.2rem;
+    color: #cc9999;
+    margin-bottom: 1rem;
+    font-style: italic;
+    animation: prophecy-glow 4s ease-in-out infinite;
+  }
+
+  .prophecy-line:nth-child(odd) { animation-delay: 0s; }
+  .prophecy-line:nth-child(even) { animation-delay: 2s; }
+
+  @keyframes prophecy-glow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 15px #990000; }
+  }
+
+  /* CULT ALTAR */
+  .cult-altar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 4rem 0;
+    font-size: 4rem;
+  }
+
+  .altar-flames {
+    animation: altar-flames-dance 1s ease-in-out infinite;
+  }
+
+  .altar-symbol {
+    font-size: 6rem;
+    color: #ff0000;
+    text-shadow: 0 0 60px #cc0000;
+    animation: altar-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes altar-flames-dance {
+    0%, 100% { transform: scale(1) rotate(-5deg); }
+    50% { transform: scale(1.2) rotate(5deg); }
+  }
+
+  @keyframes altar-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  /* FINAL ABYSS SECTION */
+  .abyss-section {
+    min-height: 100vh;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .abyss-content {
+    z-index: 2;
+  }
+
+  .abyss-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    color: #330000;
+    text-shadow: 0 0 40px #660000;
+    margin-bottom: 3rem;
+    animation: abyss-pulse 4s ease-in-out infinite;
+  }
+
+  .void-circle {
+    width: 300px;
+    height: 300px;
+    border: 5px solid #330000;
+    border-radius: 50%;
+    margin: 0 auto 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: void-rotate 20s linear infinite;
+    box-shadow: 
+      0 0 50px #660000,
+      inset 0 0 50px #330000;
+  }
+
+  .void-center {
+    text-align: center;
+  }
+
+  .void-text {
+    display: block;
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    color: #660000;
+    margin-bottom: 1rem;
+  }
+
+  .void-counter {
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    color: #990000;
+    text-shadow: 0 0 30px #cc0000;
+  }
+
+  .abyss-warning {
+    font-size: 1.5rem;
+    color: #666666;
+    font-style: italic;
+  }
+
+  @keyframes abyss-pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes void-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
   .footer {
     margin-top: auto;
     text-align: center;
@@ -1057,6 +1404,92 @@
     </section>
   </main>
 
+  <!-- CULT SECTION - APPEARS WHEN YOU SCROLL DOWN -->
+  <section class="cult-transition" id="cultTransition">
+    <div class="cult-warning">
+      <h2 class="cult-title">⚠️ ENTERING THE VOID ⚠️</h2>
+      <p class="cult-subtitle">The darkness grows stronger...</p>
+    </div>
+  </section>
+
+  <section class="cult-section" id="cultSection">
+    <div class="pentagram-container">
+      <div class="pentagram">⛧</div>
+      <div class="cult-flames">🔥🔥🔥🔥🔥</div>
+    </div>
+    
+    <h2 class="cult-main-title">💀 THE DARK STATISTICS 💀</h2>
+    <p class="cult-chant">As Nick's silence grows, so does the power of darkness...</p>
+    
+    <div class="death-counters">
+      <div class="death-card">
+        <div class="death-icon">⚰️</div>
+        <div class="death-value" id="soulsDrained">0</div>
+        <div class="death-label">Souls Drained</div>
+      </div>
+      
+      <div class="death-card">
+        <div class="death-icon">👁️</div>
+        <div class="death-value" id="demonsAwakened">0</div>
+        <div class="death-label">Demons Awakened</div>
+      </div>
+      
+      <div class="death-card">
+        <div class="death-icon">🌙</div>
+        <div class="death-value" id="darkMoons">0</div>
+        <div class="death-label">Dark Moons Passed</div>
+      </div>
+      
+      <div class="death-card">
+        <div class="death-icon">🕯️</div>
+        <div class="death-value" id="candlesLit">0</div>
+        <div class="death-label">Ritual Candles Lit</div>
+      </div>
+      
+      <div class="death-card">
+        <div class="death-icon">⚡</div>
+        <div class="death-value" id="powerLevel">0</div>
+        <div class="death-label">Dark Energy Level</div>
+      </div>
+      
+      <div class="death-card">
+        <div class="death-icon">🗡️</div>
+        <div class="death-value" id="ritualDays">0</div>
+        <div class="death-label">Days of Ritual</div>
+      </div>
+    </div>
+    
+    <div class="ritual-text">
+      <h3 class="ritual-title">🔮 THE PROPHECY SPEAKS 🔮</h3>
+      <div class="prophecy-scroll">
+        <p class="prophecy-line">"In the silence between souls..."</p>
+        <p class="prophecy-line">"Time becomes the master of darkness..."</p>
+        <p class="prophecy-line">"Each passing moment feeds the void..."</p>
+        <p class="prophecy-line">"Until the connection is restored..."</p>
+        <p class="prophecy-line">"The digital realm grows ever darker..."</p>
+      </div>
+    </div>
+    
+    <div class="cult-altar">
+      <div class="altar-flames">🔥</div>
+      <div class="altar-symbol">⛧</div>
+      <div class="altar-flames">🔥</div>
+    </div>
+  </section>
+
+  <section class="abyss-section">
+    <div class="abyss-content">
+      <h2 class="abyss-title">🌑 THE FINAL ABYSS 🌑</h2>
+      <div class="void-circle">
+        <div class="void-center">
+          <span class="void-text">VOID</span>
+          <div class="void-counter" id="voidPower">∞</div>
+        </div>
+      </div>
+      <p class="abyss-warning">Here lies the infinite silence...</p>
+    </div>
+  </section>
+
   <footer class="footer">
     Made with 💜 by <a href="#" class="footer-brand">TRIPPY TIME LABS</a> | 
     Powered by Psychedelic JavaScript ✨
@@ -1097,6 +1530,22 @@ function updateTimer() {
   document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString();
   document.getElementById('totalHours').textContent = totalHours.toLocaleString();
   document.getElementById('heartbeats').textContent = heartbeats.toLocaleString();
+  
+  // Update CULT/DEATH counters if they exist
+  if (document.getElementById('soulsDrained')) {
+    document.getElementById('soulsDrained').textContent = Math.floor(totalMinutes * 0.7).toLocaleString();
+    document.getElementById('demonsAwakened').textContent = Math.floor(totalHours * 3.33).toLocaleString();
+    document.getElementById('darkMoons').textContent = Math.floor(days * 0.0329).toFixed(2); // Lunar cycle
+    document.getElementById('candlesLit').textContent = Math.floor(totalSeconds * 0.001).toLocaleString();
+    document.getElementById('powerLevel').textContent = Math.floor(Math.pow(days, 1.5) * 100).toLocaleString();
+    document.getElementById('ritualDays').textContent = days;
+    
+    // Update void counter with spooky calculation
+    if (document.getElementById('voidPower')) {
+      const voidPower = Math.floor(totalSeconds * Math.PI).toLocaleString();
+      document.getElementById('voidPower').textContent = voidPower;
+    }
+  }
 }
 
 // Create floating particles
@@ -1284,10 +1733,18 @@ document.addEventListener('DOMContentLoaded', () => {
   updateTimer();
   createParticles();
   createMatrixRain();
+  createCultSymbols();
+  createDarkParticles();
   addVisualEffects();
   
   // Update timer every 10ms for smooth animation
   setInterval(updateTimer, 10);
+  
+  // Add scroll listener for cult darkness effect
+  window.addEventListener('scroll', handleCultScroll);
+  
+  // Initial call to set darkness based on current scroll position
+  handleCultScroll();
 });
 
 // Add keyboard controls for extra fun
