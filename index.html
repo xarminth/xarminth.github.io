@@ -3,200 +3,532 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>How Long Has It Been Since Nick Has Talked To Cait?</title>
+<title>Time Tracker - Professional Dashboard</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-  /* Reset & base */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
+  :root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #06b6d4;
+    --accent: #8b5cf6;
+    --background: #0f0f23;
+    --surface: #1a1a35;
+    --surface-light: #252547;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border: #334155;
+    --glow: rgba(99, 102, 241, 0.3);
+    --success: #10b981;
+    --warning: #f59e0b;
   }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    color: #eee;
+    font-family: 'Inter', sans-serif;
+    background: var(--background);
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    overflow-x: hidden;
+    margin-bottom: 2rem;
   }
 
-  /* Logo */
+  .profile-image-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    box-shadow: 
+      0 0 30px rgba(99, 102, 241, 0.4),
+      0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 40px rgba(99, 102, 241, 0.6),
+      0 15px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .profile-ring {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 136px;
+    height: 136px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+    background-size: 400% 400%;
+    animation: gradient-rotate 3s ease infinite, ring-pulse 2s ease-in-out infinite;
+    z-index: -1;
+  }
+
   .logo {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    color: #70ffea;
-    text-shadow:
-      0 0 5px #70ffea,
-      0 0 15px #70ffea,
-      0 0 30px #70ffea;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 
+      0 8px 25px rgba(99, 102, 241, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* Title */
-  h1 {
-    font-weight: 600;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-align: center;
-    letter-spacing: 0.04em;
-    text-shadow: 0 0 8px #70ffea88;
+  @keyframes gradient-rotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  /* Subtitle */
+  @keyframes ring-pulse {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: scale(1.05);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--text-primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .subtitle {
     font-size: 1.1rem;
-    margin-bottom: 40px;
-    color: #c0c0c0cc;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .start-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* Timer Grid */
+  .timer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .time-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
   }
 
-  /* Timer container */
-  .timer {
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-    flex-wrap: wrap;
+  .time-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
-  /* Each time block */
-  .time-block {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 25px 30px;
-    border-radius: 15px;
-    min-width: 110px;
-    box-shadow:
-      0 0 10px #70ffea66,
-      inset 0 0 8px #70ffea88;
-    text-align: center;
-    user-select: none;
-    transition: transform 0.3s ease;
+  .time-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px var(--glow);
+    border-color: var(--primary);
   }
 
-  .time-block:hover {
-    transform: scale(1.15);
-    box-shadow:
-      0 0 20px #70ffeacc,
-      inset 0 0 20px #70ffeaee;
+  .time-card:hover::before {
+    opacity: 1;
   }
 
-  /* Number */
-  .number {
-    font-size: 3.8rem;
+  .time-value {
+    font-size: 3rem;
     font-weight: 700;
-    color: #70ffea;
-    text-shadow:
-      0 0 10px #70ffea,
-      0 0 30px #00ffe0aa;
-    animation: pulse 2s infinite ease-in-out;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
   }
 
-  /* Label */
-  .label {
-    margin-top: 10px;
-    font-size: 1.1rem;
-    color: #a0f0e9cc;
-    letter-spacing: 0.06em;
+  .time-card:hover .time-value {
+    color: var(--secondary);
+    text-shadow: 0 0 30px rgba(6, 182, 212, 0.8);
+    transform: scale(1.1);
   }
 
-  /* Pulse animation */
-  @keyframes pulse {
-    0%, 100% {
-      text-shadow:
-        0 0 10px #70ffea,
-        0 0 30px #00ffe0aa;
-      color: #70ffea;
-    }
-    50% {
-      text-shadow:
-        0 0 20px #00ffe0ff,
-        0 0 50px #00ffe0ff;
-      color: #00ffe0;
-    }
+  .time-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.05), transparent);
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  .stats-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    position: relative;
+    z-index: 1;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item {
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
   }
 
   /* Footer */
-  footer {
-    margin-top: 60px;
-    color: #555;
+  .footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
     font-size: 0.9rem;
-    opacity: 0.6;
-    font-style: italic;
   }
 
-  /* Responsive */
-  @media (max-width: 600px) {
-    .time-block {
-      min-width: 90px;
-      padding: 18px 20px;
+  .footer-brand {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-brand:hover {
+    color: var(--secondary);
+  }
+
+  /* Status Indicator */
+  .status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface-light);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
     }
-    .number {
-      font-size: 2.8rem;
+    
+    .profile-image {
+      width: 100px;
+      height: 100px;
     }
-    h1 {
-      font-size: 1.8rem;
+    
+    .profile-ring {
+      width: 116px;
+      height: 116px;
+      top: -8px;
+      left: -8px;
+    }
+    
+    .timer-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .time-card {
+      padding: 1.5rem 1rem;
+    }
+    
+    .time-value {
+      font-size: 2.5rem;
+    }
+    
+    .stats-section {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .profile-image {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .profile-ring {
+      width: 96px;
+      height: 96px;
+    }
+    
+    .timer-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
 </head>
 <body>
 
-<div class="logo" aria-label="Clock Icon">⏳</div>
+<div class="container">
+  <header class="header">
+    <div class="profile-section">
+      <div class="profile-image-container">
+        <div class="profile-ring"></div>
+        <img src="images/preview.png" alt="Nick's Profile" class="profile-image" onerror="this.style.display='none'; document.querySelector('.logo').style.display='flex';">
+      </div>
+      <div class="logo" style="display: none;">⏱️</div>
+    </div>
+    <h1 class="title">Communication Timer</h1>
+    <p class="subtitle">How Long Has It Been Since Nick Has Talked To Cait?</p>
+    <div class="start-date">
+      📅 Started: May 22, 2025 at 12:01 AM UTC
+    </div>
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      <span>Live Tracking</span>
+    </div>
+  </header>
 
-<h1>How Long Has It Been Since Nick Has Talked To Cait?</h1>
-<div class="subtitle">Counting from May 22, 2025, 12:01 AM</div>
+  <main>
+    <div class="timer-grid" role="timer" aria-live="polite" aria-atomic="true">
+      <div class="time-card">
+        <div class="time-value" id="days">0</div>
+        <div class="time-label">Days</div>
+      </div>
+      <div class="time-card">
+        <div class="time-value" id="hours">00</div>
+        <div class="time-label">Hours</div>
+      </div>
+      <div class="time-card">
+        <div class="time-value" id="minutes">00</div>
+        <div class="time-label">Minutes</div>
+      </div>
+      <div class="time-card">
+        <div class="time-value" id="seconds">00</div>
+        <div class="time-label">Seconds</div>
+      </div>
+    </div>
 
-<div class="timer" role="timer" aria-live="polite" aria-atomic="true" aria-relevant="text">
-  <div class="time-block">
-    <div class="number" id="days">0</div>
-    <div class="label">Days</div>
-  </div>
-  <div class="time-block">
-    <div class="number" id="hours">0</div>
-    <div class="label">Hours</div>
-  </div>
-  <div class="time-block">
-    <div class="number" id="minutes">0</div>
-    <div class="label">Minutes</div>
-  </div>
-  <div class="time-block">
-    <div class="number" id="seconds">0</div>
-    <div class="label">Seconds</div>
-  </div>
+    <section class="stats-section">
+      <h2 class="stats-title">Extended Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="totalHours">0</div>
+          <div class="stat-label">Total Hours</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="totalMinutes">0</div>
+          <div class="stat-label">Total Minutes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="weeks">0</div>
+          <div class="stat-label">Weeks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="percentage">0%</div>
+          <div class="stat-label">Year Progress</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Professional Timer Dashboard • Created by <a href="#" class="footer-brand">Xarminth</a></p>
+  </footer>
 </div>
 
-<footer>
-  &copy; 2025 Timer by Xarminth
-</footer>
-
 <script>
-  const startDate = new Date('2025-05-22T00:01:00Z'); // UTC time for May 22, 2025 12:01 AM
-  // Adjust if you want local timezone, or specify a timezone library if needed
+  const startDate = new Date('2025-05-22T00:01:00Z');
 
   function updateTimer() {
     const now = new Date();
     let diff = now - startDate;
 
     if (diff < 0) {
-      // If date is in the future, show zero
       diff = 0;
     }
 
-    const seconds = Math.floor((diff / 1000) % 60);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    // Calculate time units
+    const totalSeconds = Math.floor(diff / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours / 24);
+    const weeks = Math.floor(totalDays / 7);
 
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = hours.toString().padStart(2,'0');
-    document.getElementById('minutes').textContent = minutes.toString().padStart(2,'0');
-    document.getElementById('seconds').textContent = seconds.toString().padStart(2,'0');
+    const seconds = totalSeconds % 60;
+    const minutes = totalMinutes % 60;
+    const hours = totalHours % 24;
+    const days = totalDays;
+
+    // Update main timer
+    document.getElementById('days').textContent = days.toLocaleString();
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+    // Update stats
+    document.getElementById('totalHours').textContent = totalHours.toLocaleString();
+    document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString();
+    document.getElementById('weeks').textContent = weeks.toLocaleString();
+
+    // Calculate year progress (approximate)
+    const yearStart = new Date(now.getFullYear(), 0, 1);
+    const yearProgress = ((now - yearStart) / (365.25 * 24 * 60 * 60 * 1000)) * 100;
+    document.getElementById('percentage').textContent = yearProgress.toFixed(1) + '%';
   }
 
+  // Update immediately and then every second
   updateTimer();
   setInterval(updateTimer, 1000);
+
+  // Add some visual feedback for interaction
+  document.querySelectorAll('.time-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        card.style.transform = '';
+      }, 150);
+    });
+  });
 </script>
 
 </body>
