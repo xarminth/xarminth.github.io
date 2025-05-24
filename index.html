@@ -38,6 +38,63 @@
     animation: background-shift 8s ease-in-out infinite;
   }
 
+  /* Music Controls */
+  .music-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--neon-purple);
+    border-radius: 15px;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+    animation: music-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes music-glow {
+    0%, 100% { 
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    }
+    50% { 
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+    }
+  }
+
+  .music-button {
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+    border: none;
+    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  .music-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px var(--neon-pink);
+  }
+
+  .volume-control {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .volume-slider {
+    width: 80px;
+    background: var(--neon-cyan);
+    outline: none;
+    border-radius: 10px;
+  }
+
   /* CULT DARKNESS OVERLAY - Gets darker as you scroll down */
   .darkness-overlay {
     position: fixed;
@@ -1050,13 +1107,13 @@
     50% { color: #990000; }
   }
 
-  /* DEATH COUNTERS */
+  /* ENHANCED DEATH COUNTERS */
   .death-counters {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -1303,6 +1360,7 @@
     .time-value { font-size: clamp(2rem, 5vw, 3rem); }
     .stats-section { padding: 2rem; }
     .title { font-size: clamp(2rem, 7vw, 4rem); }
+    .music-controls { top: 10px; right: 10px; }
   }
 
   @media (max-width: 480px) {
@@ -1314,6 +1372,21 @@
 </style>
 </head>
 <body>
+
+<!-- Background Music -->
+<audio id="backgroundMusic" loop>
+  <source src="background.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Music Controls -->
+<div class="music-controls">
+  <button class="music-button" id="musicToggle">🎵 Play Music</button>
+  <div class="volume-control">
+    <span style="color: var(--neon-cyan); font-size: 0.9rem;">🔊</span>
+    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+  </div>
+</div>
 
 <!-- Matrix Rain Effect -->
 <div class="matrix-rain" id="matrixRain"></div>
@@ -1457,348 +1530,459 @@
         <div class="death-value" id="ritualDays">0</div>
         <div class="death-label">Days of Ritual</div>
       </div>
-    </div>
-    
-    <div class="ritual-text">
-      <h3 class="ritual-title">🔮 THE PROPHECY SPEAKS 🔮</h3>
-      <div class="prophecy-scroll">
-        <p class="prophecy-line">"In the silence between souls..."</p>
-        <p class="prophecy-line">"Time becomes the master of darkness..."</p>
-        <p class="prophecy-line">"Each passing moment feeds the void..."</p>
-        <p class="prophecy-line">"Until the connection is restored..."</p>
-        <p class="prophecy-line">"The digital realm grows ever darker..."</p>
+
+      <div class="death-card">
+        <div class="death-icon">🩸</div>
+        <div class="death-value" id="bloodDrops">0</div>
+        <div class="death-label">Drops of Blood Spilled</div>
       </div>
-    </div>
-    
-    <div class="cult-altar">
-      <div class="altar-flames">🔥</div>
-      <div class="altar-symbol">⛧</div>
-      <div class="altar-flames">🔥</div>
-    </div>
-  </section>
 
-  <section class="abyss-section">
-    <div class="abyss-content">
-      <h2 class="abyss-title">🌑 THE FINAL ABYSS 🌑</h2>
-      <div class="void-circle">
-        <div class="void-center">
-          <span class="void-text">VOID</span>
-          <div class="void-counter" id="voidPower">∞</div>
-        </div>
+      <div class="death-card">
+        <div class="death-icon">👻</div>
+        <div class="death-value" id="ghostsRisen">0</div>
+        <div class="death-label">Ghosts Risen</div>
       </div>
-      <p class="abyss-warning">Here lies the infinite silence...</p>
-    </div>
-  </section>
 
-  <footer class="footer">
-    Made with 💜 by <a href="#" class="footer-brand">TRIPPY TIME LABS</a> | 
-    Powered by Psychedelic JavaScript ✨
-  </footer>
-</div>
+      <div class="death-card">
+        <div class="death-icon">🌑</div>
+        <div class="death-value" id="darkEclipses">0</div>
+        <div class="death-label">Dark Eclipses Witnessed</div>
+      </div>
 
-<script>
-// Set the start date and time
-const startDate = new Date('2025-05-22T00:01:00.000Z');
+      <div class="death-card">
+        <div class="death-icon">🔮</div>
+        <div class="death-value" id="cursesSpoken">0</div>
+        <div class="death-label">Curses Spoken</div>
+      </div>
 
-function updateTimer() {
-  const now = new Date();
-  const timeDiff = now - startDate;
-  
-  // Calculate time units
-  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-  const milliseconds = Math.floor(timeDiff % 1000);
-  const microseconds = Math.floor((timeDiff % 1000) * 1000) % 1000;
-  
-  // Update timer display
-  document.getElementById('days').textContent = days;
-  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-  document.getElementById('milliseconds').textContent = milliseconds.toString().padStart(3, '0');
-  document.getElementById('microseconds').textContent = microseconds.toString().padStart(3, '0');
-  
-  // Update statistics
-  const totalSeconds = Math.floor(timeDiff / 1000);
-  const totalMinutes = Math.floor(timeDiff / (1000 * 60));
-  const totalHours = Math.floor(timeDiff / (1000 * 60 * 60));
-  const heartbeats = Math.floor(totalSeconds * 1.2); // Average 72 BPM
-  
-  document.getElementById('totalSeconds').textContent = totalSeconds.toLocaleString();
-  document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString();
-  document.getElementById('totalHours').textContent = totalHours.toLocaleString();
-  document.getElementById('heartbeats').textContent = heartbeats.toLocaleString();
-  
-  // Update CULT/DEATH counters if they exist
-  if (document.getElementById('soulsDrained')) {
-    document.getElementById('soulsDrained').textContent = Math.floor(totalMinutes * 0.7).toLocaleString();
-    document.getElementById('demonsAwakened').textContent = Math.floor(totalHours * 3.33).toLocaleString();
-    document.getElementById('darkMoons').textContent = Math.floor(days * 0.0329).toFixed(2); // Lunar cycle
-    document.getElementById('candlesLit').textContent = Math.floor(totalSeconds * 0.001).toLocaleString();
-    document.getElementById('powerLevel').textContent = Math.floor(Math.pow(days, 1.5) * 100).toLocaleString();
-    document.getElementById('ritualDays').textContent = days;
-    
-    // Update void counter with spooky calculation
-    if (document.getElementById('voidPower')) {
-      const voidPower = Math.floor(totalSeconds * Math.PI).toLocaleString();
-      document.getElementById('voidPower').textContent = voidPower;
-    }
-  }
-}
+      <div class="death-card">
+        <div class="death-icon">⚱️</div>
+        <div class="death-value" id="urnsCollected">0</div>
+        <div class="death-label">Soul Urns Collected</div>
+      </div>
 
-// Create floating particles
-function createParticles() {
-  const particlesContainer = document.getElementById('particles');
-  const colors = ['#ff00ff', '#00ffff', '#00ff00', '#ff6600', '#8a2be2', '#ffff00', '#ff0040', '#0080ff'];
-  const sizes = ['small', 'medium', 'large'];
-  
-  setInterval(() => {
-    if (particlesContainer.children.length > 50) return; // Limit particles
-    
-    const particle = document.createElement('div');
-    particle.className = `particle ${sizes[Math.floor(Math.random() * sizes.length)]}`;
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    particle.style.boxShadow = `0 0 ${5 + Math.random() * 10}px currentColor`;
-    
-    particlesContainer.appendChild(particle);
-    
-    // Remove particle after animation
-    setTimeout(() => {
-      if (particle.parentNode) {
-        particle.parentNode.removeChild(particle);
-      }
-    }, 8000);
-  }, 200);
-}
+      <div class="death-card">
+        <div class="death-icon">🕷️</div>
+        <div class="death-value" id="spidersSpawned">0</div>
+        <div class="death-label">Dark Spiders Spawned</div>
+      </div>
 
-// Create dark cult symbols
-function createCultSymbols() {
-  const cultContainer = document.getElementById('cultSymbols');
-  const symbols = ['⛧', '🜏', '☾', '☽', '🕯️', '⚰️', '👁️', '🔥', '⚡', '☠️', '🗡️', '🌙'];
-  
-  // Create static symbols positioned around the page
-  for (let i = 0; i < 15; i++) {
-    const symbol = document.createElement('div');
-    symbol.className = 'cult-symbol';
-    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    symbol.style.left = Math.random() * 90 + '%';
-    symbol.style.top = Math.random() * 90 + '%';
-    symbol.style.fontSize = (1 + Math.random() * 2) + 'rem';
-    symbol.style.animationDelay = Math.random() * 8 + 's';
-    cultContainer.appendChild(symbol);
-  }
-}
+      <div class="death-card">
+        <div class="death-icon">🦇</div>
+        <div class="death-value" id="batsAwakened">0</div>
+        <div class="death-label">Bats of Darkness</div>
+      </div>
 
-// Create dark particles
-function createDarkParticles() {
-  const darkContainer = document.getElementById('darkParticles');
-  
-  setInterval(() => {
-    if (darkContainer.children.length > 20) return;
-    
-    const particle = document.createElement('div');
-    particle.className = 'dark-particle';
-    particle.style.left = Math.random() * 100 + '%';
-    
-    darkContainer.appendChild(particle);
-    
-    setTimeout(() => {
-      if (particle.parentNode) {
-        particle.parentNode.removeChild(particle);
-      }
-    }, 6000);
-  }, 300);
-}
+      <div class="death-card">
+        <div class="death-icon">💀</div>
+        <div class="death-value" id="skullsCollected">0</div>
+        <div class="death-label">Ancient Skulls</div>
+      </div>
 
-// Scroll-based darkness effect
-function handleCultScroll() {
-  const scrollPosition = window.scrollY;
-  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercentage = Math.min(scrollPosition / documentHeight, 1);
-  
-  // Get elements
-  const darknessOverlay = document.getElementById('darknessOverlay');
-  const cultSymbols = document.getElementById('cultSymbols');
-  const darkParticles = document.getElementById('darkParticles');
-  const regularParticles = document.getElementById('particles');
-  const matrixRain = document.getElementById('matrixRain');
-  
-  // Calculate darkness intensity based on scroll
-  const darknessIntensity = Math.pow(scrollPercentage, 0.7); // Exponential curve for dramatic effect
-  
-  // Apply darkness overlay
-  darknessOverlay.style.opacity = darknessIntensity;
-  
-  // Show cult symbols when scrolling down
-  if (scrollPercentage > 0.2) {
-    cultSymbols.style.opacity = Math.min((scrollPercentage - 0.2) * 1.5, 1);
-  } else {
-    cultSymbols.style.opacity = 0;
-  }
-  
-  // Show dark particles
-  if (scrollPercentage > 0.3) {
-    darkParticles.style.opacity = Math.min((scrollPercentage - 0.3) * 1.2, 0.8);
-  } else {
-    darkParticles.style.opacity = 0;
-  }
-  
-  // Fade out colorful elements as it gets darker
-  const colorfulOpacity = Math.max(1 - darknessIntensity * 1.5, 0.1);
-  regularParticles.style.opacity = colorfulOpacity;
-  matrixRain.style.opacity = colorfulOpacity * 0.3;
-  
-  // Change background colors to darker/redder tones
-  if (scrollPercentage > 0.5) {
-    document.body.style.filter = `hue-rotate(${scrollPercentage * 60}deg) brightness(${1 - scrollPercentage * 0.7}) saturate(${1 + scrollPercentage})`;
-  } else {
-    document.body.style.filter = '';
-  }
-  
-  // Add ominous red glow to timer cards when deep in darkness
-  const timeCards = document.querySelectorAll('.time-card');
-  if (scrollPercentage > 0.6) {
-    timeCards.forEach(card => {
-      card.style.boxShadow += `, 0 0 50px rgba(150, 0, 0, ${scrollPercentage * 0.8})`;
-      card.style.borderColor = `rgba(150, 0, 0, ${0.5 + scrollPercentage * 0.5})`;
-    });
-  }
-  
-  // Change title color to blood red in deep darkness
-  const title = document.querySelector('.title');
-  if (scrollPercentage > 0.7) {
-    title.style.filter = `hue-rotate(${-180 + scrollPercentage * 60}deg) brightness(${0.8 + scrollPercentage * 0.4})`;
-  }
-}
-function createMatrixRain() {
-  const matrixContainer = document.getElementById('matrixRain');
-  const characters = '01ニカモトサシ時間空間∞∆Ψ';
-  
-  function createColumn() {
-    const column = document.createElement('div');
-    column.className = 'matrix-column';
-    column.style.left = Math.random() * 100 + '%';
-    column.textContent = characters[Math.floor(Math.random() * characters.length)];
-    
-    // Random color variations
-    const colors = ['#00ff00', '#00ffff', '#ff00ff'];
-    column.style.color = colors[Math.floor(Math.random() * colors.length)];
-    
-    matrixContainer.appendChild(column);
-    
-    setTimeout(() => {
-      if (column.parentNode) {
-        column.parentNode.removeChild(column);
-      }
-    }, 4000);
-  }
-  
-  setInterval(createColumn, 150);
-}
+      <div class="death-card">
+        <div class="death-icon">🗝️</div>
+        <div class="death-value" id="hellGatesOpened">0</div>
+        <div class="death-label">Hell Gates Opened</div>
+      </div>
 
-// Add extra visual effects
-function addVisualEffects() {
-  // Screen shake effect on hover
-  const timeCards = document.querySelectorAll('.time-card');
-  timeCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      document.body.style.animation = 'screen-shake 0.3s ease-in-out';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      setTimeout(() => {
-        document.body.style.animation = '';
-      }, 300);
-    });
-  });
-  
-  // Add screen shake keyframes
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes screen-shake {
-      0%, 100% { transform: translate(0, 0); }
-      25% { transform: translate(1px, -1px); }
-      50% { transform: translate(-1px, 1px); }
-      75% { transform: translate(1px, 1px); }
-    }
-  `;
-  document.head.appendChild(style);
-}
+      <div class="death-card">
+        <div class="death-icon">🌪️</div>
+        <div class="death-value" id="voidStorms">0</div>
+        <div class="death-label">Void Storms Created</div>
+      </div>
 
-// Initialize everything
-document.addEventListener('DOMContentLoaded', () => {
-  updateTimer();
-  createParticles();
-  createMatrixRain();
-  createCultSymbols();
-  createDarkParticles();
-  addVisualEffects();
-  
-  // Update timer every 10ms for smooth animation
-  setInterval(updateTimer, 10);
-  
-  // Add scroll listener for cult darkness effect
-  window.addEventListener('scroll', handleCultScroll);
-  
-  // Initial call to set darkness based on current scroll position
-  handleCultScroll();
-});
+      <div class="death-card">
+        <div class="death-icon">🔥</div>
+        <div class="death-value" id="hellfire">0</div>
+        <div class="death-label">Hellfire Intensity</div>
+      </div>
 
-// Add keyboard controls for extra fun
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'Space') {
-    event.preventDefault();
-    // Trigger rainbow explosion effect
-    document.body.style.filter = 'hue-rotate(360deg) saturate(2) brightness(1.5)';
-    setTimeout(() => {
-      document.body.style.filter = '';
-    }, 1000);
-  }
-});
+      <div class="death-card">
+        <div class="death-icon">🌊</div>
+        <div class="death-value" id="bloodRivers">0</div>
+        <div class="death-label">Rivers of Blood</div>
+      </div>
 
-// Click effects
-document.addEventListener('click', (event) => {
-  // Create explosion effect at click position
-  const explosion = document.createElement('div');
-  explosion.style.position = 'fixed';
-  explosion.style.left = event.clientX + 'px';
-  explosion.style.top = event.clientY + 'px';
-  explosion.style.width = '20px';
-  explosion.style.height = '20px';
-  explosion.style.background = 'radial-gradient(circle, #ff00ff, transparent)';
-  explosion.style.borderRadius = '50%';
-  explosion.style.pointerEvents = 'none';
-  explosion.style.animation = 'explosion 0.6s ease-out forwards';
-  explosion.style.zIndex = '9999';
-  
-  document.body.appendChild(explosion);
-  
-  setTimeout(() => {
-    if (explosion.parentNode) {
-      explosion.parentNode.removeChild(explosion);
-    }
-  }, 600);
-});
+      <div class="death-card">
+        <div class="death-icon">⛓️</div>
+        <div class="death-value" id="soulChains">0</div>
+        <div class="death-label">Soul Chains Forged</div>
+      </div>
 
-// Add explosion animation
-const explosionStyle = document.createElement('style');
-explosionStyle.textContent = `
-  @keyframes explosion {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(20);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(explosionStyle);
-</script>
+      <div class="death-card">
+        <div class="death-icon">🌋</div>
+        <div class="death-value" id="volcanoes">0</div>
+        <div class="death-label">Dark Volcanoes</div>
+      </div>
 
-</body>
-</html>
+      <div class="death-card">
+        <div class="death-icon">🕳️</div>
+        <div class="death-value" id="voidPits">0</div>
+        <div class="death-label">Void Pits Opened</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">👹</div>
+        <div class="death-value" id="demonLords">0</div>
+        <div class="death-label">Demon Lords Summoned</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌌</div>
+        <div class="death-value" id="darknessLevel">0</div>
+        <div class="death-label">Universal Darkness %</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">⚰️</div>
+        <div class="death-value" id="gravesDigged">0</div>
+        <div class="death-label">Graves Digger</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🧙‍♂️</div>
+        <div class="death-value" id="necromancers">0</div>
+        <div class="death-label">Necromancers Recruited</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">📜</div>
+        <div class="death-value" id="darkSpells">0</div>
+        <div class="death-label">Dark Spells Cast</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🏚️</div>
+        <div class="death-value" id="hauntedHouses">0</div>
+        <div class="death-label">Houses Haunted</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🦴</div>
+        <div class="death-value" id="boneArmies">0</div>
+        <div class="death-label">Skeleton Armies</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌚</div>
+        <div class="death-value" id="darkSuns">0</div>
+        <div class="death-label">Dark Suns Created</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">⚡</div>
+        <div class="death-value" id="chaosEnergy">0</div>
+        <div class="death-label">Chaos Energy Units</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌍</div>
+        <div class="death-value" id="worldsConsumed">0</div>
+        <div class="death-label">Worlds Consumed</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🔱</div>
+        <div class="death-value" id="tridents">0</div>
+        <div class="death-label">Infernal Tridents</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌈</div>
+        <div class="death-value" id="rainbowsCorrupted">0</div>
+        <div class="death-label">Rainbows Corrupted</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">👑</div>
+        <div class="death-value" id="crownsPower">0</div>
+        <div class="death-label">Dark Crowns of Power</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">⌛</div>
+        <div class="death-value" id="timeDistortions">0</div>
+        <div class="death-label">Time Distortions</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🔺</div>
+        <div class="death-value" id="pyramids">0</div>
+        <div class="death-label">Dark Pyramids Built</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎭</div>
+        <div class="death-value" id="masksOfSorrow">0</div>
+        <div class="death-label">Masks of Eternal Sorrow</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🕸️</div>
+        <div class="death-value" id="websOfFate">0</div>
+        <div class="death-label">Webs of Fate Spun</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🧿</div>
+        <div class="death-value" id="evilEyes">0</div>
+        <div class="death-label">Evil Eyes Opened</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌑</div>
+        <div class="death-value" id="voidMoons">0</div>
+        <div class="death-label">Void Moons Summoned</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🗿</div>
+        <div class="death-value" id="cursedStatues">0</div>
+        <div class="death-label">Cursed Statues Erected</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎪</div>
+        <div class="death-value" id="circusOfDoom">0</div>
+        <div class="death-label">Circus of Doom Shows</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎨</div>
+        <div class="death-value" id="paintingsOfDespair">0</div>
+        <div class="death-label">Paintings of Despair</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎼</div>
+        <div class="death-value" id="symphoniesOfSorrow">0</div>
+        <div class="death-label">Symphonies of Sorrow</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">📚</div>
+        <div class="death-value" id="cursedTomes">0</div>
+        <div class="death-label">Cursed Tomes Written</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🏺</div>
+        <div class="death-value" id="ancientRelics">0</div>
+        <div class="death-label">Ancient Relics Unearthed</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎲</div>
+        <div class="death-value" id="diceOfDestiny">0</div>
+        <div class="death-label">Dice of Destiny Rolled</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🃏</div>
+        <div class="death-value" id="tarotRevealed">0</div>
+        <div class="death-label">Dark Tarot Cards</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎯</div>
+        <div class="death-value" id="targetsAcquired">0</div>
+        <div class="death-label">Soul Targets Acquired</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎮</div>
+        <div class="death-value" id="gamesOfMadness">0</div>
+        <div class="death-label">Games of Madness</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎳</div>
+        <div class="death-value" id="bowlingBallsOfDoom">0</div>
+        <div class="death-label">Bowling Balls of Doom</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎪</div>
+        <div class="death-value" id="carnivalOfSouls">0</div>
+        <div class="death-label">Carnival of Lost Souls</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎭</div>
+        <div class="death-value" id="theaterOfCruelty">0</div>
+        <div class="death-label">Theater of Cruelty Acts</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎪</div>
+        <div class="death-value" id="clownsOfChaos">0</div>
+        <div class="death-label">Clowns of Chaos</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎨</div>
+        <div class="death-value" id="portraitsOfMadness">0</div>
+        <div class="death-label">Portraits of Madness</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">📸</div>
+        <div class="death-value" id="cursedPhotographs">0</div>
+        <div class="death-label">Cursed Photographs</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">📹</div>
+        <div class="death-value" id="filmsOfHorror">0</div>
+        <div class="death-label">Films of Horror</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎪</div>
+        <div class="death-value" id="mirrorMazes">0</div>
+        <div class="death-label">Mirror Mazes of Despair</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎡</div>
+        <div class="death-value" id="ferrisWheelsOfFate">0</div>
+        <div class="death-label">Ferris Wheels of Fate</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎢</div>
+        <div class="death-value" id="rollercoastersOfRuin">0</div>
+        <div class="death-label">Rollercoasters of Ruin</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎠</div>
+        <div class="death-value" id="carouselsOfChaos">0</div>
+        <div class="death-label">Carousels of Chaos</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🏰</div>
+        <div class="death-value" id="castlesOfCurses">0</div>
+        <div class="death-label">Castles of Curses</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🏚️</div>
+        <div class="death-value" id="ruinsOfRage">0</div>
+        <div class="death-label">Ruins of Rage</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌉</div>
+        <div class="death-value" id="bridgesToHell">0</div>
+        <div class="death-label">Bridges to Hell</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌁</div>
+        <div class="death-value" id="mistsOfMystery">0</div>
+        <div class="death-label">Mists of Mystery</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌪️</div>
+        <div class="death-value" id="tornadosOfTorment">0</div>
+        <div class="death-label">Tornados of Torment</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">⛈️</div>
+        <div class="death-value" id="stormsOfSorrow">0</div>
+        <div class="death-label">Storms of Sorrow</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌊</div>
+        <div class="death-value" id="tsunamisOfTears">0</div>
+        <div class="death-label">Tsunamis of Tears</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🌋</div>
+        <div class="death-value" id="eruptionsOfEvil">0</div>
+        <div class="death-label">Eruptions of Evil</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">❄️</div>
+        <div class="death-value" id="blizzardsOfBane">0</div>
+        <div class="death-label">Blizzards of Bane</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🔥</div>
+        <div class="death-value" id="wildfiresOfWoe">0</div>
+        <div class="death-label">Wildfires of Woe</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">💎</div>
+        <div class="death-value" id="cursedJewels">0</div>
+        <div class="death-label">Cursed Jewels</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">👑</div>
+        <div class="death-value" id="thronesTooManyToCount">0</div>
+        <div class="death-label">Thrones of Tyranny</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">⚔️</div>
+        <div class="death-value" id="swordsOfSorrow">0</div>
+        <div class="death-label">Swords of Sorrow</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🛡️</div>
+        <div class="death-value" id="shieldsShattered">0</div>
+        <div class="death-label">Shields Shattered</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🏹</div>
+        <div class="death-value" id="arrowsOfAnguish">0</div>
+        <div class="death-label">Arrows of Anguish</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🔱</div>
+        <div class="death-value" id="forksOfFury">0</div>
+        <div class="death-label">Forks of Fury</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">⚓</div>
+        <div class="death-value" id="anchorsOfAbyss">0</div>
+        <div class="death-label">Anchors to the Abyss</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">⛓️</div>
+        <div class="death-value" id="shacklesOfShame">0</div>
+        <div class="death-label">Shackles of Shame</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🔒</div>
+        <div class="death-value" id="locksOfLament">0</div>
+        <div class="death-label">Locks of Lament</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🗝️</div>
+        <div class="death-value" id="keysToKaos">0</div>
+        <div class="death-label">Keys to Kaos</div>
+      </div>
+
+      <div class="death-card">
+        <div class="death-icon">🎪</div>
+        <div class="death-value" id="finalCountdown">0</div>
+        <div class="death-label">Final Countdown to Doom</div>
+      </div>
