@@ -1986,3 +1986,459 @@
         <div class="death-value" id="finalCountdown">0</div>
         <div class="death-label">Final Countdown to Doom</div>
       </div>
+    </div>
+    
+    <div class="ritual-text">
+      <h3 class="ritual-title">🔮 THE PROPHECY SPEAKS 🔮</h3>
+      <div class="prophecy-scroll">
+        <p class="prophecy-line">"In the silence between souls..."</p>
+        <p class="prophecy-line">"Time becomes the master of darkness..."</p>
+        <p class="prophecy-line">"Each passing moment feeds the void..."</p>
+        <p class="prophecy-line">"Until the connection is restored..."</p>
+        <p class="prophecy-line">"The digital realm grows ever darker..."</p>
+      </div>
+    </div>
+    
+    <div class="cult-altar">
+      <div class="altar-flames">🔥</div>
+      <div class="altar-symbol">⛧</div>
+      <div class="altar-flames">🔥</div>
+    </div>
+  </section>
+
+  <section class="abyss-section">
+    <div class="abyss-content">
+      <h2 class="abyss-title">🌑 THE FINAL ABYSS 🌑</h2>
+      <div class="void-circle">
+        <div class="void-center">
+          <span class="void-text">VOID</span>
+          <div class="void-counter" id="voidPower">793,490</div>
+        </div>
+      </div>
+      <p class="abyss-warning">Here lies the infinite silence...</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Made with 💜 by <a href="#" class="footer-brand">TRIPPY TIME LABS</a> | 
+    Powered by Psychedelic JavaScript ✨
+  </footer>
+</div>
+
+<script>
+// Set the start date and time - May 22, 2025 at 12:01 AM UTC
+const startDate = new Date('2025-05-22T00:01:00.000Z');
+
+// Music controls
+const backgroundMusic = document.getElementById('backgroundMusic');
+const musicToggle = document.getElementById('musicToggle');
+const volumeSlider = document.getElementById('volumeSlider');
+
+let musicPlaying = false;
+
+musicToggle.addEventListener('click', () => {
+  if (musicPlaying) {
+    backgroundMusic.pause();
+    musicToggle.textContent = '🎵 Play Music';
+    musicPlaying = false;
+  } else {
+    backgroundMusic.play().catch(e => {
+      console.log('Audio play failed:', e);
+      alert('Could not play music. Make sure background.mp3 exists in the same folder!');
+    });
+    musicToggle.textContent = '🔇 Pause Music';
+    musicPlaying = true;
+  }
+});
+
+volumeSlider.addEventListener('input', (e) => {
+  backgroundMusic.volume = e.target.value / 100;
+});
+
+// Set initial volume
+backgroundMusic.volume = 0.5;
+
+function updateTimer() {
+  const now = new Date();
+  const timeDiff = now - startDate;
+  
+  // Calculate time units
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  const milliseconds = Math.floor(timeDiff % 1000);
+  const microseconds = Math.floor((timeDiff % 1000) * 1000) % 1000;
+  
+  // Update timer display
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  document.getElementById('milliseconds').textContent = milliseconds.toString().padStart(3, '0');
+  document.getElementById('microseconds').textContent = microseconds.toString().padStart(3, '0');
+  
+  // Update statistics
+  const totalSeconds = Math.floor(timeDiff / 1000);
+  const totalMinutes = Math.floor(timeDiff / (1000 * 60));
+  const totalHours = Math.floor(timeDiff / (1000 * 60 * 60));
+  const heartbeats = Math.floor(totalSeconds * 1.2); // Average 72 BPM
+  
+  document.getElementById('totalSeconds').textContent = totalSeconds.toLocaleString();
+  document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString();
+  document.getElementById('totalHours').textContent = totalHours.toLocaleString();
+  document.getElementById('heartbeats').textContent = heartbeats.toLocaleString();
+  
+  // Update ENHANCED CULT/DEATH counters
+  if (document.getElementById('soulsDrained')) {
+    // Original dark stats
+    document.getElementById('soulsDrained').textContent = Math.floor(totalMinutes * 0.7).toLocaleString();
+    document.getElementById('demonsAwakened').textContent = Math.floor(totalHours * 3.33).toLocaleString();
+    document.getElementById('darkMoons').textContent = Math.floor(days * 0.0329).toFixed(2);
+    document.getElementById('candlesLit').textContent = Math.floor(totalSeconds * 0.001).toLocaleString();
+    document.getElementById('powerLevel').textContent = Math.floor(Math.pow(days, 1.5) * 100).toLocaleString();
+    document.getElementById('ritualDays').textContent = days;
+    
+    // NEW ENHANCED DARK STATISTICS
+    document.getElementById('bloodDrops').textContent = Math.floor(totalSeconds * 0.666).toLocaleString();
+    document.getElementById('ghostsRisen').textContent = Math.floor(totalMinutes * 0.13).toLocaleString();
+    document.getElementById('darkEclipses').textContent = Math.floor(days * 0.007).toFixed(3);
+    document.getElementById('cursesSpoken').textContent = Math.floor(totalHours * 6.66).toLocaleString();
+    document.getElementById('urnsCollected').textContent = Math.floor(totalMinutes * 0.042).toLocaleString();
+    document.getElementById('spidersSpawned').textContent = Math.floor(totalSeconds * 0.333).toLocaleString();
+    document.getElementById('batsAwakened').textContent = Math.floor(totalMinutes * 1.13).toLocaleString();
+    document.getElementById('skullsCollected').textContent = Math.floor(totalHours * 2.22).toLocaleString();
+    document.getElementById('hellGatesOpened').textContent = Math.floor(days * 0.666).toFixed(2);
+    document.getElementById('voidStorms').textContent = Math.floor(totalHours * 0.777).toLocaleString();
+    document.getElementById('hellfire').textContent = Math.floor(Math.pow(totalHours, 1.2) * 13).toLocaleString();
+    document.getElementById('bloodRivers').textContent = Math.floor(days * 3.14).toFixed(1);
+    document.getElementById('soulChains').textContent = Math.floor(totalMinutes * 0.888).toLocaleString();
+    document.getElementById('volcanoes').textContent = Math.floor(days * 0.13).toFixed(2);
+    document.getElementById('voidPits').textContent = Math.floor(totalHours * 0.444).toLocaleString();
+    document.getElementById('demonLords').textContent = Math.floor(days * 0.666).toFixed(2);
+    document.getElementById('darknessLevel').textContent = Math.min(Math.floor(totalHours * 0.042), 100).toFixed(1);
+    document.getElementById('gravesDigged').textContent = Math.floor(totalMinutes * 0.777).toLocaleString();
+    document.getElementById('necromancers').textContent = Math.floor(totalHours * 0.313).toLocaleString();
+    document.getElementById('darkSpells').textContent = Math.floor(totalSeconds * 0.113).toLocaleString();
+    document.getElementById('hauntedHouses').textContent = Math.floor(totalMinutes * 0.666).toLocaleString();
+    document.getElementById('boneArmies').textContent = Math.floor(totalHours * 1.666).toLocaleString();
+    document.getElementById('darkSuns').textContent = Math.floor(days * 0.001).toFixed(4);
+    document.getElementById('chaosEnergy').textContent = Math.floor(Math.pow(totalSeconds, 0.7) * 3.14).toLocaleString();
+    document.getElementById('worldsConsumed').textContent = Math.floor(days * 0.0013).toFixed(5);
+    document.getElementById('tridents').textContent = Math.floor(totalHours * 0.777).toLocaleString();
+    document.getElementById('rainbowsCorrupted').textContent = Math.floor(totalMinutes * 0.042).toLocaleString();
+    document.getElementById('crownsPower').textContent = Math.floor(days * 1.333).toFixed(1);
+    document.getElementById('timeDistortions').textContent = Math.floor(totalSeconds * 0.00666).toLocaleString();
+    document.getElementById('pyramids').textContent = Math.floor(days * 0.777).toFixed(2);
+    document.getElementById('masksOfSorrow').textContent = Math.floor(totalHours * 0.888).toLocaleString();
+    
+    // EVEN MORE DARK STATISTICS - The madness continues!
+    document.getElementById('websOfFate').textContent = Math.floor(totalMinutes * 1.234).toLocaleString();
+    document.getElementById('evilEyes').textContent = Math.floor(totalSeconds * 0.0666).toLocaleString();
+    document.getElementById('voidMoons').textContent = Math.floor(days * 0.0666).toFixed(3);
+    document.getElementById('cursedStatues').textContent = Math.floor(totalHours * 0.999).toLocaleString();
+    document.getElementById('circusOfDoom').textContent = Math.floor(days * 0.333).toFixed(2);
+    document.getElementById('paintingsOfDespair').textContent = Math.floor(totalMinutes * 0.777).toLocaleString();
+    document.getElementById('symphoniesOfSorrow').textContent = Math.floor(totalHours * 0.444).toLocaleString();
+    document.getElementById('cursedTomes').textContent = Math.floor(totalMinutes * 0.123).toLocaleString();
+    document.getElementById('ancientRelics').textContent = Math.floor(totalHours * 0.789).toLocaleString();
+    document.getElementById('diceOfDestiny').textContent = Math.floor(totalSeconds * 0.00777).toLocaleString();
+    document.getElementById('tarotRevealed').textContent = Math.floor(totalMinutes * 0.078).toLocaleString();
+    document.getElementById('targetsAcquired').textContent = Math.floor(totalHours * 1.313).toLocaleString();
+    document.getElementById('gamesOfMadness').textContent = Math.floor(totalMinutes * 0.555).toLocaleString();
+    document.getElementById('bowlingBallsOfDoom').textContent = Math.floor(totalSeconds * 0.0101).toLocaleString();
+    document.getElementById('carnivalOfSouls').textContent = Math.floor(days * 0.111).toFixed(3);
+    document.getElementById('theaterOfCruelty').textContent = Math.floor(totalHours * 0.666).toLocaleString();
+    document.getElementById('clownsOfChaos').textContent = Math.floor(totalMinutes * 0.333).toLocaleString();
+    document.getElementById('portraitsOfMadness').textContent = Math.floor(totalHours * 0.222).toLocaleString();
+    document.getElementById('cursedPhotographs').textContent = Math.floor(totalMinutes * 0.999).toLocaleString();
+    document.getElementById('filmsOfHorror').textContent = Math.floor(totalHours * 0.111).toLocaleString();
+    document.getElementById('mirrorMazes').textContent = Math.floor(days * 0.444).toFixed(2);
+    document.getElementById('ferrisWheelsOfFate').textContent = Math.floor(totalHours * 0.333).toLocaleString();
+    document.getElementById('rollercoastersOfRuin').textContent = Math.floor(days * 0.222).toFixed(2);
+    document.getElementById('carouselsOfChaos').textContent = Math.floor(totalHours * 0.555).toLocaleString();
+    document.getElementById('castlesOfCurses').textContent = Math.floor(days * 0.777).toFixed(2);
+    document.getElementById('ruinsOfRage').textContent = Math.floor(totalHours * 0.888).toLocaleString();
+    document.getElementById('bridgesToHell').textContent = Math.floor(days * 0.1337).toFixed(3);
+    document.getElementById('mistsOfMystery').textContent = Math.floor(totalMinutes * 2.222).toLocaleString();
+    document.getElementById('tornadosOfTorment').textContent = Math.floor(totalHours * 0.777).toLocaleString();
+    document.getElementById('stormsOfSorrow').textContent = Math.floor(totalMinutes * 1.111).toLocaleString();
+    document.getElementById('tsunamisOfTears').textContent = Math.floor(days * 0.0777).toFixed(3);
+    document.getElementById('eruptionsOfEvil').textContent = Math.floor(totalHours * 0.666).toLocaleString();
+    document.getElementById('blizzardsOfBane').textContent = Math.floor(totalMinutes * 0.444).toLocaleString();
+    document.getElementById('wildfiresOfWoe').textContent = Math.floor(totalHours * 1.666).toLocaleString();
+    document.getElementById('cursedJewels').textContent = Math.floor(totalMinutes * 0.777).toLocaleString();
+    document.getElementById('thronesTooManyToCount').textContent = Math.floor(days * 0.999).toFixed(2);
+    document.getElementById('swordsOfSorrow').textContent = Math.floor(totalHours * 2.222).toLocaleString();
+    document.getElementById('shieldsShattered').textContent = Math.floor(totalMinutes * 3.333).toLocaleString();
+    document.getElementById('arrowsOfAnguish').textContent = Math.floor(totalSeconds * 0.1111).toLocaleString();
+    document.getElementById('forksOfFury').textContent = Math.floor(totalHours * 0.333).toLocaleString();
+    document.getElementById('anchorsOfAbyss').textContent = Math.floor(days * 0.666).toFixed(2);
+    document.getElementById('shacklesOfShame').textContent = Math.floor(totalMinutes * 1.666).toLocaleString();
+    document.getElementById('locksOfLament').textContent = Math.floor(totalHours * 0.999).toLocaleString();
+    document.getElementById('keysToKaos').textContent = Math.floor(totalMinutes * 0.1313).toLocaleString();
+    document.getElementById('finalCountdown').textContent = Math.floor(Math.pow(totalSeconds, 0.5) * 6.66).toLocaleString();
+    
+    // Update void counter with spooky calculation
+    if (document.getElementById('voidPower')) {
+      const voidPower = Math.floor(totalSeconds * Math.PI).toLocaleString();
+      document.getElementById('voidPower').textContent = voidPower;
+    }
+  }
+}
+
+// Create floating particles
+function createParticles() {
+  const particlesContainer = document.getElementById('particles');
+  const colors = ['#ff00ff', '#00ffff', '#00ff00', '#ff6600', '#8a2be2', '#ffff00', '#ff0040', '#0080ff'];
+  const sizes = ['small', 'medium', 'large'];
+  
+  setInterval(() => {
+    if (particlesContainer.children.length > 50) return; // Limit particles
+    
+    const particle = document.createElement('div');
+    particle.className = `particle ${sizes[Math.floor(Math.random() * sizes.length)]}`;
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.boxShadow = `0 0 ${5 + Math.random() * 10}px currentColor`;
+    
+    particlesContainer.appendChild(particle);
+    
+    // Remove particle after animation
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 8000);
+  }, 200);
+}
+
+// Create dark cult symbols
+function createCultSymbols() {
+  const cultContainer = document.getElementById('cultSymbols');
+  const symbols = ['⛧', '🜏', '☾', '☽', '🕯️', '⚰️', '👁️', '🔥', '⚡', '☠️', '🗡️', '🌙', '👻', '🩸', '💀', '🦇', '🕷️'];
+  
+  // Create static symbols positioned around the page
+  for (let i = 0; i < 20; i++) {
+    const symbol = document.createElement('div');
+    symbol.className = 'cult-symbol';
+    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    symbol.style.left = Math.random() * 90 + '%';
+    symbol.style.top = Math.random() * 90 + '%';
+    symbol.style.fontSize = (1 + Math.random() * 2) + 'rem';
+    symbol.style.animationDelay = Math.random() * 8 + 's';
+    cultContainer.appendChild(symbol);
+  }
+}
+
+// Create dark particles
+function createDarkParticles() {
+  const darkContainer = document.getElementById('darkParticles');
+  
+  setInterval(() => {
+    if (darkContainer.children.length > 25) return;
+    
+    const particle = document.createElement('div');
+    particle.className = 'dark-particle';
+    particle.style.left = Math.random() * 100 + '%';
+    
+    darkContainer.appendChild(particle);
+    
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 6000);
+  }, 250);
+}
+
+// Scroll-based darkness effect
+function handleCultScroll() {
+  const scrollPosition = window.scrollY;
+  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercentage = Math.min(scrollPosition / documentHeight, 1);
+  
+  // Get elements
+  const darknessOverlay = document.getElementById('darknessOverlay');
+  const cultSymbols = document.getElementById('cultSymbols');
+  const darkParticles = document.getElementById('darkParticles');
+  const regularParticles = document.getElementById('particles');
+  const matrixRain = document.getElementById('matrixRain');
+  
+  // Calculate darkness intensity based on scroll
+  const darknessIntensity = Math.pow(scrollPercentage, 0.7); // Exponential curve for dramatic effect
+  
+  // Apply darkness overlay
+  darknessOverlay.style.opacity = darknessIntensity;
+  
+  // Show cult symbols when scrolling down
+  if (scrollPercentage > 0.2) {
+    cultSymbols.style.opacity = Math.min((scrollPercentage - 0.2) * 1.5, 1);
+  } else {
+    cultSymbols.style.opacity = 0;
+  }
+  
+  // Show dark particles
+  if (scrollPercentage > 0.3) {
+    darkParticles.style.opacity = Math.min((scrollPercentage - 0.3) * 1.2, 0.8);
+  } else {
+    darkParticles.style.opacity = 0;
+  }
+  
+  // Fade out colorful elements as it gets darker
+  const colorfulOpacity = Math.max(1 - darknessIntensity * 1.5, 0.1);
+  regularParticles.style.opacity = colorfulOpacity;
+  matrixRain.style.opacity = colorfulOpacity * 0.3;
+  
+  // Change background colors to darker/redder tones
+  if (scrollPercentage > 0.5) {
+    document.body.style.filter = `hue-rotate(${scrollPercentage * 60}deg) brightness(${1 - scrollPercentage * 0.7}) saturate(${1 + scrollPercentage})`;
+  } else {
+    document.body.style.filter = '';
+  }
+  
+  // Add ominous red glow to timer cards when deep in darkness
+  const timeCards = document.querySelectorAll('.time-card');
+  if (scrollPercentage > 0.6) {
+    timeCards.forEach(card => {
+      card.style.boxShadow += `, 0 0 50px rgba(150, 0, 0, ${scrollPercentage * 0.8})`;
+      card.style.borderColor = `rgba(150, 0, 0, ${0.5 + scrollPercentage * 0.5})`;
+    });
+  }
+  
+  // Change title color to blood red in deep darkness
+  const title = document.querySelector('.title');
+  if (scrollPercentage > 0.7) {
+    title.style.filter = `hue-rotate(${-180 + scrollPercentage * 60}deg) brightness(${0.8 + scrollPercentage * 0.4})`;
+  }
+}
+
+function createMatrixRain() {
+  const matrixContainer = document.getElementById('matrixRain');
+  const characters = '01ニカモトサシ時間空間∞∆Ψ⛧👁️💀🩸';
+  
+  function createColumn() {
+    const column = document.createElement('div');
+    column.className = 'matrix-column';
+    column.style.left = Math.random() * 100 + '%';
+    column.textContent = characters[Math.floor(Math.random() * characters.length)];
+    
+    // Random color variations
+    const colors = ['#00ff00', '#00ffff', '#ff00ff', '#ff0000'];
+    column.style.color = colors[Math.floor(Math.random() * colors.length)];
+    
+    matrixContainer.appendChild(column);
+    
+    setTimeout(() => {
+      if (column.parentNode) {
+        column.parentNode.removeChild(column);
+      }
+    }, 4000);
+  }
+  
+  setInterval(createColumn, 150);
+}
+
+// Add extra visual effects
+function addVisualEffects() {
+  // Screen shake effect on hover
+  const timeCards = document.querySelectorAll('.time-card');
+  timeCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      document.body.style.animation = 'screen-shake 0.3s ease-in-out';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      setTimeout(() => {
+        document.body.style.animation = '';
+      }, 300);
+    });
+  });
+  
+  // Add screen shake keyframes
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes screen-shake {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, 1px); }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+  updateTimer();
+  createParticles();
+  createMatrixRain();
+  createCultSymbols();
+  createDarkParticles();
+  addVisualEffects();
+  
+  // Update timer every 10ms for smooth animation
+  setInterval(updateTimer, 10);
+  
+  // Add scroll listener for cult darkness effect
+  window.addEventListener('scroll', handleCultScroll);
+  
+  // Initial call to set darkness based on current scroll position
+  handleCultScroll();
+});
+
+// Add keyboard controls for extra fun
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Space') {
+    event.preventDefault();
+    // Trigger rainbow explosion effect
+    document.body.style.filter = 'hue-rotate(360deg) saturate(2) brightness(1.5)';
+    setTimeout(() => {
+      document.body.style.filter = '';
+    }, 1000);
+  }
+});
+
+// Click effects
+document.addEventListener('click', (event) => {
+  // Create explosion effect at click position
+  const explosion = document.createElement('div');
+  explosion.style.position = 'fixed';
+  explosion.style.left = event.clientX + 'px';
+  explosion.style.top = event.clientY + 'px';
+  explosion.style.width = '20px';
+  explosion.style.height = '20px';
+  explosion.style.background = 'radial-gradient(circle, #ff00ff, transparent)';
+  explosion.style.borderRadius = '50%';
+  explosion.style.pointerEvents = 'none';
+  explosion.style.animation = 'explosion 0.6s ease-out forwards';
+  explosion.style.zIndex = '9999';
+  
+  document.body.appendChild(explosion);
+  
+  setTimeout(() => {
+    if (explosion.parentNode) {
+      explosion.parentNode.removeChild(explosion);
+    }
+  }, 600);
+});
+
+// Add explosion animation
+const explosionStyle = document.createElement('style');
+explosionStyle.textContent = `
+  @keyframes explosion {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(20);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(explosionStyle);
+</script>
+
+</body>
+</html>
