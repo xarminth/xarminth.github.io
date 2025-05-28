@@ -44,6 +44,30 @@
     cursor: crosshair;
   }
 
+  @keyframes roast-pulse {
+    0%, 100% { 
+      border-color: var(--hell-fire);
+      transform: scale(1);
+    }
+    50% { 
+      border-color: var(--demon-red);
+      transform: scale(1.02);
+      box-shadow: 0 0 50px rgba(255, 51, 0, 0.8);
+    }
+  }
+
+  @keyframes insult-pulse {
+    0%, 100% { 
+      border-color: var(--demon-red);
+      transform: scale(1);
+    }
+    50% { 
+      border-color: var(--hell-fire);
+      transform: scale(1.01);
+      box-shadow: 0 0 40px rgba(255, 0, 51, 0.7);
+    }
+  }
+
   @keyframes insult-flicker {
     0%, 100% { 
       color: var(--demon-red);
@@ -973,7 +997,17 @@
     </div>
     <div class="status-indicator">
       <div class="status-dot"></div>
-      <span>🖤 ACTIVE DEMONIC SURVEILLANCE & SOUL HARVESTING 🖤</span>
+      <span>🖤 ACTIVE SURVEILLANCE OF NICK'S PATHETIC LIFE CHOICES 🖤</span>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(255, 51, 0, 0.3), rgba(153, 0, 0, 0.8)); border: 3px solid var(--demon-red); border-radius: 20px; padding: 2rem; margin-top: 2rem; animation: insult-pulse 2s ease-in-out infinite;">
+      <div style="font-family: 'Eater', cursive; font-size: 1.4rem; color: var(--hell-fire); text-transform: uppercase; letter-spacing: 0.1em; text-shadow: 0 0 15px var(--demon-red);">
+        💀 LIVE UPDATES ON NICK'S FAILURES 💀<br><br>
+        <span style="color: var(--satan-gold);">🤡 Currently Being: A Complete Disappointment</span><br>
+        <span style="color: var(--demon-red);">😭 Weakness Level: MAXIMUM PATHETIC</span><br>
+        <span style="color: var(--hell-fire);">🐍 Self-Control: NON-EXISTENT</span><br>
+        <span style="color: var(--crimson);">💩 Life Choices: ABSOLUTELY TERRIBLE</span>
+      </div>
     </div>
   </header>
 
@@ -1100,7 +1134,19 @@
       </div>
     </section>
 
-    <section class="satanic-ritual">
+    <div style="background: linear-gradient(135deg, rgba(255, 51, 0, 0.4), rgba(153, 0, 0, 0.9)); border: 4px solid var(--hell-fire); border-radius: 25px; padding: 3rem; margin-bottom: 4rem; text-align: center; animation: roast-pulse 3s ease-in-out infinite;">
+      <h3 style="font-family: 'Nosifer', cursive; font-size: 2.5rem; color: var(--hell-fire); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.1em;">
+        🤡 NICK'S HALL OF SHAME 🤡
+      </h3>
+      <div style="font-family: 'Eater', cursive; font-size: 1.3rem; color: var(--bone-white); line-height: 1.8; text-shadow: 0 0 10px var(--demon-red);">
+        <p style="margin-bottom: 1rem;">💩 <strong>WEAKEST HUMAN ALIVE:</strong> Can't go 5 minutes without crawling back</p>
+        <p style="margin-bottom: 1rem;">🤮 <strong>ZERO SELF-RESPECT:</strong> Threw away all dignity for someone who doesn't care</p>
+        <p style="margin-bottom: 1rem;">🐍 <strong>GETS PLAYED REPEATEDLY:</strong> Falls for the same tricks every single time</p>
+        <p style="margin-bottom: 1rem;">😭 <strong>PROFESSIONAL DISAPPOINTMENT:</strong> Even his own family is embarrassed</p>
+        <p style="margin-bottom: 1rem;">🤡 <strong>WORLD'S BIGGEST CLOWN:</strong> Should join the circus with these performances</p>
+        <p style="color: var(--hell-fire); font-size: 1.5rem; font-weight: bold;">🏆 CONGRATULATIONS NICK - YOU'RE THE MOST PATHETIC PERSON ON EARTH! 🏆</p>
+      </div>
+    </div>
       <div class="ritual-symbols">⛧ 🕯️ 💀 🕯️ ⛧</div>
       <h2 class="ritual-title">📜 THE INFERNAL PROPHECY OF DOOM 📜</h2>
       <div class="ritual-incantation">
@@ -1160,9 +1206,12 @@
       🔥 💀 ⛧ 👹 🩸 ⚰️ 🕯️ 👁️ 🐍 💀 🔥
     </div>
     Forged in the Deepest Pits of Hell by <a href="#" class="footer-brand">THE DARK OVERLORDS OF THE ABYSS</a> | 
-    Powered by Blood, Malice & Eternal Suffering ⚡<br><br>
+    Powered by Nick's Infinite Weakness & Eternal Stupidity ⚡<br><br>
     <div style="font-style: italic; color: var(--demon-red); font-size: 1.1rem;">
-      "May this timer serve as a reminder of the darkness that lurks within us all..."
+      "This timer exists because Nick is too weak to stay away - what a pathetic excuse for a human being..."
+    </div>
+    <div style="color: var(--hell-fire); font-size: 1.3rem; font-weight: bold; margin-top: 1rem; text-transform: uppercase;">
+      🤡 Nick = Biggest Disappointment in Human History 🤡
     </div>
   </footer>
 </div>
