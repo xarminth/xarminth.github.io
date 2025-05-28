@@ -44,6 +44,19 @@
     cursor: crosshair;
   }
 
+  @keyframes insult-flicker {
+    0%, 100% { 
+      color: var(--demon-red);
+      transform: scale(1);
+      text-shadow: 0 0 15px var(--hell-fire);
+    }
+    50% { 
+      color: var(--hell-fire);
+      transform: scale(1.05);
+      text-shadow: 0 0 25px var(--demon-red), 0 0 50px var(--crimson);
+    }
+  }
+
   @keyframes apocalyptic-pulse {
     0%, 100% { 
       background: 
@@ -951,7 +964,10 @@
   <header class="header">
     <div class="satanic-pentagram">⛧</div>
     <h1 class="apocalyptic-title">🔥 ULTIMATE CORRUPTION TIMER OF ETERNAL DAMNATION 🔥</h1>
-    <p class="demonic-subtitle">💀 THE UNSPEAKABLE EVIL THAT FESTERS SINCE NICK BEGAN COMMUNICATING WITH CAIT AGAIN 💀</p>
+    <p class="demonic-subtitle">💀 THE PATHETIC WEAKNESS OF NICK WHO COULDN'T RESIST TALKING TO CAIT AGAIN 💀</p>
+    <div style="color: var(--demon-red); font-size: 1.6rem; margin: 2rem 0; text-shadow: 0 0 15px var(--hell-fire); font-family: 'Eater', cursive; text-transform: uppercase; letter-spacing: 0.1em; animation: insult-flicker 3s ease-in-out infinite;">
+      🖤 BEHOLD THE SPINELESS FOOL WHO HAD NO SELF-CONTROL 🖤
+    </div>
     <div class="corruption-date">
       🔥 THE CORRUPTION BEGAN: May 22, 2025 at 12:01 AM UTC 🔥
     </div>
@@ -1034,10 +1050,24 @@
         </div>
 
         <div class="stat-item">
+          <div class="stat-icon">🤡</div>
+          <div class="stat-value" id="weakMoments">0</div>
+          <div class="stat-label">Nick's Moments of Weakness</div>
+          <div class="stat-description">Times he proved he has zero backbone or willpower</div>
+        </div>
+
+        <div class="stat-item">
           <div class="stat-icon">🐍</div>
           <div class="stat-value" id="serpentsReleased">0</div>
           <div class="stat-label">Serpents of Temptation</div>
           <div class="stat-description">Ancient snakes whispering forbidden knowledge</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">😭</div>
+          <div class="stat-value" id="patheticChoices">0</div>
+          <div class="stat-label">Nick's Pathetic Life Choices</div>
+          <div class="stat-description">Decisions that prove he learned absolutely nothing</div>
         </div>
 
         <div class="stat-item">
@@ -1074,23 +1104,23 @@
       <div class="ritual-symbols">⛧ 🕯️ 💀 🕯️ ⛧</div>
       <h2 class="ritual-title">📜 THE INFERNAL PROPHECY OF DOOM 📜</h2>
       <div class="ritual-incantation">
-        "From the moment their cursed words first touched again,<br>
+        "From the moment Nick's pathetic ass couldn't resist her again,<br>
         The very fabric of reality began to hemorrhage darkness...<br><br>
         
-        Each message sent awakens legions of the damned,<br>
-        Each notification summons forth primordial terrors...<br><br>
+        Each weak-willed message sent awakens legions of the damned,<br>
+        Each spineless notification summons forth primordial terrors...<br><br>
         
-        The digital realm bleeds with every vile conversation,<br>
-        And the shadows grow hungrier with each passing moment...<br><br>
+        BEHOLD! The most pathetic creature in existence,<br>
+        Who had every chance to be strong but chose weakness...<br><br>
         
-        This is not mere communication - this is pure corruption.<br>
-        This is not simple connection - this is cosmic contagion.<br><br>
+        This is not mere communication - this is Nick being a complete fool.<br>
+        This is not simple connection - this is cosmic stupidity.<br><br>
         
-        The darkness spreads like a plague across dimensions,<br>
-        And there is no salvation from this eternal torment..."<br><br>
+        Nick's weakness spreads like a plague across dimensions,<br>
+        And his lack of self-control dooms us all to eternal torment...<br><br>
 
         <strong style="color: var(--hell-fire); font-size: 2.2rem;">
-        "ABANDON ALL HOPE, YE WHO WITNESS THIS TIMER"
+        "NICK IS THE REASON HELL EXISTS - HIS WEAKNESS CREATED SATAN HIMSELF"
         </strong>
       </div>
     </section>
@@ -1098,20 +1128,25 @@
     <section class="apocalyptic-section">
       <h2 class="apocalypse-title">🌍 THE COMING APOCALYPSE 🌍</h2>
       <div class="apocalypse-text">
-        The end times approach with each tick of this accursed timer...<br><br>
+        The end times approach because Nick couldn't keep his damn mouth shut...<br><br>
         
         Soon, the barriers between dimensions will crumble,<br>
-        And Hell itself will spill into our reality.<br><br>
+        All because one weak fool couldn't resist texting her back.<br><br>
         
         The corruption spreads through fiber optic cables,<br>
-        Infecting servers and souls alike with its malevolent presence.<br><br>
+        Powered entirely by Nick's complete lack of willpower.<br><br>
         
         Digital demons now inhabit every smartphone,<br>
-        Every notification a harbinger of the coming darkness.<br><br>
+        Every notification a reminder of Nick's pathetic choices.<br><br>
         
         <strong style="color: var(--hell-fire); font-size: 2rem;">
-        PREPARE FOR THE FINAL RECKONING!
-        </strong>
+        NICK SINGLE-HANDEDLY CAUSED THE APOCALYPSE BY BEING WEAK!
+        </strong><br><br>
+
+        <div style="color: var(--demon-red); font-size: 1.6rem; font-style: italic;">
+        "History will remember Nick as the spineless fool who doomed humanity<br>
+        because he couldn't ignore a damn text message..."
+        </div>
       </div>
       
       <div style="font-size: 3rem; margin-top: 2rem; animation: symbols-rotate 8s linear infinite;">
@@ -1202,6 +1237,14 @@ function updateTimer() {
     // Evil eyes opened - malevolent watchers
     const evilEyes = Math.floor(totalSeconds * 0.0666);
     document.getElementById('evilEyes').textContent = evilEyes.toLocaleString();
+
+    // Nick's weakness statistics - extra brutal calculations
+    const weakMoments = Math.floor(totalMinutes * 0.666); // Every moment is weakness
+    document.getElementById('weakMoments').textContent = weakMoments.toLocaleString();
+
+    // Nick's pathetic choices - compounding stupidity
+    const patheticChoices = Math.floor(totalHours * 13.37); // Leet level of pathetic
+    document.getElementById('patheticChoices').textContent = patheticChoices.toLocaleString();
 
     // Serpents of temptation - slithering evil
     const serpentsReleased = Math.floor(totalMinutes * 0.333);
