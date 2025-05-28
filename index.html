@@ -3,23 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>🌈 TRIPPY TIME PORTAL 🌈</title>
+<title>🌑 DARK CORRUPTION TIMER 🌑</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap');
 
   :root {
-    --neon-pink: #ff00ff;
-    --neon-cyan: #00ffff;
-    --neon-green: #00ff00;
-    --neon-orange: #ff6600;
-    --neon-purple: #8a2be2;
-    --neon-yellow: #ffff00;
-    --neon-red: #ff0040;
-    --neon-blue: #0080ff;
-    --dark-bg: #0a0a0a;
-    --darker-bg: #050505;
-    --glow-intense: rgba(255, 0, 255, 0.8);
-    --text-glow: #ffffff;
+    --blood-red: #660000;
+    --deep-red: #990000;
+    --crimson: #cc0000;
+    --black-void: #000000;
+    --dark-shadow: #0a0000;
+    --bone-white: #f5f5dc;
+    --ash-gray: #2c2c2c;
   }
 
   * {
@@ -29,94 +24,35 @@
   }
 
   body {
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--dark-bg);
-    color: var(--text-glow);
+    font-family: 'Butcherman', cursive;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(100, 0, 0, 0.4) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(50, 0, 0, 0.3) 0%, transparent 50%),
+      linear-gradient(180deg, var(--black-void), var(--dark-shadow), var(--black-void));
+    color: var(--bone-white);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
-    animation: background-shift 8s ease-in-out infinite;
+    animation: evil-pulse 8s ease-in-out infinite;
   }
 
-  /* Music Controls */
-  .music-controls {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--neon-purple);
-    border-radius: 15px;
-    padding: 1rem;
-    backdrop-filter: blur(10px);
-    animation: music-glow 3s ease-in-out infinite;
-  }
-
-  @keyframes music-glow {
+  @keyframes evil-pulse {
     0%, 100% { 
-      border-color: var(--neon-purple);
-      box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(100, 0, 0, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(50, 0, 0, 0.3) 0%, transparent 50%),
+        linear-gradient(180deg, var(--black-void), var(--dark-shadow), var(--black-void));
     }
     50% { 
-      border-color: var(--neon-pink);
-      box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+      background: 
+        radial-gradient(circle at 60% 50%, rgba(150, 0, 0, 0.5) 0%, transparent 30%),
+        radial-gradient(circle at 40% 20%, rgba(80, 0, 0, 0.4) 0%, transparent 60%),
+        linear-gradient(180deg, #050000, var(--dark-shadow), #050000);
     }
   }
 
-  .music-button {
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
-    border: none;
-    border-radius: 50px;
-    padding: 0.8rem 1.5rem;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  }
-
-  .music-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px var(--neon-pink);
-  }
-
-  .volume-control {
-    margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .volume-slider {
-    width: 80px;
-    background: var(--neon-cyan);
-    outline: none;
-    border-radius: 10px;
-  }
-
-  /* CULT DARKNESS OVERLAY - Gets darker as you scroll down */
-  .darkness-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, 
-      rgba(0, 0, 0, 0) 0%,
-      rgba(5, 0, 10, 0.3) 30%,
-      rgba(10, 0, 5, 0.6) 60%,
-      rgba(15, 0, 0, 0.8) 80%,
-      rgba(20, 0, 0, 0.95) 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  /* Satanic symbols that appear on scroll */
-  .cult-symbols {
+  /* Floating cursed particles */
+  .cursed-particles {
     position: fixed;
     top: 0;
     left: 0;
@@ -124,54 +60,19 @@
     height: 100%;
     pointer-events: none;
     z-index: 1;
-    opacity: 0;
-    transition: opacity 0.5s ease;
   }
 
-  .cult-symbol {
-    position: absolute;
-    font-size: 2rem;
-    color: #660000;
-    text-shadow: 0 0 20px #ff0000;
-    animation: cult-float 8s ease-in-out infinite;
-    opacity: 0.7;
-  }
-
-  @keyframes cult-float {
-    0%, 100% { 
-      transform: translateY(0px) rotate(0deg);
-      opacity: 0.7;
-    }
-    50% { 
-      transform: translateY(-20px) rotate(180deg);
-      opacity: 1;
-    }
-  }
-
-  /* Dark particles for cult effect */
-  .dark-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-  .dark-particle {
+  .cursed-particle {
     position: absolute;
     width: 3px;
     height: 3px;
-    background: #990000;
+    background: var(--deep-red);
     border-radius: 50%;
-    animation: dark-float 6s linear infinite;
-    box-shadow: 0 0 10px #ff0000;
+    animation: cursed-float 10s linear infinite;
+    box-shadow: 0 0 8px var(--crimson);
   }
 
-  @keyframes dark-float {
+  @keyframes cursed-float {
     0% {
       transform: translateY(100vh) rotate(0deg);
       opacity: 0;
@@ -183,138 +84,13 @@
       opacity: 1;
     }
     100% {
-      transform: translateY(-20vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  @keyframes background-shift {
-    0%, 100% { 
-      background: radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 40% 40%, rgba(0, 255, 0, 0.15) 0%, transparent 40%),
-                  var(--dark-bg);
-    }
-    25% {
-      background: radial-gradient(circle at 60% 30%, rgba(255, 102, 0, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 30% 70%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 60%, rgba(255, 255, 0, 0.15) 0%, transparent 40%),
-                  var(--dark-bg);
-    }
-    50% {
-      background: radial-gradient(circle at 80% 80%, rgba(0, 255, 0, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 20% 20%, rgba(255, 0, 64, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 50% 50%, rgba(0, 128, 255, 0.15) 0%, transparent 40%),
-                  var(--dark-bg);
-    }
-    75% {
-      background: radial-gradient(circle at 10% 50%, rgba(255, 255, 0, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 90% 50%, rgba(255, 0, 255, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 50% 10%, rgba(0, 255, 128, 0.15) 0%, transparent 40%),
-                  var(--dark-bg);
-    }
-  }
-
-  /* Enhanced Psychedelic floating particles */
-  .floating-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .particle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.9;
-    animation: float-particle 6s linear infinite;
-    filter: blur(0.5px);
-  }
-
-  .particle.large {
-    width: 8px;
-    height: 8px;
-    animation-duration: 8s;
-  }
-
-  .particle.medium {
-    width: 5px;
-    height: 5px;
-    animation-duration: 7s;
-  }
-
-  .particle.small {
-    width: 3px;
-    height: 3px;
-    animation-duration: 6s;
-  }
-
-  @keyframes float-particle {
-    0% {
-      transform: translateY(100vh) translateX(0px) rotate(0deg) scale(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-      transform: translateY(90vh) translateX(20px) rotate(36deg) scale(1);
-    }
-    25% {
-      transform: translateY(70vh) translateX(-15px) rotate(90deg) scale(1.2);
-    }
-    50% {
-      transform: translateY(40vh) translateX(30px) rotate(180deg) scale(0.8);
-    }
-    75% {
-      transform: translateY(20vh) translateX(-25px) rotate(270deg) scale(1.1);
-    }
-    90% {
-      opacity: 1;
-      transform: translateY(-10vh) translateX(10px) rotate(324deg) scale(1);
-    }
-    100% {
-      transform: translateY(-20vh) translateX(0px) rotate(360deg) scale(0);
-      opacity: 0;
-    }
-  }
-
-  /* Matrix-style digital rain effect */
-  .matrix-rain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.3;
-  }
-
-  .matrix-column {
-    position: absolute;
-    top: -100px;
-    color: var(--neon-green);
-    font-family: 'Orbitron', monospace;
-    font-size: 14px;
-    animation: matrix-fall 4s linear infinite;
-    text-shadow: 0 0 5px currentColor;
-  }
-
-  @keyframes matrix-fall {
-    0% {
-      transform: translateY(-100px);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100vh);
+      transform: translateY(-10vh) rotate(360deg);
       opacity: 0;
     }
   }
 
   .container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
     min-height: 100vh;
@@ -324,1407 +100,559 @@
     z-index: 2;
   }
 
-  /* Trippy Header */
+  /* Evil Header */
   .header {
     text-align: center;
     margin-bottom: 4rem;
     position: relative;
   }
 
-  .profile-section {
+  .evil-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    background: 
+      radial-gradient(circle at 50% 50%, var(--crimson) 0%, var(--deep-red) 50%, var(--blood-red) 100%);
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-bottom: 3rem;
-    position: relative;
+    justify-content: center;
+    font-size: 4rem;
+    animation: evil-spin 6s linear infinite, evil-glow 3s ease-in-out infinite;
+    box-shadow: 
+      0 0 60px var(--crimson),
+      0 0 120px var(--deep-red),
+      inset 0 0 40px rgba(0, 0, 0, 0.8);
+    border: 4px solid var(--blood-red);
   }
 
-  .profile-image-container {
-    position: relative;
-    margin-bottom: 2rem;
-  }
-
-  .profile-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 8px solid var(--neon-pink);
-    position: relative;
-    z-index: 3;
-    animation: profile-psychedelic 3s ease-in-out infinite, profile-rotate 15s linear infinite;
-    filter: saturate(1.8) contrast(1.3) hue-rotate(0deg);
-  }
-
-  @keyframes profile-psychedelic {
-    0%, 100% { 
-      box-shadow: 
-        0 0 80px var(--neon-pink),
-        0 0 160px var(--neon-cyan),
-        0 0 240px var(--neon-green),
-        inset 0 0 60px rgba(255, 255, 255, 0.2);
-      filter: saturate(1.8) contrast(1.3) hue-rotate(0deg);
-      border-color: var(--neon-pink);
-    }
-    14% {
-      box-shadow: 
-        0 0 80px var(--neon-cyan),
-        0 0 160px var(--neon-green),
-        0 0 240px var(--neon-orange),
-        inset 0 0 60px rgba(255, 255, 255, 0.2);
-      filter: saturate(2.2) contrast(1.5) hue-rotate(51deg);
-      border-color: var(--neon-cyan);
-    }
-    28% {
-      box-shadow: 
-        0 0 80px var(--neon-green),
-        0 0 160px var(--neon-orange),
-        0 0 240px var(--neon-purple),
-        inset 0 0 60px rgba(255, 255, 255, 0.2);
-      filter: saturate(2.0) contrast(1.4) hue-rotate(102deg);
-      border-color: var(--neon-green);
-    }
-    42% {
-      box-shadow: 
-        0 0 80px var(--neon-orange),
-        0 0 160px var(--neon-purple),
-        0 0 240px var(--neon-yellow),
-        inset 0 0 60px rgba(255, 255, 255, 0.2);
-      filter: saturate(2.4) contrast(1.6) hue-rotate(153deg);
-      border-color: var(--neon-orange);
-    }
-    57% {
-      box-shadow: 
-        0 0 80px var(--neon-purple),
-        0 0 160px var(--neon-yellow),
-        0 0 240px var(--neon-red),
-        inset 0 0 60px rgba(255, 255, 255, 0.2);
-      filter: saturate(1.9) contrast(1.5) hue-rotate(204deg);
-      border-color: var(--neon-purple);
-    }
-    71% {
-      box-shadow: 
-        0 0 80px var(--neon-yellow),
-        0 0 160px var(--neon-red),
-        0 0 240px var(--neon-blue),
-        inset 0 0 60px rgba(255, 255, 255, 0.2);
-      filter: saturate(2.3) contrast(1.7) hue-rotate(255deg);
-      border-color: var(--neon-yellow);
-    }
-    85% {
-      box-shadow: 
-        0 0 80px var(--neon-red),
-        0 0 160px var(--neon-blue),
-        0 0 240px var(--neon-pink),
-        inset 0 0 60px rgba(255, 255, 255, 0.2);
-      filter: saturate(2.1) contrast(1.6) hue-rotate(306deg);
-      border-color: var(--neon-red);
-    }
-  }
-
-  @keyframes profile-rotate {
-    0% { transform: rotate(0deg) scale(1); }
-    12.5% { transform: rotate(45deg) scale(1.05); }
-    25% { transform: rotate(90deg) scale(1.1); }
-    37.5% { transform: rotate(135deg) scale(1.05); }
-    50% { transform: rotate(180deg) scale(1); }
-    62.5% { transform: rotate(225deg) scale(1.05); }
-    75% { transform: rotate(270deg) scale(1.1); }
-    87.5% { transform: rotate(315deg) scale(1.05); }
-    100% { transform: rotate(360deg) scale(1); }
-  }
-
-  /* Multiple spinning rings around profile */
-  .profile-ring {
-    position: absolute;
-    border: 4px solid;
-    border-radius: 50%;
-    animation: ring-spin 3s linear infinite;
-  }
-
-  .profile-ring:nth-child(1) {
-    top: -25px;
-    left: -25px;
-    width: 300px;
-    height: 300px;
-    border-color: var(--neon-pink) transparent var(--neon-cyan) transparent;
-    animation-duration: 2s;
-  }
-
-  .profile-ring:nth-child(2) {
-    top: -40px;
-    left: -40px;
-    width: 330px;
-    height: 330px;
-    border-color: transparent var(--neon-green) transparent var(--neon-orange);
-    animation-duration: 3s;
-    animation-direction: reverse;
-  }
-
-  .profile-ring:nth-child(3) {
-    top: -55px;
-    left: -55px;
-    width: 360px;
-    height: 360px;
-    border-color: var(--neon-purple) transparent var(--neon-yellow) transparent;
-    animation-duration: 4s;
-  }
-
-  .profile-ring:nth-child(4) {
-    top: -70px;
-    left: -70px;
-    width: 390px;
-    height: 390px;
-    border-color: transparent var(--neon-red) transparent var(--neon-blue);
-    animation-duration: 5s;
-    animation-direction: reverse;
-  }
-
-  @keyframes ring-spin {
+  @keyframes evil-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
 
-  .logo {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 2rem;
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan), var(--neon-green), var(--neon-orange), var(--neon-purple), var(--neon-yellow));
-    background-size: 600% 600%;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    animation: gradient-psychedelic 1.5s ease infinite, logo-pulse 2s ease-in-out infinite;
-    box-shadow: 0 0 80px var(--glow-intense);
-  }
-
-  @keyframes gradient-psychedelic {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  @keyframes logo-pulse {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    25% { transform: scale(1.15) rotate(90deg); }
-    50% { transform: scale(1.3) rotate(180deg); }
-    75% { transform: scale(1.15) rotate(270deg); }
+  @keyframes evil-glow {
+    0%, 100% { 
+      box-shadow: 
+        0 0 60px var(--crimson),
+        0 0 120px var(--deep-red),
+        inset 0 0 40px rgba(0, 0, 0, 0.8);
+    }
+    50% { 
+      box-shadow: 
+        0 0 80px var(--crimson),
+        0 0 160px var(--deep-red),
+        0 0 200px rgba(150, 0, 0, 0.6),
+        inset 0 0 40px rgba(0, 0, 0, 0.9);
+    }
   }
 
   .title {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(2.5rem, 8vw, 6rem);
-    font-weight: 900;
+    font-family: 'Nosifer', cursive;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 400;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan), var(--neon-green), var(--neon-orange), var(--neon-purple), var(--neon-yellow), var(--neon-red), var(--neon-blue));
-    background-size: 800% 800%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: text-rainbow 2s ease-in-out infinite, text-glow 1.5s ease-in-out infinite;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.9);
-    letter-spacing: 0.1em;
+    color: var(--crimson);
+    text-shadow: 
+      0 0 20px var(--deep-red),
+      0 0 40px var(--blood-red),
+      2px 2px 0px var(--black-void);
+    animation: evil-flicker 4s ease-in-out infinite;
+    letter-spacing: 0.2em;
   }
 
-  @keyframes text-rainbow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  @keyframes text-glow {
-    0%, 100% { filter: drop-shadow(0 0 30px var(--neon-pink)) drop-shadow(0 0 40px var(--neon-cyan)); }
-    25% { filter: drop-shadow(0 0 30px var(--neon-cyan)) drop-shadow(0 0 40px var(--neon-green)); }
-    50% { filter: drop-shadow(0 0 30px var(--neon-green)) drop-shadow(0 0 40px var(--neon-orange)); }
-    75% { filter: drop-shadow(0 0 30px var(--neon-orange)) drop-shadow(0 0 40px var(--neon-purple)); }
+  @keyframes evil-flicker {
+    0%, 100% { 
+      color: var(--crimson);
+      text-shadow: 
+        0 0 20px var(--deep-red),
+        0 0 40px var(--blood-red),
+        2px 2px 0px var(--black-void);
+    }
+    25% { 
+      color: var(--deep-red);
+      text-shadow: 
+        0 0 30px var(--crimson),
+        0 0 60px var(--deep-red),
+        3px 3px 0px var(--black-void);
+    }
+    50% { 
+      color: var(--blood-red);
+      text-shadow: 
+        0 0 15px var(--deep-red),
+        0 0 30px var(--blood-red),
+        1px 1px 0px var(--black-void);
+    }
+    75% {
+      color: var(--crimson);
+      text-shadow: 
+        0 0 35px var(--deep-red),
+        0 0 70px var(--blood-red),
+        4px 4px 0px var(--black-void);
+    }
   }
 
   .subtitle {
-    font-size: 1.6rem;
-    color: var(--text-glow);
-    font-weight: 600;
-    text-shadow: 0 0 20px var(--neon-cyan);
-    animation: subtitle-pulse 3s ease-in-out infinite;
-    margin-bottom: 1rem;
+    font-family: 'Creepster', cursive;
+    font-size: 1.8rem;
+    color: var(--bone-white);
+    font-weight: 400;
+    text-shadow: 
+      0 0 15px var(--deep-red),
+      2px 2px 0px var(--black-void);
+    animation: subtitle-menace 5s ease-in-out infinite;
+    margin-bottom: 2rem;
   }
 
-  @keyframes subtitle-pulse {
+  @keyframes subtitle-menace {
     0%, 100% { 
-      text-shadow: 0 0 20px var(--neon-cyan);
       transform: scale(1);
+      color: var(--bone-white);
     }
-    33% { 
-      text-shadow: 0 0 30px var(--neon-pink), 0 0 40px var(--neon-cyan);
+    50% { 
       transform: scale(1.05);
-    }
-    66% {
-      text-shadow: 0 0 30px var(--neon-green), 0 0 40px var(--neon-orange);
-      transform: scale(1.02);
+      color: #cccccc;
+      text-shadow: 
+        0 0 20px var(--deep-red),
+        0 0 30px var(--crimson),
+        2px 2px 0px var(--black-void);
     }
   }
 
   .start-date {
-    font-size: 1.2rem;
-    color: var(--neon-yellow);
-    text-shadow: 0 0 15px currentColor;
-    margin-bottom: 1rem;
-    animation: date-glow 2s ease-in-out infinite;
+    font-size: 1.3rem;
+    color: var(--crimson);
+    text-shadow: 0 0 12px var(--deep-red);
+    margin-bottom: 2rem;
+    animation: date-ominous 3s ease-in-out infinite;
   }
 
-  @keyframes date-glow {
+  @keyframes date-ominous {
     0%, 100% { 
-      color: var(--neon-yellow);
-      text-shadow: 0 0 15px currentColor;
+      color: var(--crimson);
+      text-shadow: 0 0 12px var(--deep-red);
     }
     50% { 
-      color: var(--neon-orange);
-      text-shadow: 0 0 25px currentColor, 0 0 35px var(--neon-red);
+      color: var(--deep-red);
+      text-shadow: 0 0 18px var(--crimson);
     }
   }
 
-  /* Hypnotic Timer Grid */
+  /* Dark Timer */
   .timer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
     margin-bottom: 4rem;
-    perspective: 1200px;
   }
 
   .time-card {
-    background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15), rgba(0, 255, 0, 0.1));
-    border: 3px solid var(--neon-pink);
-    border-radius: 25px;
+    background: 
+      linear-gradient(135deg, 
+        rgba(50, 0, 0, 0.8) 0%, 
+        rgba(30, 0, 0, 0.9) 50%, 
+        rgba(10, 0, 0, 0.95) 100%);
+    border: 3px solid var(--blood-red);
+    border-radius: 20px;
     padding: 2.5rem 1.5rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(25px);
-    animation: card-float 5s ease-in-out infinite, card-glow 2.5s ease-in-out infinite;
-    transform-style: preserve-3d;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    animation: card-menace 6s ease-in-out infinite;
+    box-shadow: 
+      0 0 30px rgba(100, 0, 0, 0.5),
+      inset 0 0 20px rgba(0, 0, 0, 0.8);
   }
 
   .time-card:nth-child(1) { animation-delay: 0s; }
-  .time-card:nth-child(2) { animation-delay: 0.4s; }
-  .time-card:nth-child(3) { animation-delay: 0.8s; }
-  .time-card:nth-child(4) { animation-delay: 1.2s; }
-  .time-card:nth-child(5) { animation-delay: 1.6s; }
-  .time-card:nth-child(6) { animation-delay: 2.0s; }
+  .time-card:nth-child(2) { animation-delay: 1s; }
+  .time-card:nth-child(3) { animation-delay: 2s; }
+  .time-card:nth-child(4) { animation-delay: 3s; }
 
-  @keyframes card-float {
+  @keyframes card-menace {
     0%, 100% { 
-      transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-    }
-    20% { 
-      transform: translateY(-15px) rotateX(8deg) rotateY(8deg);
-    }
-    40% { 
-      transform: translateY(-8px) rotateX(-4deg) rotateY(12deg);
-    }
-    60% { 
-      transform: translateY(-20px) rotateX(6deg) rotateY(-8deg);
-    }
-    80% { 
-      transform: translateY(-5px) rotateX(-8deg) rotateY(15deg);
-    }
-  }
-
-  @keyframes card-glow {
-    0%, 100% { 
-      border-color: var(--neon-pink);
+      border-color: var(--blood-red);
       box-shadow: 
-        0 0 40px var(--neon-pink),
-        0 0 80px rgba(255, 0, 255, 0.4),
-        inset 0 0 40px rgba(255, 255, 255, 0.15);
-    }
-    16% { 
-      border-color: var(--neon-cyan);
-      box-shadow: 
-        0 0 40px var(--neon-cyan),
-        0 0 80px rgba(0, 255, 255, 0.4),
-        inset 0 0 40px rgba(255, 255, 255, 0.15);
-    }
-    33% { 
-      border-color: var(--neon-green);
-      box-shadow: 
-        0 0 40px var(--neon-green),
-        0 0 80px rgba(0, 255, 0, 0.4),
-        inset 0 0 40px rgba(255, 255, 255, 0.15);
+        0 0 30px rgba(100, 0, 0, 0.5),
+        inset 0 0 20px rgba(0, 0, 0, 0.8);
     }
     50% { 
-      border-color: var(--neon-orange);
+      border-color: var(--deep-red);
       box-shadow: 
-        0 0 40px var(--neon-orange),
-        0 0 80px rgba(255, 102, 0, 0.4),
-        inset 0 0 40px rgba(255, 255, 255, 0.15);
-    }
-    66% { 
-      border-color: var(--neon-purple);
-      box-shadow: 
-        0 0 40px var(--neon-purple),
-        0 0 80px rgba(138, 43, 226, 0.4),
-        inset 0 0 40px rgba(255, 255, 255, 0.15);
-    }
-    83% { 
-      border-color: var(--neon-yellow);
-      box-shadow: 
-        0 0 40px var(--neon-yellow),
-        0 0 80px rgba(255, 255, 0, 0.4),
-        inset 0 0 40px rgba(255, 255, 255, 0.15);
+        0 0 50px rgba(150, 0, 0, 0.7),
+        0 0 80px rgba(100, 0, 0, 0.4),
+        inset 0 0 30px rgba(0, 0, 0, 0.9);
     }
   }
 
   .time-card:hover {
-    transform: translateY(-25px) rotateX(15deg) rotateY(15deg) scale(1.08);
+    transform: translateY(-10px) scale(1.05);
     box-shadow: 
-      0 40px 80px rgba(0, 0, 0, 0.5),
-      0 0 100px var(--neon-pink),
-      0 0 150px var(--neon-cyan);
-  }
-
-  .time-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    animation: shimmer-intense 1.5s linear infinite;
-  }
-
-  @keyframes shimmer-intense {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+      0 20px 40px rgba(0, 0, 0, 0.8),
+      0 0 60px var(--crimson);
   }
 
   .time-value {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 900;
-    color: var(--neon-pink);
-    margin-bottom: 0.8rem;
+    font-family: 'Nosifer', cursive;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--crimson);
+    margin-bottom: 1rem;
     text-shadow: 
-      0 0 25px currentColor,
-      0 0 50px currentColor,
-      0 0 75px currentColor;
-    animation: number-psychedelic 3s ease-in-out infinite;
-    position: relative;
-    z-index: 2;
+      0 0 20px var(--deep-red),
+      0 0 40px var(--blood-red);
+    animation: value-evil 4s ease-in-out infinite;
   }
 
-  @keyframes number-psychedelic {
+  @keyframes value-evil {
     0%, 100% { 
-      color: var(--neon-pink);
-      transform: scale(1) rotateY(0deg);
-    }
-    12% { 
-      color: var(--neon-cyan);
-      transform: scale(1.08) rotateY(43deg);
-    }
-    25% { 
-      color: var(--neon-green);
-      transform: scale(1.05) rotateY(86deg);
-    }
-    37% { 
-      color: var(--neon-orange);
-      transform: scale(1.12) rotateY(129deg);
+      color: var(--crimson);
+      transform: scale(1);
     }
     50% { 
-      color: var(--neon-purple);
-      transform: scale(1.15) rotateY(172deg);
-    }
-    62% { 
-      color: var(--neon-yellow);
-      transform: scale(1.08) rotateY(215deg);
-    }
-    75% { 
-      color: var(--neon-red);
-      transform: scale(1.10) rotateY(258deg);
-    }
-    87% { 
-      color: var(--neon-blue);
-      transform: scale(1.06) rotateY(301deg);
+      color: var(--deep-red);
+      transform: scale(1.1);
+      text-shadow: 
+        0 0 30px var(--crimson),
+        0 0 60px var(--deep-red);
     }
   }
 
   .time-label {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--text-glow);
+    color: var(--bone-white);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    text-shadow: 0 0 15px var(--neon-cyan);
-    animation: label-glow 2.5s ease-in-out infinite;
+    text-shadow: 0 0 10px var(--deep-red);
   }
 
-  @keyframes label-glow {
-    0%, 100% { text-shadow: 0 0 15px var(--neon-cyan); }
-    33% { text-shadow: 0 0 25px var(--neon-pink), 0 0 35px var(--neon-cyan); }
-    66% { text-shadow: 0 0 25px var(--neon-green), 0 0 35px var(--neon-orange); }
-  }
-
-  /* Psychedelic Stats Section */
-  .stats-section {
-    background: linear-gradient(135deg, 
-      rgba(255, 0, 255, 0.2), 
-      rgba(0, 255, 255, 0.2), 
-      rgba(0, 255, 0, 0.2),
-      rgba(255, 102, 0, 0.2),
-      rgba(138, 43, 226, 0.2)
-    );
-    background-size: 500% 500%;
-    border: 4px solid var(--neon-cyan);
-    border-radius: 35px;
+  /* Dark Statistics */
+  .evil-stats {
+    background: 
+      linear-gradient(135deg, 
+        rgba(80, 0, 0, 0.6), 
+        rgba(40, 0, 0, 0.8), 
+        rgba(20, 0, 0, 0.9));
+    border: 4px solid var(--deep-red);
+    border-radius: 25px;
     padding: 3rem;
     margin-bottom: 3rem;
     position: relative;
     overflow: hidden;
-    animation: stats-background 6s ease infinite, stats-border 3s ease-in-out infinite;
-    backdrop-filter: blur(30px);
+    animation: stats-evil 8s ease-in-out infinite;
+    backdrop-filter: blur(15px);
+    box-shadow: 
+      0 0 50px rgba(150, 0, 0, 0.4),
+      inset 0 0 30px rgba(0, 0, 0, 0.7);
   }
 
-  @keyframes stats-background {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  @keyframes stats-border {
+  @keyframes stats-evil {
     0%, 100% { 
-      border-color: var(--neon-cyan);
-      box-shadow: 0 0 60px var(--neon-cyan);
+      border-color: var(--deep-red);
+      box-shadow: 
+        0 0 50px rgba(150, 0, 0, 0.4),
+        inset 0 0 30px rgba(0, 0, 0, 0.7);
     }
-    20% { 
-      border-color: var(--neon-green);
-      box-shadow: 0 0 60px var(--neon-green);
-    }
-    40% { 
-      border-color: var(--neon-orange);
-      box-shadow: 0 0 60px var(--neon-orange);
-    }
-    60% { 
-      border-color: var(--neon-purple);
-      box-shadow: 0 0 60px var(--neon-purple);
-    }
-    80% { 
-      border-color: var(--neon-yellow);
-      box-shadow: 0 0 60px var(--neon-yellow);
+    50% { 
+      border-color: var(--crimson);
+      box-shadow: 
+        0 0 80px rgba(200, 0, 0, 0.6),
+        0 0 120px rgba(150, 0, 0, 0.3),
+        inset 0 0 40px rgba(0, 0, 0, 0.8);
     }
   }
 
   .stats-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--text-glow);
+    font-family: 'Nosifer', cursive;
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: var(--crimson);
     text-align: center;
-    text-shadow: 0 0 30px var(--neon-pink);
-    animation: title-rainbow 4s ease-in-out infinite;
+    text-shadow: 
+      0 0 25px var(--deep-red),
+      2px 2px 0px var(--black-void);
+    animation: title-corruption 6s ease-in-out infinite;
   }
 
-  @keyframes title-rainbow {
-    0%, 100% { text-shadow: 0 0 30px var(--neon-pink); }
-    16% { text-shadow: 0 0 30px var(--neon-cyan); }
-    33% { text-shadow: 0 0 30px var(--neon-green); }
-    50% { text-shadow: 0 0 30px var(--neon-orange); }
-    66% { text-shadow: 0 0 30px var(--neon-purple); }
-    83% { text-shadow: 0 0 30px var(--neon-yellow); }
+  @keyframes title-corruption {
+    0%, 100% { 
+      color: var(--crimson);
+      transform: scale(1);
+    }
+    33% { 
+      color: var(--deep-red);
+      transform: scale(1.05);
+    }
+    66% {
+      color: var(--blood-red);
+      transform: scale(1.02);
+    }
   }
 
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
   }
 
   .stat-item {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
-    border: 3px solid var(--neon-purple);
-    border-radius: 25px;
+    background: 
+      linear-gradient(135deg, 
+        rgba(60, 0, 0, 0.8), 
+        rgba(30, 0, 0, 0.9));
+    border: 3px solid var(--blood-red);
+    border-radius: 20px;
     padding: 2.5rem;
     text-align: center;
     transition: all 0.4s ease;
-    animation: stat-glow 4s ease-in-out infinite;
+    animation: stat-corruption 5s ease-in-out infinite;
     position: relative;
     overflow: hidden;
+    box-shadow: 
+      0 0 20px rgba(100, 0, 0, 0.4),
+      inset 0 0 15px rgba(0, 0, 0, 0.8);
   }
 
   .stat-item:nth-child(1) { animation-delay: 0s; }
-  .stat-item:nth-child(2) { animation-delay: 0.8s; }
-  .stat-item:nth-child(3) { animation-delay: 1.6s; }
-  .stat-item:nth-child(4) { animation-delay: 2.4s; }
+  .stat-item:nth-child(2) { animation-delay: 1s; }
+  .stat-item:nth-child(3) { animation-delay: 2s; }
+  .stat-item:nth-child(4) { animation-delay: 3s; }
+  .stat-item:nth-child(5) { animation-delay: 4s; }
+  .stat-item:nth-child(6) { animation-delay: 5s; }
 
-  @keyframes stat-glow {
+  @keyframes stat-corruption {
     0%, 100% { 
-      border-color: var(--neon-purple);
-      box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
-    }
-    25% { 
-      border-color: var(--neon-yellow);
-      box-shadow: 0 0 30px rgba(255, 255, 0, 0.4);
+      border-color: var(--blood-red);
+      box-shadow: 
+        0 0 20px rgba(100, 0, 0, 0.4),
+        inset 0 0 15px rgba(0, 0, 0, 0.8);
     }
     50% { 
-      border-color: var(--neon-red);
-      box-shadow: 0 0 30px rgba(255, 0, 64, 0.4);
-    }
-    75% { 
-      border-color: var(--neon-blue);
-      box-shadow: 0 0 30px rgba(0, 128, 255, 0.4);
+      border-color: var(--deep-red);
+      box-shadow: 
+        0 0 40px rgba(150, 0, 0, 0.6),
+        inset 0 0 25px rgba(0, 0, 0, 0.9);
     }
   }
 
   .stat-item:hover {
-    transform: translateY(-15px) scale(1.08);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 80px var(--neon-pink);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 
+      0 15px 30px rgba(0, 0, 0, 0.6),
+      0 0 50px var(--crimson);
+  }
+
+  .stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: icon-evil 3s ease-in-out infinite;
+  }
+
+  @keyframes icon-evil {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(5deg); }
   }
 
   .stat-value {
-    font-family: 'Orbitron', monospace;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--neon-green);
+    font-family: 'Nosifer', cursive;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--crimson);
     margin-bottom: 0.8rem;
-    text-shadow: 0 0 20px currentColor;
-    animation: stat-pulse 2.5s ease-in-out infinite;
+    text-shadow: 0 0 15px var(--deep-red);
+    animation: stat-pulse 3s ease-in-out infinite;
   }
 
   @keyframes stat-pulse {
     0%, 100% { 
       transform: scale(1);
-      color: var(--neon-green);
+      color: var(--crimson);
     }
-    33% { 
-      transform: scale(1.12);
-      color: var(--neon-cyan);
-    }
-    66% {
-      transform: scale(1.06);
-      color: var(--neon-orange);
+    50% { 
+      transform: scale(1.1);
+      color: var(--deep-red);
+      text-shadow: 0 0 25px var(--crimson);
     }
   }
 
   .stat-label {
     font-size: 1.1rem;
-    color: var(--text-glow);
-    font-weight: 500;
-    text-shadow: 0 0 12px var(--neon-purple);
+    color: var(--bone-white);
+    font-weight: 600;
+    text-shadow: 0 0 8px var(--deep-red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
-  /* Status Indicator */
-  .status-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    background: linear-gradient(45deg, rgba(255, 0, 255, 0.25), rgba(0, 255, 255, 0.25));
-    padding: 1.2rem 2.5rem;
-    border-radius: 50px;
-    border: 3px solid var(--neon-green);
-    margin-top: 2rem;
-    animation: status-glow 1.8s ease-in-out infinite;
-    backdrop-filter: blur(15px);
+  .stat-description {
+    font-size: 0.9rem;
+    color: var(--ash-gray);
+    margin-top: 0.5rem;
+    font-style: italic;
+    text-shadow: 0 0 5px var(--blood-red);
   }
 
-  @keyframes status-glow {
+  /* Evil Prophecy Section */
+  .prophecy-section {
+    background: 
+      linear-gradient(135deg, 
+        rgba(40, 0, 0, 0.9), 
+        rgba(20, 0, 0, 0.95), 
+        rgba(10, 0, 0, 0.98));
+    border: 4px solid var(--blood-red);
+    border-radius: 25px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    animation: prophecy-darkness 10s ease-in-out infinite;
+    box-shadow: 
+      0 0 60px rgba(100, 0, 0, 0.5),
+      inset 0 0 40px rgba(0, 0, 0, 0.9);
+  }
+
+  @keyframes prophecy-darkness {
     0%, 100% { 
-      border-color: var(--neon-green);
-      box-shadow: 0 0 40px rgba(0, 255, 0, 0.6);
-    }
-    33% { 
-      border-color: var(--neon-cyan);
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
-    }
-    66% {
-      border-color: var(--neon-pink);
-      box-shadow: 0 0 40px rgba(255, 0, 255, 0.6);
-    }
-  }
-
-  .status-dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--neon-green);
-    animation: dot-psychedelic 0.8s ease-in-out infinite;
-    box-shadow: 0 0 25px currentColor;
-  }
-
-  @keyframes dot-psychedelic {
-    0%, 100% { 
-      background: var(--neon-green);
-      transform: scale(1);
-    }
-    16% { 
-      background: var(--neon-cyan);
-      transform: scale(1.4);
-    }
-    33% { 
-      background: var(--neon-pink);
-      transform: scale(1.2);
+      box-shadow: 
+        0 0 60px rgba(100, 0, 0, 0.5),
+        inset 0 0 40px rgba(0, 0, 0, 0.9);
     }
     50% { 
-      background: var(--neon-orange);
-      transform: scale(1.5);
-    }
-    66% {
-      background: var(--neon-purple);
-      transform: scale(1.3);
-    }
-    83% {
-      background: var(--neon-yellow);
-      transform: scale(1.6);
+      box-shadow: 
+        0 0 100px rgba(150, 0, 0, 0.7),
+        0 0 150px rgba(100, 0, 0, 0.4),
+        inset 0 0 60px rgba(0, 0, 0, 0.95);
     }
   }
 
-  /* CULT SECTIONS - APPEAR AS YOU SCROLL DOWN */
-  .cult-transition {
-    min-height: 50vh;
-    background: linear-gradient(180deg, var(--dark-bg), #1a0000);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-top: 3px solid #660000;
+  .prophecy-title {
+    font-family: 'Nosifer', cursive;
+    font-size: 2.5rem;
+    color: var(--crimson);
+    margin-bottom: 2rem;
+    text-shadow: 
+      0 0 20px var(--deep-red),
+      2px 2px 0px var(--black-void);
+    animation: prophecy-flicker 4s ease-in-out infinite;
   }
 
-  .cult-warning {
-    animation: warning-pulse 2s ease-in-out infinite;
-  }
-
-  .cult-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 3rem;
-    color: #ff4444;
-    text-shadow: 0 0 30px #ff0000;
-    margin-bottom: 1rem;
-    animation: flicker 3s ease-in-out infinite;
-  }
-
-  .cult-subtitle {
-    font-size: 1.5rem;
-    color: #cc6666;
-    text-shadow: 0 0 15px #990000;
-  }
-
-  @keyframes warning-pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-
-  @keyframes flicker {
+  @keyframes prophecy-flicker {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
     75% { opacity: 0.9; }
   }
 
-  /* MAIN CULT SECTION */
-  .cult-section {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #1a0000, #000000);
-    padding: 4rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cult-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(150, 0, 0, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(100, 0, 0, 0.2) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .pentagram-container {
-    text-align: center;
-    margin-bottom: 3rem;
-    animation: pentagram-spin 10s linear infinite;
-  }
-
-  .pentagram {
-    font-size: 8rem;
-    color: #cc0000;
-    text-shadow: 0 0 50px #ff0000;
-    animation: pentagram-glow 2s ease-in-out infinite;
-  }
-
-  .cult-flames {
-    font-size: 2rem;
-    margin-top: 1rem;
-    animation: flames-dance 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pentagram-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  @keyframes pentagram-glow {
-    0%, 100% { 
-      color: #cc0000;
-      text-shadow: 0 0 50px #ff0000;
-    }
-    50% { 
-      color: #ff0000;
-      text-shadow: 0 0 80px #ff0000, 0 0 120px #cc0000;
-    }
-  }
-
-  @keyframes flames-dance {
-    0%, 100% { transform: scale(1) rotate(-2deg); }
-    50% { transform: scale(1.1) rotate(2deg); }
-  }
-
-  .cult-main-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 4rem;
-    color: #ff0000;
-    text-align: center;
-    text-shadow: 0 0 40px #cc0000;
-    margin-bottom: 2rem;
-    animation: title-blood 3s ease-in-out infinite;
-  }
-
-  .cult-chant {
-    text-align: center;
-    font-size: 1.5rem;
-    color: #cc6666;
-    margin-bottom: 4rem;
+  .prophecy-text {
+    font-size: 1.3rem;
+    color: var(--bone-white);
+    line-height: 1.8;
     font-style: italic;
-    text-shadow: 0 0 20px #990000;
+    text-shadow: 0 0 10px var(--deep-red);
+    animation: text-whisper 6s ease-in-out infinite;
   }
 
-  @keyframes title-blood {
-    0%, 100% { color: #ff0000; }
-    50% { color: #990000; }
-  }
-
-  /* ENHANCED DEATH COUNTERS */
-  .death-counters {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .death-card {
-    background: linear-gradient(135deg, rgba(150, 0, 0, 0.3), rgba(100, 0, 0, 0.2));
-    border: 3px solid #990000;
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    position: relative;
-    animation: death-float 4s ease-in-out infinite;
-    backdrop-filter: blur(10px);
-  }
-
-  .death-card:nth-child(odd) { animation-delay: 0s; }
-  .death-card:nth-child(even) { animation-delay: 2s; }
-
-  @keyframes death-float {
+  @keyframes text-whisper {
     0%, 100% { 
-      transform: translateY(0px);
-      box-shadow: 0 0 30px rgba(150, 0, 0, 0.5);
+      color: var(--bone-white);
     }
     50% { 
-      transform: translateY(-10px);
-      box-shadow: 0 10px 40px rgba(150, 0, 0, 0.7);
+      color: #cccccc;
+      text-shadow: 0 0 15px var(--deep-red);
     }
   }
 
-  .death-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    animation: icon-pulse 2s ease-in-out infinite;
-  }
-
-  .death-value {
-    font-family: 'Orbitron', monospace;
-    font-size: 3rem;
-    font-weight: 900;
-    color: #ff3333;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 20px #cc0000;
-    animation: value-glow 3s ease-in-out infinite;
-  }
-
-  .death-label {
-    font-size: 1rem;
-    color: #cc9999;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  @keyframes icon-pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-
-  @keyframes value-glow {
-    0%, 100% { 
-      color: #ff3333;
-      text-shadow: 0 0 20px #cc0000;
-    }
-    50% { 
-      color: #ff6666;
-      text-shadow: 0 0 30px #ff0000;
-    }
-  }
-
-  /* RITUAL TEXT */
-  .ritual-text {
-    background: rgba(50, 0, 0, 0.5);
-    border: 2px solid #660000;
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 4rem auto;
-    max-width: 600px;
-    backdrop-filter: blur(15px);
-  }
-
-  .ritual-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 2rem;
-    color: #ff6666;
-    text-align: center;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 25px #cc0000;
-  }
-
-  .prophecy-scroll {
-    text-align: center;
-  }
-
-  .prophecy-line {
-    font-size: 1.2rem;
-    color: #cc9999;
-    margin-bottom: 1rem;
-    font-style: italic;
-    animation: prophecy-glow 4s ease-in-out infinite;
-  }
-
-  .prophecy-line:nth-child(odd) { animation-delay: 0s; }
-  .prophecy-line:nth-child(even) { animation-delay: 2s; }
-
-  @keyframes prophecy-glow {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 1; text-shadow: 0 0 15px #990000; }
-  }
-
-  /* CULT ALTAR */
-  .cult-altar {
-    display: flex;
-    justify-content: center;
+  /* Status indicator */
+  .status-indicator {
+    display: inline-flex;
     align-items: center;
-    gap: 2rem;
-    margin: 4rem 0;
-    font-size: 4rem;
-  }
-
-  .altar-flames {
-    animation: altar-flames-dance 1s ease-in-out infinite;
-  }
-
-  .altar-symbol {
-    font-size: 6rem;
-    color: #ff0000;
-    text-shadow: 0 0 60px #cc0000;
-    animation: altar-pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes altar-flames-dance {
-    0%, 100% { transform: scale(1) rotate(-5deg); }
-    50% { transform: scale(1.2) rotate(5deg); }
-  }
-
-  @keyframes altar-pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-  }
-
-  /* ENHANCED FINAL ABYSS SECTION */
-  .abyss-section {
-    min-height: 150vh;
-    background: 
-      radial-gradient(circle at 30% 20%, rgba(50, 0, 50, 0.4) 0%, transparent 40%),
-      radial-gradient(circle at 70% 80%, rgba(30, 0, 30, 0.3) 0%, transparent 50%),
-      linear-gradient(180deg, #000000, #0a0005, #000000);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .abyss-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 70%),
-      conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(100, 0, 100, 0.1) 90deg, transparent 180deg, rgba(50, 0, 50, 0.1) 270deg, transparent 360deg);
-    animation: abyss-swirl 20s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes abyss-swirl {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  .abyss-content {
-    z-index: 2;
-    position: relative;
-  }
-
-  .abyss-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 5rem;
-    color: #330000;
-    text-shadow: 
-      0 0 40px #660000,
-      0 0 80px #990000,
-      0 0 120px #cc0000;
-    margin-bottom: 4rem;
-    animation: abyss-pulse 4s ease-in-out infinite;
-    letter-spacing: 0.2em;
-  }
-
-  /* ENHANCED VOID CIRCLE */
-  .void-circle {
-    width: 400px;
-    height: 400px;
-    border: 8px solid;
-    border-color: #660000 transparent #990000 transparent;
-    border-radius: 50%;
-    margin: 0 auto 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    animation: void-rotate 20s linear infinite;
-    box-shadow: 
-      0 0 100px #660000,
-      inset 0 0 100px #330000,
-      0 0 200px rgba(100, 0, 0, 0.5);
-    background: 
-      radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.9) 0%, rgba(50, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.95) 100%);
-  }
-
-  /* Multiple rotating rings around void */
-  .void-ring {
-    position: absolute;
-    border: 3px solid;
-    border-radius: 50%;
-    animation: void-ring-spin linear infinite;
-  }
-
-  .void-ring:nth-child(1) {
-    top: -30px;
-    left: -30px;
-    width: 460px;
-    height: 460px;
-    border-color: #990000 transparent transparent #660000;
-    animation-duration: 15s;
-  }
-
-  .void-ring:nth-child(2) {
-    top: -60px;
-    left: -60px;
-    width: 520px;
-    height: 520px;
-    border-color: transparent #cc0000 #990000 transparent;
-    animation-duration: 25s;
-    animation-direction: reverse;
-  }
-
-  .void-ring:nth-child(3) {
-    top: -90px;
-    left: -90px;
-    width: 580px;
-    height: 580px;
-    border-color: #ff0000 transparent transparent transparent;
-    animation-duration: 30s;
-    opacity: 0.7;
-  }
-
-  .void-ring:nth-child(4) {
-    top: -120px;
-    left: -120px;
-    width: 640px;
-    height: 640px;
-    border-color: transparent transparent #660000 transparent;
-    animation-duration: 40s;
-    animation-direction: reverse;
-    opacity: 0.5;
-  }
-
-  @keyframes void-ring-spin {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.05); }
-    100% { transform: rotate(360deg) scale(1); }
-  }
-
-  /* Floating void particles */
-  .void-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .void-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #990000;
-    border-radius: 50%;
-    animation: void-float 8s ease-in-out infinite;
-    box-shadow: 0 0 15px #ff0000;
-  }
-
-  @keyframes void-float {
-    0%, 100% { 
-      transform: translateX(0px) translateY(0px) scale(1);
-      opacity: 0.7;
-    }
-    25% { 
-      transform: translateX(30px) translateY(-40px) scale(1.5);
-      opacity: 1;
-    }
-    50% { 
-      transform: translateX(-20px) translateY(-80px) scale(0.8);
-      opacity: 0.9;
-    }
-    75% { 
-      transform: translateX(-40px) translateY(-30px) scale(1.2);
-      opacity: 1;
-    }
-  }
-
-  .void-center {
-    text-align: center;
-    position: relative;
-    z-index: 3;
-  }
-
-  .void-text {
-    display: block;
-    font-family: 'Orbitron', monospace;
-    font-size: 3rem;
-    color: #990000;
-    margin-bottom: 2rem;
-    text-shadow: 
-      0 0 30px #ff0000,
-      0 0 60px #cc0000;
-    animation: void-text-pulse 3s ease-in-out infinite;
-    letter-spacing: 0.5em;
-  }
-
-  @keyframes void-text-pulse {
-    0%, 100% { 
-      color: #990000;
-      transform: scale(1);
-    }
-    50% { 
-      color: #ff0000;
-      transform: scale(1.1);
-      text-shadow: 
-        0 0 40px #ff0000,
-        0 0 80px #cc0000,
-        0 0 120px #990000;
-    }
-  }
-
-  .void-counter {
-    font-family: 'Orbitron', monospace;
-    font-size: 4rem;
-    color: #cc0000;
-    text-shadow: 
-      0 0 40px #ff0000,
-      0 0 80px #990000;
-    animation: void-counter-glow 2s ease-in-out infinite;
-    margin-bottom: 2rem;
-  }
-
-  @keyframes void-counter-glow {
-    0%, 100% { 
-      color: #cc0000;
-      transform: scale(1);
-    }
-    50% { 
-      color: #ff3333;
-      transform: scale(1.05);
-      text-shadow: 
-        0 0 50px #ff0000,
-        0 0 100px #cc0000,
-        0 0 150px #990000;
-    }
-  }
-
-  /* Void energy bars */
-  .void-energy-bars {
-    display: flex;
-    justify-content: center;
     gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .energy-bar {
-    width: 8px;
-    height: 60px;
-    background: linear-gradient(to top, #990000, #ff0000);
-    border-radius: 4px;
-    animation: energy-pulse ease-in-out infinite;
-    box-shadow: 0 0 15px #ff0000;
-  }
-
-  .energy-bar:nth-child(1) { animation-duration: 1.2s; }
-  .energy-bar:nth-child(2) { animation-duration: 1.5s; animation-delay: 0.2s; }
-  .energy-bar:nth-child(3) { animation-duration: 1.8s; animation-delay: 0.4s; }
-  .energy-bar:nth-child(4) { animation-duration: 1.3s; animation-delay: 0.6s; }
-  .energy-bar:nth-child(5) { animation-duration: 1.7s; animation-delay: 0.8s; }
-
-  @keyframes energy-pulse {
-    0%, 100% { 
-      transform: scaleY(0.3);
-      opacity: 0.7;
-    }
-    50% { 
-      transform: scaleY(1);
-      opacity: 1;
-    }
-  }
-
-  /* Abyss symbols floating around */
-  .abyss-symbols {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .abyss-symbol {
-    position: absolute;
-    font-size: 3rem;
-    color: #660000;
-    text-shadow: 0 0 30px #990000;
-    animation: abyss-symbol-float 12s ease-in-out infinite;
-    opacity: 0.6;
-  }
-
-  @keyframes abyss-symbol-float {
-    0%, 100% { 
-      transform: translateY(0px) rotate(0deg);
-      opacity: 0.6;
-    }
-    50% { 
-      transform: translateY(-30px) rotate(180deg);
-      opacity: 1;
-    }
-  }
-
-  .abyss-warning {
-    font-size: 2rem;
-    color: #999999;
-    font-style: italic;
-    margin-top: 3rem;
-    text-shadow: 0 0 20px #660000;
-    animation: warning-flicker 4s ease-in-out infinite;
-  }
-
-  @keyframes warning-flicker {
-    0%, 100% { opacity: 0.8; }
-    25% { opacity: 1; }
-    50% { opacity: 0.6; }
-    75% { opacity: 0.9; }
-  }
-
-  /* Additional spooky elements */
-  .void-portal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
     background: 
-      radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.8) 30%, rgba(50, 0, 0, 0.9) 60%, rgba(0, 0, 0, 1) 100%);
+      linear-gradient(45deg, 
+        rgba(60, 0, 0, 0.8), 
+        rgba(40, 0, 0, 0.9));
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    border: 3px solid var(--deep-red);
+    margin-top: 2rem;
+    animation: status-evil 2s ease-in-out infinite;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(100, 0, 0, 0.4);
+  }
+
+  @keyframes status-evil {
+    0%, 100% { 
+      border-color: var(--deep-red);
+      box-shadow: 0 0 30px rgba(100, 0, 0, 0.4);
+    }
+    50% { 
+      border-color: var(--crimson);
+      box-shadow: 0 0 50px rgba(150, 0, 0, 0.6);
+    }
+  }
+
+  .status-dot {
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    animation: portal-swirl 8s linear infinite;
-    z-index: 1;
-    opacity: 0.8;
+    background: var(--crimson);
+    animation: dot-evil 1s ease-in-out infinite;
+    box-shadow: 0 0 15px var(--deep-red);
   }
 
-  @keyframes portal-swirl {
-    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+  @keyframes dot-evil {
+    0%, 100% { 
+      background: var(--crimson);
+      transform: scale(1);
+    }
+    50% { 
+      background: var(--deep-red);
+      transform: scale(1.3);
+      box-shadow: 0 0 25px var(--crimson);
+    }
   }
 
-  .void-lightning {
-    position: absolute;
-    width: 2px;
-    height: 100px;
-    background: linear-gradient(to bottom, #ff0000, transparent);
-    animation: lightning-strike 3s ease-in-out infinite;
-    box-shadow: 0 0 10px #ff0000;
-  }
-
-  @keyframes lightning-strike {
-    0%, 90%, 100% { opacity: 0; }
-    5%, 85% { opacity: 1; transform: scaleY(1.5); }
-    10%, 80% { opacity: 0.8; transform: scaleY(1); }
-  }
-
-  @keyframes abyss-pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-  }
-
-  @keyframes void-rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
   .footer {
     margin-top: auto;
     text-align: center;
-    padding: 3rem 0;
-    border-top: 3px solid #660000;
-    color: #cc6666;
+    padding: 2rem 0;
+    border-top: 3px solid var(--blood-red);
+    color: var(--ash-gray);
     font-size: 1.1rem;
-    text-shadow: 0 0 12px #990000, 0 0 25px rgba(255, 255, 255, 0.3);
-    background: linear-gradient(180deg, #0a0000, #150000, #0a0000);
-    animation: footer-darkness 8s ease-in-out infinite;
-    position: relative;
-    z-index: 10;
-  }
-
-  @keyframes footer-darkness {
-    0%, 100% { 
-      background: linear-gradient(180deg, #0a0000, #150000, #0a0000);
-      color: #cc6666;
-    }
-    50% { 
-      background: linear-gradient(180deg, #050000, #100000, #050000);
-      color: #aa4444;
-    }
+    text-shadow: 0 0 8px var(--deep-red);
+    background: 
+      linear-gradient(180deg, 
+        rgba(20, 0, 0, 0.8), 
+        rgba(10, 0, 0, 0.9), 
+        var(--black-void));
   }
 
   .footer-brand {
-    color: #ff6666;
+    color: var(--crimson);
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    text-shadow: 0 0 18px #cc0000, 0 0 35px rgba(255, 255, 255, 0.4);
-    animation: brand-flicker 4s ease-in-out infinite;
-  }
-
-  @keyframes brand-flicker {
-    0%, 100% { 
-      color: #ff6666;
-      text-shadow: 0 0 18px #cc0000, 0 0 35px rgba(255, 255, 255, 0.4);
-    }
-    25% { 
-      color: #cc4444;
-      text-shadow: 0 0 25px #990000, 0 0 40px rgba(255, 255, 255, 0.3);
-    }
-    50% { 
-      color: #aa3333;
-      text-shadow: 0 0 15px #660000, 0 0 30px rgba(255, 255, 255, 0.2);
-    }
-    75% { 
-      color: #ff4444;
-      text-shadow: 0 0 30px #ff0000, 0 0 50px rgba(255, 255, 255, 0.5);
-    }
+    text-shadow: 0 0 12px var(--deep-red);
   }
 
   .footer-brand:hover {
-    color: #ff9999;
-    text-shadow: 0 0 40px #ff0000, 0 0 60px rgba(255, 255, 255, 0.6);
-  }
-
-  /* PROGRESSIVE DARKNESS OVERLAY - Readable version */
-  .progressive-darkness {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40vh;
-    background: linear-gradient(180deg, 
-      transparent 0%,
-      rgba(0, 0, 0, 0.2) 30%,
-      rgba(10, 0, 0, 0.4) 50%,
-      rgba(20, 0, 0, 0.6) 70%,
-      rgba(30, 0, 0, 0.75) 90%,
-      rgba(0, 0, 0, 0.85) 100%
-    );
-    pointer-events: none;
-    z-index: 5;
-    animation: darkness-intensify 10s ease-in-out infinite;
-  }
-
-  @keyframes darkness-intensify {
-    0%, 100% { 
-      opacity: 0.7;
-      background: linear-gradient(180deg, 
-        transparent 0%,
-        rgba(0, 0, 0, 0.2) 30%,
-        rgba(10, 0, 0, 0.4) 50%,
-        rgba(20, 0, 0, 0.6) 70%,
-        rgba(30, 0, 0, 0.75) 90%,
-        rgba(0, 0, 0, 0.85) 100%
-      );
-    }
-    50% { 
-      opacity: 0.9;
-      background: linear-gradient(180deg, 
-        transparent 0%,
-        rgba(0, 0, 0, 0.3) 20%,
-        rgba(20, 0, 0, 0.5) 40%,
-        rgba(40, 0, 0, 0.7) 60%,
-        rgba(60, 0, 0, 0.8) 80%,
-        rgba(0, 0, 0, 0.9) 100%
-      );
-    }
+    color: var(--deep-red);
+    text-shadow: 0 0 20px var(--crimson);
   }
 
   /* Responsive Design */
   @media (max-width: 768px) {
     .container { padding: 1rem; }
-    .profile-image { width: 200px; height: 200px; }
     .timer-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .time-card { padding: 2rem 1rem; }
-    .time-value { font-size: clamp(2rem, 5vw, 3rem); }
-    .stats-section { padding: 2rem; }
-    .title { font-size: clamp(2rem, 7vw, 4rem); }
-    .music-controls { top: 10px; right: 10px; }
+    .time-value { font-size: clamp(2rem, 4vw, 3rem); }
+    .stats-grid { grid-template-columns: 1fr; }
+    .title { font-size: clamp(2rem, 5vw, 3.5rem); }
   }
 
   @media (max-width: 480px) {
-    .profile-image { width: 160px; height: 160px; }
     .timer-grid { grid-template-columns: 1fr; }
     .time-value { font-size: clamp(1.8rem, 4vw, 2.5rem); }
     .time-card { padding: 1.5rem 1rem; }
@@ -1733,59 +661,20 @@
 </head>
 <body>
 
-<!-- Background Music -->
-<audio id="backgroundMusic" loop>
-  <source src="background.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<!-- Music Controls -->
-<div class="music-controls">
-  <button class="music-button" id="musicToggle">🎵 Play Music</button>
-  <div class="volume-control">
-    <span style="color: var(--neon-cyan); font-size: 0.9rem;">🔊</span>
-    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
-  </div>
-</div>
-
-<!-- PROGRESSIVE DARKNESS OVERLAY -->
-<div class="progressive-darkness"></div>
-
-<!-- Matrix Rain Effect -->
-<div class="matrix-rain" id="matrixRain"></div>
-
-<!-- CULT DARKNESS OVERLAY -->
-<div class="darkness-overlay" id="darknessOverlay"></div>
-
-<!-- SATANIC CULT SYMBOLS -->
-<div class="cult-symbols" id="cultSymbols"></div>
-
-<!-- DARK PARTICLES -->
-<div class="dark-particles" id="darkParticles"></div>
-
-<!-- Floating Particles -->
-<div class="floating-particles" id="particles"></div>
+<!-- Cursed Particles -->
+<div class="cursed-particles" id="cursedParticles"></div>
 
 <div class="container">
   <header class="header">
-    <div class="profile-section">
-      <div class="profile-image-container">
-        <div class="profile-ring"></div>
-        <div class="profile-ring"></div>
-        <div class="profile-ring"></div>
-        <div class="profile-ring"></div>
-        <img src="images/preview.png" alt="Nick's Profile" class="profile-image" onerror="this.style.display='none'; document.querySelector('.logo').style.display='flex';">
-      </div>
-      <div class="logo" style="display: none;">🌀</div>
-    </div>
-    <h1 class="title">🌈 TRIPPY TIME PORTAL 🌈</h1>
-    <p class="subtitle">✨ How Long Has It Been Since Nick Has Talked To Cait? ✨</p>
+    <div class="evil-logo">⛧</div>
+    <h1 class="title">🌑 DARK CORRUPTION SPREADS 🌑</h1>
+    <p class="subtitle">💀 The Evil That Grows Since Nick Started Talking to Cait Again 💀</p>
     <div class="start-date">
-      🚀 Started: May 22, 2025 at 12:01 AM UTC 🚀
+      🔥 Corruption Began: May 22, 2025 at 12:01 AM UTC 🔥
     </div>
     <div class="status-indicator">
       <div class="status-dot"></div>
-      <span>🔮 LIVE PSYCHEDELIC TRACKING 🔮</span>
+      <span>🖤 ACTIVE MALEVOLENT TRACKING 🖤</span>
     </div>
   </header>
 
@@ -1793,656 +682,98 @@
     <div class="timer-grid" role="timer" aria-live="polite" aria-atomic="true">
       <div class="time-card">
         <div class="time-value" id="days">0</div>
-        <div class="time-label">⭐ Days ⭐</div>
+        <div class="time-label">💀 Days of Corruption 💀</div>
       </div>
       <div class="time-card">
         <div class="time-value" id="hours">00</div>
-        <div class="time-label">🌟 Hours 🌟</div>
+        <div class="time-label">🔥 Hours of Darkness 🔥</div>
       </div>
       <div class="time-card">
         <div class="time-value" id="minutes">00</div>
-        <div class="time-label">💫 Minutes 💫</div>
+        <div class="time-label">⚰️ Minutes of Decay ⚰️</div>
       </div>
       <div class="time-card">
         <div class="time-value" id="seconds">00</div>
-        <div class="time-label">⚡ Seconds ⚡</div>
-      </div>
-      <div class="time-card">
-        <div class="time-value" id="milliseconds">000</div>
-        <div class="time-label">🔥 Milliseconds 🔥</div>
-      </div>
-      <div class="time-card">
-        <div class="time-value" id="microseconds">000</div>
-        <div class="time-label">✨ Microseconds ✨</div>
+        <div class="time-label">🩸 Seconds of Sin 🩸</div>
       </div>
     </div>
 
-    <section class="stats-section">
-      <h2 class="stats-title">🎯 COSMIC STATISTICS 🎯</h2>
+    <section class="evil-stats">
+      <h2 class="stats-title">🔥 STATISTICS OF CORRUPTION 🔥</h2>
       <div class="stats-grid">
         <div class="stat-item">
-          <div class="stat-value" id="totalSeconds">0</div>
-          <div class="stat-label">Total Seconds</div>
+          <div class="stat-icon">💀</div>
+          <div class="stat-value" id="soulsCorrupted">0</div>
+          <div class="stat-label">Souls Corrupted</div>
+          <div class="stat-description">Innocent hearts turned to darkness</div>
         </div>
+        
         <div class="stat-item">
-          <div class="stat-value" id="totalMinutes">0</div>
-          <div class="stat-label">Total Minutes</div>
+          <div class="stat-icon">🩸</div>
+          <div class="stat-value" id="bloodRituals">0</div>
+          <div class="stat-label">Blood Rituals Performed</div>
+          <div class="stat-description">Dark ceremonies completed</div>
         </div>
+        
         <div class="stat-item">
-          <div class="stat-value" id="totalHours">0</div>
-          <div class="stat-label">Total Hours</div>
+          <div class="stat-icon">👁️</div>
+          <div class="stat-value" id="demonsAwakened">0</div>
+          <div class="stat-label">Demons Awakened</div>
+          <div class="stat-description">Ancient evils stirred from slumber</div>
         </div>
+        
         <div class="stat-item">
-          <div class="stat-value" id="heartbeats">0</div>
-          <div class="stat-label">Estimated Heartbeats</div>
+          <div class="stat-icon">⚰️</div>
+          <div class="stat-value" id="gravesDesecrated">0</div>
+          <div class="stat-label">Graves Desecrated</div>
+          <div class="stat-description">Final resting places violated</div>
         </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">🌑</div>
+          <div class="stat-value" id="darkMoons">0</div>
+          <div class="stat-label">Dark Moon Eclipses</div>
+          <div class="stat-description">Celestial bodies consumed by shadow</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="hellfireIntensity">0</div>
+          <div class="stat-label">Hellfire Intensity Level</div>
+          <div class="stat-description">Temperature of eternal flames (°F)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="prophecy-section">
+      <h2 class="prophecy-title">📜 THE DARK PROPHECY 📜</h2>
+      <div class="prophecy-text">
+        "Since the moment their words first touched again,<br>
+        The fabric of reality has begun to fray...<br><br>
+        
+        Each message sent awakens something ancient,<br>
+        Each notification summons darker forces...<br><br>
+        
+        The digital realm bleeds with every conversation,<br>
+        And the shadows grow hungrier with each passing hour...<br><br>
+        
+        This is not communication - this is corruption.<br>
+        This is not connection - this is contagion.<br><br>
+        
+        The darkness spreads, and there is no escape..."<br>
       </div>
     </section>
   </main>
 
-  <!-- CULT SECTION - APPEARS WHEN YOU SCROLL DOWN -->
-  <section class="cult-transition" id="cultTransition">
-    <div class="cult-warning">
-      <h2 class="cult-title">⚠️ ENTERING THE VOID ⚠️</h2>
-      <p class="cult-subtitle">The darkness grows stronger...</p>
-    </div>
-  </section>
-
-  <section class="cult-section" id="cultSection">
-    <div class="pentagram-container">
-      <div class="pentagram">⛧</div>
-      <div class="cult-flames">🔥🔥🔥🔥🔥</div>
-    </div>
-    
-    <h2 class="cult-main-title">💀 THE DARK STATISTICS 💀</h2>
-    <p class="cult-chant">As Nick's silence grows, so does the power of darkness...</p>
-    
-    <div class="death-counters">
-      <div class="death-card">
-        <div class="death-icon">⚰️</div>
-        <div class="death-value" id="soulsDrained">0</div>
-        <div class="death-label">Souls Drained</div>
-      </div>
-      
-      <div class="death-card">
-        <div class="death-icon">👁️</div>
-        <div class="death-value" id="demonsAwakened">0</div>
-        <div class="death-label">Demons Awakened</div>
-      </div>
-      
-      <div class="death-card">
-        <div class="death-icon">🌙</div>
-        <div class="death-value" id="darkMoons">0</div>
-        <div class="death-label">Dark Moons Passed</div>
-      </div>
-      
-      <div class="death-card">
-        <div class="death-icon">🕯️</div>
-        <div class="death-value" id="candlesLit">0</div>
-        <div class="death-label">Ritual Candles Lit</div>
-      </div>
-      
-      <div class="death-card">
-        <div class="death-icon">⚡</div>
-        <div class="death-value" id="powerLevel">0</div>
-        <div class="death-label">Dark Energy Level</div>
-      </div>
-      
-      <div class="death-card">
-        <div class="death-icon">🗡️</div>
-        <div class="death-value" id="ritualDays">0</div>
-        <div class="death-label">Days of Ritual</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🩸</div>
-        <div class="death-value" id="bloodDrops">0</div>
-        <div class="death-label">Drops of Blood Spilled</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">👻</div>
-        <div class="death-value" id="ghostsRisen">0</div>
-        <div class="death-label">Ghosts Risen</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌑</div>
-        <div class="death-value" id="darkEclipses">0</div>
-        <div class="death-label">Dark Eclipses Witnessed</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🔮</div>
-        <div class="death-value" id="cursesSpoken">0</div>
-        <div class="death-label">Curses Spoken</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⚱️</div>
-        <div class="death-value" id="urnsCollected">0</div>
-        <div class="death-label">Soul Urns Collected</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🕷️</div>
-        <div class="death-value" id="spidersSpawned">0</div>
-        <div class="death-label">Dark Spiders Spawned</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🦇</div>
-        <div class="death-value" id="batsAwakened">0</div>
-        <div class="death-label">Bats of Darkness</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">💀</div>
-        <div class="death-value" id="skullsCollected">0</div>
-        <div class="death-label">Ancient Skulls</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🗝️</div>
-        <div class="death-value" id="hellGatesOpened">0</div>
-        <div class="death-label">Hell Gates Opened</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌪️</div>
-        <div class="death-value" id="voidStorms">0</div>
-        <div class="death-label">Void Storms Created</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🔥</div>
-        <div class="death-value" id="hellfire">0</div>
-        <div class="death-label">Hellfire Intensity</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌊</div>
-        <div class="death-value" id="bloodRivers">0</div>
-        <div class="death-label">Rivers of Blood</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⛓️</div>
-        <div class="death-value" id="soulChains">0</div>
-        <div class="death-label">Soul Chains Forged</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌋</div>
-        <div class="death-value" id="volcanoes">0</div>
-        <div class="death-label">Dark Volcanoes</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🕳️</div>
-        <div class="death-value" id="voidPits">0</div>
-        <div class="death-label">Void Pits Opened</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">👹</div>
-        <div class="death-value" id="demonLords">0</div>
-        <div class="death-label">Demon Lords Summoned</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌌</div>
-        <div class="death-value" id="darknessLevel">0</div>
-        <div class="death-label">Universal Darkness %</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⚰️</div>
-        <div class="death-value" id="gravesDigged">0</div>
-        <div class="death-label">Graves Digger</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🧙‍♂️</div>
-        <div class="death-value" id="necromancers">0</div>
-        <div class="death-label">Necromancers Recruited</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">📜</div>
-        <div class="death-value" id="darkSpells">0</div>
-        <div class="death-label">Dark Spells Cast</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🏚️</div>
-        <div class="death-value" id="hauntedHouses">0</div>
-        <div class="death-label">Houses Haunted</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🦴</div>
-        <div class="death-value" id="boneArmies">0</div>
-        <div class="death-label">Skeleton Armies</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌚</div>
-        <div class="death-value" id="darkSuns">0</div>
-        <div class="death-label">Dark Suns Created</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⚡</div>
-        <div class="death-value" id="chaosEnergy">0</div>
-        <div class="death-label">Chaos Energy Units</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌍</div>
-        <div class="death-value" id="worldsConsumed">0</div>
-        <div class="death-label">Worlds Consumed</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🔱</div>
-        <div class="death-value" id="tridents">0</div>
-        <div class="death-label">Infernal Tridents</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌈</div>
-        <div class="death-value" id="rainbowsCorrupted">0</div>
-        <div class="death-label">Rainbows Corrupted</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">👑</div>
-        <div class="death-value" id="crownsPower">0</div>
-        <div class="death-label">Dark Crowns of Power</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⌛</div>
-        <div class="death-value" id="timeDistortions">0</div>
-        <div class="death-label">Time Distortions</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🔺</div>
-        <div class="death-value" id="pyramids">0</div>
-        <div class="death-label">Dark Pyramids Built</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎭</div>
-        <div class="death-value" id="masksOfSorrow">0</div>
-        <div class="death-label">Masks of Eternal Sorrow</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🕸️</div>
-        <div class="death-value" id="websOfFate">0</div>
-        <div class="death-label">Webs of Fate Spun</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🧿</div>
-        <div class="death-value" id="evilEyes">0</div>
-        <div class="death-label">Evil Eyes Opened</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌑</div>
-        <div class="death-value" id="voidMoons">0</div>
-        <div class="death-label">Void Moons Summoned</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🗿</div>
-        <div class="death-value" id="cursedStatues">0</div>
-        <div class="death-label">Cursed Statues Erected</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎪</div>
-        <div class="death-value" id="circusOfDoom">0</div>
-        <div class="death-label">Circus of Doom Shows</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎨</div>
-        <div class="death-value" id="paintingsOfDespair">0</div>
-        <div class="death-label">Paintings of Despair</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎼</div>
-        <div class="death-value" id="symphoniesOfSorrow">0</div>
-        <div class="death-label">Symphonies of Sorrow</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">📚</div>
-        <div class="death-value" id="cursedTomes">0</div>
-        <div class="death-label">Cursed Tomes Written</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🏺</div>
-        <div class="death-value" id="ancientRelics">0</div>
-        <div class="death-label">Ancient Relics Unearthed</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎲</div>
-        <div class="death-value" id="diceOfDestiny">0</div>
-        <div class="death-label">Dice of Destiny Rolled</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🃏</div>
-        <div class="death-value" id="tarotRevealed">0</div>
-        <div class="death-label">Dark Tarot Cards</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎯</div>
-        <div class="death-value" id="targetsAcquired">0</div>
-        <div class="death-label">Soul Targets Acquired</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎮</div>
-        <div class="death-value" id="gamesOfMadness">0</div>
-        <div class="death-label">Games of Madness</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎳</div>
-        <div class="death-value" id="bowlingBallsOfDoom">0</div>
-        <div class="death-label">Bowling Balls of Doom</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎪</div>
-        <div class="death-value" id="carnivalOfSouls">0</div>
-        <div class="death-label">Carnival of Lost Souls</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎭</div>
-        <div class="death-value" id="theaterOfCruelty">0</div>
-        <div class="death-label">Theater of Cruelty Acts</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎪</div>
-        <div class="death-value" id="clownsOfChaos">0</div>
-        <div class="death-label">Clowns of Chaos</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎨</div>
-        <div class="death-value" id="portraitsOfMadness">0</div>
-        <div class="death-label">Portraits of Madness</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">📸</div>
-        <div class="death-value" id="cursedPhotographs">0</div>
-        <div class="death-label">Cursed Photographs</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">📹</div>
-        <div class="death-value" id="filmsOfHorror">0</div>
-        <div class="death-label">Films of Horror</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎪</div>
-        <div class="death-value" id="mirrorMazes">0</div>
-        <div class="death-label">Mirror Mazes of Despair</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎡</div>
-        <div class="death-value" id="ferrisWheelsOfFate">0</div>
-        <div class="death-label">Ferris Wheels of Fate</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎢</div>
-        <div class="death-value" id="rollercoastersOfRuin">0</div>
-        <div class="death-label">Rollercoasters of Ruin</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎠</div>
-        <div class="death-value" id="carouselsOfChaos">0</div>
-        <div class="death-label">Carousels of Chaos</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🏰</div>
-        <div class="death-value" id="castlesOfCurses">0</div>
-        <div class="death-label">Castles of Curses</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🏚️</div>
-        <div class="death-value" id="ruinsOfRage">0</div>
-        <div class="death-label">Ruins of Rage</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌉</div>
-        <div class="death-value" id="bridgesToHell">0</div>
-        <div class="death-label">Bridges to Hell</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌁</div>
-        <div class="death-value" id="mistsOfMystery">0</div>
-        <div class="death-label">Mists of Mystery</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌪️</div>
-        <div class="death-value" id="tornadosOfTorment">0</div>
-        <div class="death-label">Tornados of Torment</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⛈️</div>
-        <div class="death-value" id="stormsOfSorrow">0</div>
-        <div class="death-label">Storms of Sorrow</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌊</div>
-        <div class="death-value" id="tsunamisOfTears">0</div>
-        <div class="death-label">Tsunamis of Tears</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🌋</div>
-        <div class="death-value" id="eruptionsOfEvil">0</div>
-        <div class="death-label">Eruptions of Evil</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">❄️</div>
-        <div class="death-value" id="blizzardsOfBane">0</div>
-        <div class="death-label">Blizzards of Bane</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🔥</div>
-        <div class="death-value" id="wildfiresOfWoe">0</div>
-        <div class="death-label">Wildfires of Woe</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">💎</div>
-        <div class="death-value" id="cursedJewels">0</div>
-        <div class="death-label">Cursed Jewels</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">👑</div>
-        <div class="death-value" id="thronesTooManyToCount">0</div>
-        <div class="death-label">Thrones of Tyranny</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⚔️</div>
-        <div class="death-value" id="swordsOfSorrow">0</div>
-        <div class="death-label">Swords of Sorrow</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🛡️</div>
-        <div class="death-value" id="shieldsShattered">0</div>
-        <div class="death-label">Shields Shattered</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🏹</div>
-        <div class="death-value" id="arrowsOfAnguish">0</div>
-        <div class="death-label">Arrows of Anguish</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🔱</div>
-        <div class="death-value" id="forksOfFury">0</div>
-        <div class="death-label">Forks of Fury</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⚓</div>
-        <div class="death-value" id="anchorsOfAbyss">0</div>
-        <div class="death-label">Anchors to the Abyss</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">⛓️</div>
-        <div class="death-value" id="shacklesOfShame">0</div>
-        <div class="death-label">Shackles of Shame</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🔒</div>
-        <div class="death-value" id="locksOfLament">0</div>
-        <div class="death-label">Locks of Lament</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🗝️</div>
-        <div class="death-value" id="keysToKaos">0</div>
-        <div class="death-label">Keys to Kaos</div>
-      </div>
-
-      <div class="death-card">
-        <div class="death-icon">🎪</div>
-        <div class="death-value" id="finalCountdown">0</div>
-        <div class="death-label">Final Countdown to Doom</div>
-      </div>
-    </div>
-    
-
-    
-    <div class="ritual-text">
-      <h3 class="ritual-title">🔮 THE PROPHECY SPEAKS 🔮</h3>
-      <div class="prophecy-scroll">
-         <p class="prophecy-line">"In the silence between souls..."</p>
-         <p class="prophecy-line">"Time becomes the master of darkness..."</p>
-         <p class="prophecy-line">"Each passing moment feeds the void..."</p>
-         <p class="prophecy-line">"The blue checkmarks have turned to tears of blood..."</p>
-         <p class="prophecy-line">"Even autocorrect has given up trying to help..."</p>
-         <p class="prophecy-line">"Until the connection is restored..."</p>
-         <p class="prophecy-line">"The digital realm grows ever darker..."</p>
-         <p class="prophecy-line">"The notification gods grow angrier with each hour..."</p>
-      </div>
-    </div>
-    
-    <div class="cult-altar">
-      <div class="altar-flames">🔥</div>
-      <div class="altar-symbol">⛧</div>
-      <div class="altar-flames">🔥</div>
-    </div>
-  </section>
-
-  <section class="abyss-section">
-    <div class="abyss-symbols" id="abyssSymbols"></div>
-    <div class="abyss-content">
-      <h2 class="abyss-title">🌑 THE FINAL ABYSS 🌑</h2>
-      <div class="void-circle">
-        <div class="void-ring"></div>
-        <div class="void-ring"></div>
-        <div class="void-ring"></div>
-        <div class="void-ring"></div>
-        <div class="void-portal"></div>
-        <div class="void-particles" id="voidParticles"></div>
-        <div class="void-center">
-          <span class="void-text">VOID</span>
-          <div class="void-energy-bars">
-            <div class="energy-bar"></div>
-            <div class="energy-bar"></div>
-            <div class="energy-bar"></div>
-            <div class="energy-bar"></div>
-            <div class="energy-bar"></div>
-          </div>
-          <div class="void-counter" id="voidPower">793,490</div>
-        </div>
-        <div class="void-lightning" style="top: 20%; left: 30%; animation-delay: 0s;"></div>
-        <div class="void-lightning" style="top: 60%; right: 25%; animation-delay: 1s;"></div>
-        <div class="void-lightning" style="bottom: 30%; left: 20%; animation-delay: 2s;"></div>
-      </div>
-      <p class="abyss-warning">Here lies the infinite silence...</p>
-      <p class="abyss-warning" style="margin-top: 1rem; font-size: 1.2rem; color: #cc0000;">The void grows stronger with each passing moment...</p>
-    </div>
-  </section>
-
   <footer class="footer">
-    Made with 💀 by <a href="#" class="footer-brand">DARK TIME VOID</a> | 
-    Powered by Blood & Shadows ⚡
+    Forged in the Fires of Hell by <a href="#" class="footer-brand">THE DARK REALM</a> | 
+    Powered by Blood & Malice ⚡
   </footer>
 </div>
 
 <script>
 // Set the start date and time - May 22, 2025 at 12:01 AM UTC
 const startDate = new Date('2025-05-22T00:01:00.000Z');
-
-// Music controls
-const backgroundMusic = document.getElementById('backgroundMusic');
-const musicToggle = document.getElementById('musicToggle');
-const volumeSlider = document.getElementById('volumeSlider');
-
-let musicPlaying = false;
-
-musicToggle.addEventListener('click', () => {
-  if (musicPlaying) {
-    backgroundMusic.pause();
-    musicToggle.textContent = '🎵 Play Music';
-    musicPlaying = false;
-  } else {
-    backgroundMusic.play().catch(e => {
-      console.log('Audio play failed:', e);
-      alert('Could not play music. Make sure background.mp3 exists in the same folder!');
-    });
-    musicToggle.textContent = '🔇 Pause Music';
-    musicPlaying = true;
-  }
-});
-
-volumeSlider.addEventListener('input', (e) => {
-  backgroundMusic.volume = e.target.value / 100;
-});
-
-// Set initial volume
-backgroundMusic.volume = 0.5;
 
 function updateTimer() {
   const now = new Date();
@@ -2453,422 +784,81 @@ function updateTimer() {
   const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-  const milliseconds = Math.floor(timeDiff % 1000);
-  const microseconds = Math.floor((timeDiff % 1000) * 1000) % 1000;
   
   // Update timer display
   document.getElementById('days').textContent = days;
   document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
   document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
   document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-  document.getElementById('milliseconds').textContent = milliseconds.toString().padStart(3, '0');
-  document.getElementById('microseconds').textContent = microseconds.toString().padStart(3, '0');
   
-  // Update statistics
+  // Calculate evil statistics
   const totalSeconds = Math.floor(timeDiff / 1000);
   const totalMinutes = Math.floor(timeDiff / (1000 * 60));
   const totalHours = Math.floor(timeDiff / (1000 * 60 * 60));
-  const heartbeats = Math.floor(totalSeconds * 1.2); // Average 72 BPM
   
-  document.getElementById('totalSeconds').textContent = totalSeconds.toLocaleString();
-  document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString();
-  document.getElementById('totalHours').textContent = totalHours.toLocaleString();
-  document.getElementById('heartbeats').textContent = heartbeats.toLocaleString();
-  
-  // Update ENHANCED CULT/DEATH counters
-  if (document.getElementById('soulsDrained')) {
-    // Original dark stats
-    document.getElementById('soulsDrained').textContent = Math.floor(totalMinutes * 0.7).toLocaleString();
-    document.getElementById('demonsAwakened').textContent = Math.floor(totalHours * 3.33).toLocaleString();
-    document.getElementById('darkMoons').textContent = Math.floor(days * 0.0329).toFixed(2);
-    document.getElementById('candlesLit').textContent = Math.floor(totalSeconds * 0.001).toLocaleString();
-    document.getElementById('powerLevel').textContent = Math.floor(Math.pow(days, 1.5) * 100).toLocaleString();
-    document.getElementById('ritualDays').textContent = days;
+  // Update dark statistics with sinister calculations
+  if (document.getElementById('soulsCorrupted')) {
+    // Souls corrupted - grows exponentially with time
+    const soulsCorrupted = Math.floor(Math.pow(totalHours, 1.3) * 6.66);
+    document.getElementById('soulsCorrupted').textContent = soulsCorrupted.toLocaleString();
     
-    // NEW ENHANCED DARK STATISTICS
-    document.getElementById('bloodDrops').textContent = Math.floor(totalSeconds * 0.666).toLocaleString();
-    document.getElementById('ghostsRisen').textContent = Math.floor(totalMinutes * 0.13).toLocaleString();
-    document.getElementById('darkEclipses').textContent = Math.floor(days * 0.007).toFixed(3);
-    document.getElementById('cursesSpoken').textContent = Math.floor(totalHours * 6.66).toLocaleString();
-    document.getElementById('urnsCollected').textContent = Math.floor(totalMinutes * 0.042).toLocaleString();
-    document.getElementById('spidersSpawned').textContent = Math.floor(totalSeconds * 0.333).toLocaleString();
-    document.getElementById('batsAwakened').textContent = Math.floor(totalMinutes * 1.13).toLocaleString();
-    document.getElementById('skullsCollected').textContent = Math.floor(totalHours * 2.22).toLocaleString();
-    document.getElementById('hellGatesOpened').textContent = Math.floor(days * 0.666).toFixed(2);
-    document.getElementById('voidStorms').textContent = Math.floor(totalHours * 0.777).toLocaleString();
-    document.getElementById('hellfire').textContent = Math.floor(Math.pow(totalHours, 1.2) * 13).toLocaleString();
-    document.getElementById('bloodRivers').textContent = Math.floor(days * 3.14).toFixed(1);
-    document.getElementById('soulChains').textContent = Math.floor(totalMinutes * 0.888).toLocaleString();
-    document.getElementById('volcanoes').textContent = Math.floor(days * 0.13).toFixed(2);
-    document.getElementById('voidPits').textContent = Math.floor(totalHours * 0.444).toLocaleString();
-    document.getElementById('demonLords').textContent = Math.floor(days * 0.666).toFixed(2);
-    document.getElementById('darknessLevel').textContent = Math.min(Math.floor(totalHours * 0.042), 100).toFixed(1);
-    document.getElementById('gravesDigged').textContent = Math.floor(totalMinutes * 0.777).toLocaleString();
-    document.getElementById('necromancers').textContent = Math.floor(totalHours * 0.313).toLocaleString();
-    document.getElementById('darkSpells').textContent = Math.floor(totalSeconds * 0.113).toLocaleString();
-    document.getElementById('hauntedHouses').textContent = Math.floor(totalMinutes * 0.666).toLocaleString();
-    document.getElementById('boneArmies').textContent = Math.floor(totalHours * 1.666).toLocaleString();
-    document.getElementById('darkSuns').textContent = Math.floor(days * 0.001).toFixed(4);
-    document.getElementById('chaosEnergy').textContent = Math.floor(Math.pow(totalSeconds, 0.7) * 3.14).toLocaleString();
-    document.getElementById('worldsConsumed').textContent = Math.floor(days * 0.0013).toFixed(5);
-    document.getElementById('tridents').textContent = Math.floor(totalHours * 0.777).toLocaleString();
-    document.getElementById('rainbowsCorrupted').textContent = Math.floor(totalMinutes * 0.042).toLocaleString();
-    document.getElementById('crownsPower').textContent = Math.floor(days * 1.333).toFixed(1);
-    document.getElementById('timeDistortions').textContent = Math.floor(totalSeconds * 0.00666).toLocaleString();
-    document.getElementById('pyramids').textContent = Math.floor(days * 0.777).toFixed(2);
-    document.getElementById('masksOfSorrow').textContent = Math.floor(totalHours * 0.888).toLocaleString();
+    // Blood rituals - performed every 13 minutes on average
+    const bloodRituals = Math.floor(totalMinutes / 13);
+    document.getElementById('bloodRituals').textContent = bloodRituals.toLocaleString();
     
-    // EVEN MORE DARK STATISTICS - The madness continues!
-    document.getElementById('websOfFate').textContent = Math.floor(totalMinutes * 1.234).toLocaleString();
-    document.getElementById('evilEyes').textContent = Math.floor(totalSeconds * 0.0666).toLocaleString();
-    document.getElementById('voidMoons').textContent = Math.floor(days * 0.0666).toFixed(3);
-    document.getElementById('cursedStatues').textContent = Math.floor(totalHours * 0.999).toLocaleString();
-    document.getElementById('circusOfDoom').textContent = Math.floor(days * 0.333).toFixed(2);
-    document.getElementById('paintingsOfDespair').textContent = Math.floor(totalMinutes * 0.777).toLocaleString();
-    document.getElementById('symphoniesOfSorrow').textContent = Math.floor(totalHours * 0.444).toLocaleString();
-    document.getElementById('cursedTomes').textContent = Math.floor(totalMinutes * 0.123).toLocaleString();
-    document.getElementById('ancientRelics').textContent = Math.floor(totalHours * 0.789).toLocaleString();
-    document.getElementById('diceOfDestiny').textContent = Math.floor(totalSeconds * 0.00777).toLocaleString();
-    document.getElementById('tarotRevealed').textContent = Math.floor(totalMinutes * 0.078).toLocaleString();
-    document.getElementById('targetsAcquired').textContent = Math.floor(totalHours * 1.313).toLocaleString();
-    document.getElementById('gamesOfMadness').textContent = Math.floor(totalMinutes * 0.555).toLocaleString();
-    document.getElementById('bowlingBallsOfDoom').textContent = Math.floor(totalSeconds * 0.0101).toLocaleString();
-    document.getElementById('carnivalOfSouls').textContent = Math.floor(days * 0.111).toFixed(3);
-    document.getElementById('theaterOfCruelty').textContent = Math.floor(totalHours * 0.666).toLocaleString();
-    document.getElementById('clownsOfChaos').textContent = Math.floor(totalMinutes * 0.333).toLocaleString();
-    document.getElementById('portraitsOfMadness').textContent = Math.floor(totalHours * 0.222).toLocaleString();
-    document.getElementById('cursedPhotographs').textContent = Math.floor(totalMinutes * 0.999).toLocaleString();
-    document.getElementById('filmsOfHorror').textContent = Math.floor(totalHours * 0.111).toLocaleString();
-    document.getElementById('mirrorMazes').textContent = Math.floor(days * 0.444).toFixed(2);
-    document.getElementById('ferrisWheelsOfFate').textContent = Math.floor(totalHours * 0.333).toLocaleString();
-    document.getElementById('rollercoastersOfRuin').textContent = Math.floor(days * 0.222).toFixed(2);
-    document.getElementById('carouselsOfChaos').textContent = Math.floor(totalHours * 0.555).toLocaleString();
-    document.getElementById('castlesOfCurses').textContent = Math.floor(days * 0.777).toFixed(2);
-    document.getElementById('ruinsOfRage').textContent = Math.floor(totalHours * 0.888).toLocaleString();
-    document.getElementById('bridgesToHell').textContent = Math.floor(days * 0.1337).toFixed(3);
-    document.getElementById('mistsOfMystery').textContent = Math.floor(totalMinutes * 2.222).toLocaleString();
-    document.getElementById('tornadosOfTorment').textContent = Math.floor(totalHours * 0.777).toLocaleString();
-    document.getElementById('stormsOfSorrow').textContent = Math.floor(totalMinutes * 1.111).toLocaleString();
-    document.getElementById('tsunamisOfTears').textContent = Math.floor(days * 0.0777).toFixed(3);
-    document.getElementById('eruptionsOfEvil').textContent = Math.floor(totalHours * 0.666).toLocaleString();
-    document.getElementById('blizzardsOfBane').textContent = Math.floor(totalMinutes * 0.444).toLocaleString();
-    document.getElementById('wildfiresOfWoe').textContent = Math.floor(totalHours * 1.666).toLocaleString();
-    document.getElementById('cursedJewels').textContent = Math.floor(totalMinutes * 0.777).toLocaleString();
-    document.getElementById('thronesTooManyToCount').textContent = Math.floor(days * 0.999).toFixed(2);
-    document.getElementById('swordsOfSorrow').textContent = Math.floor(totalHours * 2.222).toLocaleString();
-    document.getElementById('shieldsShattered').textContent = Math.floor(totalMinutes * 3.333).toLocaleString();
-    document.getElementById('arrowsOfAnguish').textContent = Math.floor(totalSeconds * 0.1111).toLocaleString();
-    document.getElementById('forksOfFury').textContent = Math.floor(totalHours * 0.333).toLocaleString();
-    document.getElementById('anchorsOfAbyss').textContent = Math.floor(days * 0.666).toFixed(2);
-    document.getElementById('shacklesOfShame').textContent = Math.floor(totalMinutes * 1.666).toLocaleString();
-    document.getElementById('locksOfLament').textContent = Math.floor(totalHours * 0.999).toLocaleString();
-    document.getElementById('keysToKaos').textContent = Math.floor(totalMinutes * 0.1313).toLocaleString();
-    document.getElementById('finalCountdown').textContent = Math.floor(Math.pow(totalSeconds, 0.5) * 6.66).toLocaleString();
+    // Demons awakened - ancient evils stirred
+    const demonsAwakened = Math.floor(totalHours * 0.666);
+    document.getElementById('demonsAwakened').textContent = demonsAwakened.toFixed(2);
     
-    // Update void counter with spooky calculation
-    if (document.getElementById('voidPower')) {
-      const voidPower = Math.floor(totalSeconds * Math.PI).toLocaleString();
-      document.getElementById('voidPower').textContent = voidPower;
-    }
+    // Graves desecrated - sacred places violated
+    const gravesDesecrated = Math.floor(totalMinutes * 0.13);
+    document.getElementById('gravesDesecrated').textContent = gravesDesecrated.toLocaleString();
+    
+    // Dark moon eclipses - celestial corruption
+    const darkMoons = (days * 0.0666).toFixed(4);
+    document.getElementById('darkMoons').textContent = darkMoons;
+    
+    // Hellfire intensity - temperature of damnation
+    const hellfireIntensity = Math.floor(1000 + (totalHours * 66.6));
+    document.getElementById('hellfireIntensity').textContent = hellfireIntensity.toLocaleString();
   }
 }
 
-// Create floating particles
-function createParticles() {
-  const particlesContainer = document.getElementById('particles');
-  const colors = ['#ff00ff', '#00ffff', '#00ff00', '#ff6600', '#8a2be2', '#ffff00', '#ff0040', '#0080ff'];
-  const sizes = ['small', 'medium', 'large'];
+// Create cursed floating particles
+function createCursedParticles() {
+  const particlesContainer = document.getElementById('cursedParticles');
   
   setInterval(() => {
-    if (particlesContainer.children.length > 50) return; // Limit particles
+    if (particlesContainer.children.length > 30) return;
     
     const particle = document.createElement('div');
-    particle.className = `particle ${sizes[Math.floor(Math.random() * sizes.length)]}`;
+    particle.className = 'cursed-particle';
     particle.style.left = Math.random() * 100 + '%';
-    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    particle.style.boxShadow = `0 0 ${5 + Math.random() * 10}px currentColor`;
+    particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+    particle.style.animationDelay = Math.random() * 2 + 's';
     
     particlesContainer.appendChild(particle);
     
-    // Remove particle after animation
     setTimeout(() => {
       if (particle.parentNode) {
         particle.parentNode.removeChild(particle);
       }
-    }, 8000);
-  }, 200);
+    }, 12000);
+  }, 300);
 }
 
-// Create void particles for the abyss section
-function createVoidParticles() {
-  const voidContainer = document.getElementById('voidParticles');
-  if (!voidContainer) return;
-  
-  // Create 20 void particles
-  for (let i = 0; i < 20; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'void-particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animationDelay = Math.random() * 8 + 's';
-    particle.style.animationDuration = (6 + Math.random() * 4) + 's';
-    voidContainer.appendChild(particle);
-  }
-}
-
-// Create abyss symbols floating around
-function createAbyssSymbols() {
-  const abyssContainer = document.getElementById('abyssSymbols');
-  if (!abyssContainer) return;
-  
-  const symbols = ['⛧', '👁️', '💀', '🌑', '⚰️', '🕯️', '⚡', '🔥', '👻', '🩸', '☠️', '🌪️'];
-  
-  for (let i = 0; i < 12; i++) {
-    const symbol = document.createElement('div');
-    symbol.className = 'abyss-symbol';
-    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    symbol.style.left = Math.random() * 90 + '%';
-    symbol.style.top = Math.random() * 90 + '%';
-    symbol.style.fontSize = (2 + Math.random() * 2) + 'rem';
-    symbol.style.animationDelay = Math.random() * 12 + 's';
-    symbol.style.animationDuration = (8 + Math.random() * 8) + 's';
-    abyssContainer.appendChild(symbol);
-  }
-}
-
-// Create dark cult symbols
-function createCultSymbols() {
-  const cultContainer = document.getElementById('cultSymbols');
-  const symbols = ['⛧', '🜏', '☾', '☽', '🕯️', '⚰️', '👁️', '🔥', '⚡', '☠️', '🗡️', '🌙', '👻', '🩸', '💀', '🦇', '🕷️'];
-  
-  // Create static symbols positioned around the page
-  for (let i = 0; i < 20; i++) {
-    const symbol = document.createElement('div');
-    symbol.className = 'cult-symbol';
-    symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    symbol.style.left = Math.random() * 90 + '%';
-    symbol.style.top = Math.random() * 90 + '%';
-    symbol.style.fontSize = (1 + Math.random() * 2) + 'rem';
-    symbol.style.animationDelay = Math.random() * 8 + 's';
-    cultContainer.appendChild(symbol);
-  }
-}
-
-// Create dark particles
-function createDarkParticles() {
-  const darkContainer = document.getElementById('darkParticles');
-  
-  setInterval(() => {
-    if (darkContainer.children.length > 25) return;
-    
-    const particle = document.createElement('div');
-    particle.className = 'dark-particle';
-    particle.style.left = Math.random() * 100 + '%';
-    
-    darkContainer.appendChild(particle);
-    
-    setTimeout(() => {
-      if (particle.parentNode) {
-        particle.parentNode.removeChild(particle);
-      }
-    }, 6000);
-  }, 250);
-}
-
-// Enhanced scroll-based darkness effect
-function handleCultScroll() {
-  const scrollPosition = window.scrollY;
-  const documentHeight = document.documentHeight.scrollHeight - window.innerHeight;
-  const scrollPercentage = Math.min(scrollPosition / documentHeight, 1);
-  
-  // Get elements
-  const darknessOverlay = document.getElementById('darknessOverlay');
-  const cultSymbols = document.getElementById('cultSymbols');
-  const darkParticles = document.getElementById('darkParticles');
-  const regularParticles = document.getElementById('particles');
-  const matrixRain = document.getElementById('matrixRain');
-  const musicControls = document.querySelector('.music-controls');
-  
-  // Calculate darkness intensity based on scroll - more aggressive but readable
-  const darknessIntensity = Math.pow(scrollPercentage, 0.6); // Balanced darkness curve
-  
-  // Apply darkness overlay - controlled intensity
-  darknessOverlay.style.opacity = Math.min(darknessIntensity * 1.2, 0.8);
-  
-  // Show cult symbols when scrolling down
-  if (scrollPercentage > 0.15) {
-    cultSymbols.style.opacity = Math.min((scrollPercentage - 0.15) * 1.8, 1);
-  } else {
-    cultSymbols.style.opacity = 0;
-  }
-  
-  // Show dark particles earlier and stronger
-  if (scrollPercentage > 0.2) {
-    darkParticles.style.opacity = Math.min((scrollPercentage - 0.2) * 1.3, 0.9);
-  } else {
-    darkParticles.style.opacity = 0;
-  }
-  
-  // Fade out colorful elements but keep some visibility
-  const colorfulOpacity = Math.max(1 - darknessIntensity * 1.5, 0.2);
-  regularParticles.style.opacity = colorfulOpacity;
-  matrixRain.style.opacity = colorfulOpacity * 0.4;
-  
-  // Keep music controls readable
-  if (musicControls) {
-    musicControls.style.opacity = Math.max(1 - darknessIntensity * 1.2, 0.5);
-  }
-  
-  // Change background colors to darker/redder tones - but keep contrast
-  if (scrollPercentage > 0.3) {
-    const redShift = scrollPercentage * 80; // Less extreme red shift
-    const brightness = Math.max(1 - scrollPercentage * 0.6, 0.3); // Keep readable brightness
-    const saturation = 1 + scrollPercentage * 1.5; // Moderate saturation
-    document.body.style.filter = `hue-rotate(${redShift}deg) brightness(${brightness}) saturate(${saturation}) contrast(${1 + scrollPercentage * 0.5})`;
-  } else {
-    document.body.style.filter = '';
-  }
-  
-  // Add ominous red glow to timer cards - but keep text readable
-  const timeCards = document.querySelectorAll('.time-card');
-  if (scrollPercentage > 0.4) {
-    timeCards.forEach(card => {
-      const redGlow = scrollPercentage * 0.8;
-      card.style.boxShadow = `0 0 ${30 + redGlow * 20}px rgba(150, 0, 0, ${redGlow * 0.7}), 0 0 ${60 + redGlow * 30}px rgba(100, 0, 0, ${redGlow * 0.5})`;
-      card.style.borderColor = `rgba(150, 0, 0, ${0.5 + scrollPercentage * 0.3})`;
-      // Ensure text stays visible
-      card.style.color = '#ffffff';
-      card.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
-    });
-  }
-  
-  // Change title color to blood red - but keep it readable
-  const title = document.querySelector('.title');
-  if (scrollPercentage > 0.5) {
-    const bloodShift = -120 + scrollPercentage * 60; // Less extreme shift
-    const bloodBrightness = 0.7 + scrollPercentage * 0.2; // Keep brighter
-    title.style.filter = `hue-rotate(${bloodShift}deg) brightness(${bloodBrightness}) saturate(${1.5 + scrollPercentage})`;
-  }
-  
-  // Make the page darker but maintain text readability
-  if (scrollPercentage > 0.6) {
-    document.body.style.background = `
-      radial-gradient(circle at 20% 80%, rgba(50, 0, 0, ${scrollPercentage * 0.2}) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(30, 0, 0, ${scrollPercentage * 0.15}) 0%, transparent 50%),
-      #0a0a0a
-    `;
-  }
-  
-  // Ensure all text elements maintain readability in dark sections
-  const textElements = document.querySelectorAll('.death-label, .death-value, .prophecy-line, .cult-chant, .abyss-warning');
-  if (scrollPercentage > 0.5) {
-    textElements.forEach(element => {
-      element.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px currentColor';
-    });
-  }
-}
-
-function createMatrixRain() {
-  const matrixContainer = document.getElementById('matrixRain');
-  const characters = '01ニカモトサシ時間空間∞∆Ψ⛧👁️💀🩸';
-  
-  function createColumn() {
-    const column = document.createElement('div');
-    column.className = 'matrix-column';
-    column.style.left = Math.random() * 100 + '%';
-    column.textContent = characters[Math.floor(Math.random() * characters.length)];
-    
-    // Random color variations
-    const colors = ['#00ff00', '#00ffff', '#ff00ff', '#ff0000'];
-    column.style.color = colors[Math.floor(Math.random() * colors.length)];
-    
-    matrixContainer.appendChild(column);
-    
-    setTimeout(() => {
-      if (column.parentNode) {
-        column.parentNode.removeChild(column);
-      }
-    }, 4000);
-  }
-  
-  setInterval(createColumn, 150);
-}
-
-// Add extra visual effects
-function addVisualEffects() {
-  // Screen shake effect on hover
-  const timeCards = document.querySelectorAll('.time-card');
-  timeCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      document.body.style.animation = 'screen-shake 0.3s ease-in-out';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      setTimeout(() => {
-        document.body.style.animation = '';
-      }, 300);
-    });
-  });
-  
-  // Add screen shake keyframes
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes screen-shake {
-      0%, 100% { transform: translate(0, 0); }
-      25% { transform: translate(1px, -1px); }
-      50% { transform: translate(-1px, 1px); }
-      75% { transform: translate(1px, 1px); }
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-// Initialize everything
-document.addEventListener('DOMContentLoaded', () => {
-  updateTimer();
-  createParticles();
-  createMatrixRain();
-  createCultSymbols();
-  createDarkParticles();
-  createVoidParticles();
-  createAbyssSymbols();
-  addVisualEffects();
-  
-  // Update timer every 10ms for smooth animation
-  setInterval(updateTimer, 10);
-  
-  // Add scroll listener for cult darkness effect
-  window.addEventListener('scroll', handleCultScroll);
-  
-  // Initial call to set darkness based on current scroll position
-  handleCultScroll();
-});
-
-// Add keyboard controls for extra fun
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'Space') {
-    event.preventDefault();
-    // Trigger rainbow explosion effect
-    document.body.style.filter = 'hue-rotate(360deg) saturate(2) brightness(1.5)';
-    setTimeout(() => {
-      document.body.style.filter = '';
-    }, 1000);
-  }
-});
-
-// Click effects
+// Add evil click effects
 document.addEventListener('click', (event) => {
-  // Create explosion effect at click position
   const explosion = document.createElement('div');
   explosion.style.position = 'fixed';
   explosion.style.left = event.clientX + 'px';
   explosion.style.top = event.clientY + 'px';
-  explosion.style.width = '20px';
-  explosion.style.height = '20px';
-  explosion.style.background = 'radial-gradient(circle, #ff00ff, transparent)';
+  explosion.style.width = '10px';
+  explosion.style.height = '10px';
+  explosion.style.background = 'radial-gradient(circle, #cc0000, transparent)';
   explosion.style.borderRadius = '50%';
   explosion.style.pointerEvents = 'none';
-  explosion.style.animation = 'explosion 0.6s ease-out forwards';
+  explosion.style.animation = 'dark-explosion 0.8s ease-out forwards';
   explosion.style.zIndex = '9999';
   
   document.body.appendChild(explosion);
@@ -2877,24 +867,82 @@ document.addEventListener('click', (event) => {
     if (explosion.parentNode) {
       explosion.parentNode.removeChild(explosion);
     }
-  }, 600);
+  }, 800);
 });
 
 // Add explosion animation
 const explosionStyle = document.createElement('style');
 explosionStyle.textContent = `
-  @keyframes explosion {
+  @keyframes dark-explosion {
     0% {
       transform: scale(1);
       opacity: 1;
+      box-shadow: 0 0 10px #cc0000;
     }
     100% {
-      transform: scale(20);
+      transform: scale(15);
       opacity: 0;
+      box-shadow: 0 0 40px #990000;
     }
   }
 `;
 document.head.appendChild(explosionStyle);
+
+// Add keyboard effects for extra evil
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Space') {
+    event.preventDefault();
+    // Trigger dark corruption effect
+    document.body.style.filter = 'hue-rotate(180deg) saturate(2) brightness(0.7) contrast(1.5)';
+    setTimeout(() => {
+      document.body.style.filter = '';
+    }, 1500);
+  }
+});
+
+// Randomly corrupt text occasionally
+function corruptText() {
+  const textElements = document.querySelectorAll('.stat-label, .time-label');
+  if (Math.random() < 0.1) { // 10% chance every interval
+    const randomElement = textElements[Math.floor(Math.random() * textElements.length)];
+    const originalText = randomElement.textContent;
+    
+    // Corrupt the text briefly
+    randomElement.style.color = '#ff0000';
+    randomElement.style.transform = 'scale(1.1)';
+    randomElement.style.textShadow = '0 0 20px #cc0000';
+    
+    setTimeout(() => {
+      randomElement.style.color = '';
+      randomElement.style.transform = '';
+      randomElement.style.textShadow = '';
+    }, 200);
+  }
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+  updateTimer();
+  createCursedParticles();
+  
+  // Update timer every second for smooth evil progression
+  setInterval(updateTimer, 1000);
+  
+  // Occasionally corrupt text
+  setInterval(corruptText, 3000);
+});
+
+// Add screen distortion effect on hover
+const cards = document.querySelectorAll('.time-card, .stat-item');
+cards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.filter = 'hue-rotate(180deg) saturate(1.5)';
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.filter = '';
+  });
+});
 </script>
 
 </body>
