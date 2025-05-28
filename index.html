@@ -41,7 +41,7 @@
     overflow-x: hidden;
     position: relative;
     animation: apocalyptic-pulse 6s ease-in-out infinite;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23cc0000"/><text x="10" y="15" text-anchor="middle" fill="white" font-size="12">💀</text></svg>'), auto;
+    cursor: crosshair;
   }
 
   @keyframes apocalyptic-pulse {
@@ -499,7 +499,7 @@
 
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 3rem;
   }
 
@@ -743,3 +743,635 @@
     0%, 100% { 
       border-color: var(--hell-fire);
       box-shadow: 0 0 50px rgba(255, 51, 0, 0.5);
+    }
+    50% { 
+      border-color: var(--demon-red);
+      box-shadow: 0 0 80px rgba(255, 0, 51, 0.7);
+    }
+  }
+
+  .status-dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--hell-fire);
+    animation: dot-hellfire 1s ease-in-out infinite;
+    box-shadow: 0 0 20px var(--demon-red);
+  }
+
+  @keyframes dot-hellfire {
+    0%, 100% { 
+      background: var(--hell-fire);
+      transform: scale(1);
+    }
+    50% { 
+      background: var(--demon-red);
+      transform: scale(1.5);
+      box-shadow: 0 0 30px var(--hell-fire);
+    }
+  }
+
+  /* Demonic Footer */
+  .apocalyptic-section {
+    background: 
+      linear-gradient(135deg, 
+        rgba(0, 77, 0, 0.7), 
+        rgba(40, 0, 0, 0.8), 
+        rgba(20, 0, 0, 0.9), 
+        rgba(10, 0, 0, 0.95));
+    border: 6px solid var(--plague-green);
+    border-radius: 30px;
+    padding: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    animation: apocalypse-darkness 10s ease-in-out infinite;
+    box-shadow: 
+      0 0 120px rgba(0, 77, 0, 0.5),
+      0 0 240px rgba(153, 0, 0, 0.3),
+      inset 0 0 80px rgba(0, 0, 0, 0.9);
+  }
+
+  @keyframes apocalypse-darkness {
+    0%, 100% { 
+      border-color: var(--plague-green);
+    }
+    25% { 
+      border-color: var(--death-purple);
+    }
+    50% { 
+      border-color: var(--demon-red);
+    }
+    75% {
+      border-color: var(--hell-fire);
+    }
+  }
+
+  .apocalypse-title {
+    font-family: 'Nosifer', cursive;
+    font-size: 3.5rem;
+    color: var(--plague-green);
+    margin-bottom: 3rem;
+    text-shadow: 
+      0 0 40px var(--demon-red),
+      4px 4px 0px var(--black-void);
+    animation: apocalypse-flicker 4s ease-in-out infinite;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @keyframes apocalypse-flicker {
+    0%, 100% { 
+      color: var(--plague-green);
+      opacity: 1; 
+    }
+    25% { 
+      color: var(--death-purple);
+      opacity: 0.9; 
+    }
+    50% { 
+      color: var(--demon-red);
+      opacity: 0.8; 
+    }
+    75% { 
+      color: var(--hell-fire);
+      opacity: 0.95; 
+    }
+  }
+
+  .apocalypse-text {
+    font-size: 1.8rem;
+    color: var(--bone-white);
+    line-height: 2.2;
+    font-style: italic;
+    text-shadow: 0 0 15px var(--plague-green);
+    animation: text-apocalypse 8s ease-in-out infinite;
+    font-family: 'Eater', cursive;
+    margin-bottom: 3rem;
+  }
+
+  @keyframes text-apocalypse {
+    0%, 100% { 
+      color: var(--bone-white);
+    }
+    25% { 
+      color: var(--satan-gold);
+      text-shadow: 0 0 20px var(--hell-fire);
+    }
+    50% { 
+      color: var(--demon-red);
+      text-shadow: 0 0 25px var(--plague-green);
+    }
+    75% {
+      color: var(--hell-fire);
+      text-shadow: 0 0 30px var(--death-purple);
+    }
+  }
+
+  .footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 6px solid var(--blood-red);
+    color: var(--ash-gray);
+    font-size: 1.3rem;
+    text-shadow: 0 0 12px var(--demon-red);
+    background: 
+      linear-gradient(180deg, 
+        rgba(40, 0, 0, 0.8), 
+        rgba(20, 0, 0, 0.9), 
+        var(--black-void));
+    animation: footer-evil 6s ease-in-out infinite;
+  }
+
+  @keyframes footer-evil {
+    0%, 100% { 
+      border-top-color: var(--blood-red);
+    }
+    50% { 
+      border-top-color: var(--hell-fire);
+      background: 
+        linear-gradient(180deg, 
+          rgba(60, 0, 0, 0.85), 
+          rgba(30, 0, 0, 0.95), 
+          #050000);
+    }
+  }
+
+  .footer-brand {
+    color: var(--hell-fire);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    text-shadow: 0 0 15px var(--demon-red);
+    font-family: 'Metal Mania', cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-brand:hover {
+    color: var(--demon-red);
+    text-shadow: 0 0 25px var(--hell-fire);
+    transform: scale(1.1);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container { padding: 1rem; }
+    .timer-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .time-card { padding: 2.5rem 1.5rem; }
+    .time-value { font-size: clamp(2.5rem, 5vw, 4rem); }
+    .stats-grid { grid-template-columns: 1fr; }
+    .apocalyptic-title { font-size: clamp(2rem, 6vw, 4rem); }
+    .stats-title { font-size: 2.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .timer-grid { grid-template-columns: 1fr; }
+    .time-value { font-size: clamp(2rem, 5vw, 3rem); }
+    .time-card { padding: 2rem 1.5rem; }
+    .satanic-pentagram { width: 120px; height: 120px; font-size: 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background Audio -->
+<audio id="backgroundAudio" loop autoplay muted>
+  <source src="background.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Demonic Particles -->
+<div class="demonic-particles" id="demonicParticles"></div>
+
+<!-- Blood Drops -->
+<div class="blood-drops" id="bloodDrops"></div>
+
+<div class="container">
+  <header class="header">
+    <div class="satanic-pentagram">⛧</div>
+    <h1 class="apocalyptic-title">🔥 ULTIMATE CORRUPTION TIMER OF ETERNAL DAMNATION 🔥</h1>
+    <p class="demonic-subtitle">💀 THE UNSPEAKABLE EVIL THAT FESTERS SINCE NICK BEGAN COMMUNICATING WITH CAIT AGAIN 💀</p>
+    <div class="corruption-date">
+      🔥 THE CORRUPTION BEGAN: May 22, 2025 at 12:01 AM UTC 🔥
+    </div>
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      <span>🖤 ACTIVE DEMONIC SURVEILLANCE & SOUL HARVESTING 🖤</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="timer-grid" role="timer" aria-live="polite" aria-atomic="true">
+      <div class="time-card">
+        <div class="time-value" id="days">0</div>
+        <div class="time-label">💀 DAYS OF ABSOLUTE CORRUPTION 💀</div>
+      </div>
+      <div class="time-card">
+        <div class="time-value" id="hours">00</div>
+        <div class="time-label">🔥 HOURS OF HELLISH TORMENT 🔥</div>
+      </div>
+      <div class="time-card">
+        <div class="time-value" id="minutes">00</div>
+        <div class="time-label">⚰️ MINUTES OF DEMONIC DECAY ⚰️</div>
+      </div>
+      <div class="time-card">
+        <div class="time-value" id="seconds">00</div>
+        <div class="time-label">🩸 SECONDS OF SATANIC SIN 🩸</div>
+      </div>
+    </div>
+
+    <section class="apocalyptic-stats">
+      <h2 class="stats-title">🔥 STATISTICS OF ABSOLUTE DAMNATION 🔥</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-icon">💀</div>
+          <div class="stat-value" id="soulsCorrupted">0</div>
+          <div class="stat-label">Innocent Souls Corrupted</div>
+          <div class="stat-description">Pure hearts twisted into darkness and despair</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">🩸</div>
+          <div class="stat-value" id="bloodRituals">0</div>
+          <div class="stat-label">Satanic Blood Rituals</div>
+          <div class="stat-description">Dark ceremonies performed in unholy communion</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">👹</div>
+          <div class="stat-value" id="demonsAwakened">0</div>
+          <div class="stat-label">Ancient Demons Summoned</div>
+          <div class="stat-description">Primordial evils stirred from eternal slumber</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">⚰️</div>
+          <div class="stat-value" id="gravesDesecrated">0</div>
+          <div class="stat-label">Sacred Graves Violated</div>
+          <div class="stat-description">Holy resting places defiled by unholy presence</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">🌑</div>
+          <div class="stat-value" id="darkMoons">0</div>
+          <div class="stat-label">Eclipses of Darkness</div>
+          <div class="stat-description">Celestial bodies consumed by shadow realm</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="hellfireIntensity">0</div>
+          <div class="stat-label">Hellfire Temperature (°F)</div>
+          <div class="stat-description">Infernal flames reaching impossible heat</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">👁️</div>
+          <div class="stat-value" id="evilEyes">0</div>
+          <div class="stat-label">Malevolent Eyes Opened</div>
+          <div class="stat-description">Windows to the abyss watching from beyond</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">🐍</div>
+          <div class="stat-value" id="serpentsReleased">0</div>
+          <div class="stat-label">Serpents of Temptation</div>
+          <div class="stat-description">Ancient snakes whispering forbidden knowledge</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">🕷️</div>
+          <div class="stat-value" id="venomousSpiders">0</div>
+          <div class="stat-label">Venomous Shadow Spiders</div>
+          <div class="stat-description">Eight-legged harbingers of doom and despair</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">💀</div>
+          <div class="stat-value" id="skullCollection">0</div>
+          <div class="stat-label">Skulls in Collection</div>
+          <div class="stat-description">Bone trophies from the fallen and damned</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">🕯️</div>
+          <div class="stat-value" id="cursedCandles">0</div>
+          <div class="stat-label">Cursed Candles Lit</div>
+          <div class="stat-description">Flickering flames of eternal suffering</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">📜</div>
+          <div class="stat-value" id="darkProphecies">0</div>
+          <div class="stat-label">Dark Prophecies Fulfilled</div>
+          <div class="stat-description">Ancient predictions of doom coming true</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="satanic-ritual">
+      <div class="ritual-symbols">⛧ 🕯️ 💀 🕯️ ⛧</div>
+      <h2 class="ritual-title">📜 THE INFERNAL PROPHECY OF DOOM 📜</h2>
+      <div class="ritual-incantation">
+        "From the moment their cursed words first touched again,<br>
+        The very fabric of reality began to hemorrhage darkness...<br><br>
+        
+        Each message sent awakens legions of the damned,<br>
+        Each notification summons forth primordial terrors...<br><br>
+        
+        The digital realm bleeds with every vile conversation,<br>
+        And the shadows grow hungrier with each passing moment...<br><br>
+        
+        This is not mere communication - this is pure corruption.<br>
+        This is not simple connection - this is cosmic contagion.<br><br>
+        
+        The darkness spreads like a plague across dimensions,<br>
+        And there is no salvation from this eternal torment..."<br><br>
+
+        <strong style="color: var(--hell-fire); font-size: 2.2rem;">
+        "ABANDON ALL HOPE, YE WHO WITNESS THIS TIMER"
+        </strong>
+      </div>
+    </section>
+
+    <section class="apocalyptic-section">
+      <h2 class="apocalypse-title">🌍 THE COMING APOCALYPSE 🌍</h2>
+      <div class="apocalypse-text">
+        The end times approach with each tick of this accursed timer...<br><br>
+        
+        Soon, the barriers between dimensions will crumble,<br>
+        And Hell itself will spill into our reality.<br><br>
+        
+        The corruption spreads through fiber optic cables,<br>
+        Infecting servers and souls alike with its malevolent presence.<br><br>
+        
+        Digital demons now inhabit every smartphone,<br>
+        Every notification a harbinger of the coming darkness.<br><br>
+        
+        <strong style="color: var(--hell-fire); font-size: 2rem;">
+        PREPARE FOR THE FINAL RECKONING!
+        </strong>
+      </div>
+      
+      <div style="font-size: 3rem; margin-top: 2rem; animation: symbols-rotate 8s linear infinite;">
+        ☠️ ⚰️ 🔥 👹 💀 🕯️ ⛧ 🩸 👁️ 🐍
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div style="margin-bottom: 2rem; font-size: 2rem;">
+      🔥 💀 ⛧ 👹 🩸 ⚰️ 🕯️ 👁️ 🐍 💀 🔥
+    </div>
+    Forged in the Deepest Pits of Hell by <a href="#" class="footer-brand">THE DARK OVERLORDS OF THE ABYSS</a> | 
+    Powered by Blood, Malice & Eternal Suffering ⚡<br><br>
+    <div style="font-style: italic; color: var(--demon-red); font-size: 1.1rem;">
+      "May this timer serve as a reminder of the darkness that lurks within us all..."
+    </div>
+  </footer>
+</div>
+
+<script>
+// Set the start date and time - May 22, 2025 at 12:01 AM UTC
+const startDate = new Date('2025-05-22T00:01:00.000Z');
+
+// Enable audio after user interaction
+let audioEnabled = false;
+const backgroundAudio = document.getElementById('backgroundAudio');
+
+function enableAudio() {
+  if (!audioEnabled) {
+    backgroundAudio.muted = false;
+    backgroundAudio.play().catch(e => console.log('Audio autoplay prevented:', e));
+    audioEnabled = true;
+  }
+}
+
+// Try to enable audio on first user interaction
+document.addEventListener('click', enableAudio, { once: true });
+document.addEventListener('keydown', enableAudio, { once: true });
+
+function updateTimer() {
+  const now = new Date();
+  const timeDiff = now - startDate;
+  
+  // Calculate time units
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  
+  // Update timer display
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  
+  // Calculate evil statistics
+  const totalSeconds = Math.floor(timeDiff / 1000);
+  const totalMinutes = Math.floor(timeDiff / (1000 * 60));
+  const totalHours = Math.floor(timeDiff / (1000 * 60 * 60));
+  
+  // Update satanic statistics with more evil calculations
+  if (document.getElementById('soulsCorrupted')) {
+    // Souls corrupted - exponential growth of evil
+    const soulsCorrupted = Math.floor(Math.pow(totalHours, 1.666) * 6.66);
+    document.getElementById('soulsCorrupted').textContent = soulsCorrupted.toLocaleString();
+    
+    // Blood rituals - performed every 13 minutes
+    const bloodRituals = Math.floor(totalMinutes / 13);
+    document.getElementById('bloodRituals').textContent = bloodRituals.toLocaleString();
+    
+    // Demons awakened - ancient evils summoned
+    const demonsAwakened = Math.floor(totalHours * 0.666);
+    document.getElementById('demonsAwakened').textContent = demonsAwakened.toFixed(2);
+    
+    // Graves desecrated - sacred places violated
+    const gravesDesecrated = Math.floor(totalMinutes * 0.13);
+    document.getElementById('gravesDesecrated').textContent = gravesDesecrated.toLocaleString();
+    
+    // Dark moon eclipses - celestial corruption
+    const darkMoons = (days * 0.0666).toFixed(4);
+    document.getElementById('darkMoons').textContent = darkMoons;
+    
+    // Hellfire intensity - temperature of damnation
+    const hellfireIntensity = Math.floor(1666 + (totalHours * 66.6));
+    document.getElementById('hellfireIntensity').textContent = hellfireIntensity.toLocaleString();
+
+    // Evil eyes opened - malevolent watchers
+    const evilEyes = Math.floor(totalSeconds * 0.0666);
+    document.getElementById('evilEyes').textContent = evilEyes.toLocaleString();
+
+    // Serpents of temptation - slithering evil
+    const serpentsReleased = Math.floor(totalMinutes * 0.333);
+    document.getElementById('serpentsReleased').textContent = serpentsReleased.toLocaleString();
+
+    // Venomous spiders - arachnid harbingers
+    const venomousSpiders = Math.floor(totalSeconds * 0.13);
+    document.getElementById('venomousSpiders').textContent = venomousSpiders.toLocaleString();
+
+    // Skull collection - bone trophies
+    const skullCollection = Math.floor(totalHours * 13.13);
+    document.getElementById('skullCollection').textContent = skullCollection.toLocaleString();
+
+    // Cursed candles - flickering doom
+    const cursedCandles = Math.floor(totalMinutes * 0.666);
+    document.getElementById('cursedCandles').textContent = cursedCandles.toLocaleString();
+
+    // Dark prophecies fulfilled - doom predictions
+    const darkProphecies = Math.floor(totalHours * 0.13);
+    document.getElementById('darkProphecies').textContent = darkProphecies.toLocaleString();
+  }
+}
+
+// Create demonic floating particles
+function createDemonicParticles() {
+  const particlesContainer = document.getElementById('demonicParticles');
+  
+  setInterval(() => {
+    if (particlesContainer.children.length > 50) return;
+    
+    const particle = document.createElement('div');
+    particle.className = 'demonic-particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDuration = (10 + Math.random() * 8) + 's';
+    particle.style.animationDelay = Math.random() * 3 + 's';
+    
+    particlesContainer.appendChild(particle);
+    
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 18000);
+  }, 200);
+}
+
+// Create blood drops
+function createBloodDrops() {
+  const bloodContainer = document.getElementById('bloodDrops');
+  
+  setInterval(() => {
+    if (bloodContainer.children.length > 20) return;
+    
+    const drop = document.createElement('div');
+    drop.className = 'blood-drop';
+    drop.style.left = Math.random() * 100 + '%';
+    drop.style.animationDuration = (6 + Math.random() * 4) + 's';
+    drop.style.animationDelay = Math.random() * 2 + 's';
+    
+    bloodContainer.appendChild(drop);
+    
+    setTimeout(() => {
+      if (drop.parentNode) {
+        drop.parentNode.removeChild(drop);
+      }
+    }, 10000);
+  }, 800);
+}
+
+// Add hellish click effects
+document.addEventListener('click', (event) => {
+  const explosion = document.createElement('div');
+  explosion.style.position = 'fixed';
+  explosion.style.left = event.clientX + 'px';
+  explosion.style.top = event.clientY + 'px';
+  explosion.style.width = '15px';
+  explosion.style.height = '15px';
+  explosion.style.background = 'radial-gradient(circle, #ff3300, #cc0000, transparent)';
+  explosion.style.borderRadius = '50%';
+  explosion.style.pointerEvents = 'none';
+  explosion.style.animation = 'hellish-explosion 1.2s ease-out forwards';
+  explosion.style.zIndex = '9999';
+  
+  document.body.appendChild(explosion);
+  
+  setTimeout(() => {
+    if (explosion.parentNode) {
+      explosion.parentNode.removeChild(explosion);
+    }
+  }, 1200);
+});
+
+// Add explosion animation
+const explosionStyle = document.createElement('style');
+explosionStyle.textContent = `
+  @keyframes hellish-explosion {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 0 15px #ff3300;
+    }
+    50% {
+      transform: scale(10);
+      opacity: 0.8;
+      box-shadow: 0 0 50px #ff0033;
+    }
+    100% {
+      transform: scale(20);
+      opacity: 0;
+      box-shadow: 0 0 80px #990000;
+    }
+  }
+`;
+document.head.appendChild(explosionStyle);
+
+// Add keyboard effects for extra evil
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Space') {
+    event.preventDefault();
+    // Trigger apocalyptic corruption effect
+    document.body.style.filter = 'hue-rotate(180deg) saturate(3) brightness(0.5) contrast(2)';
+    setTimeout(() => {
+      document.body.style.filter = '';
+    }, 2000);
+  }
+  
+  // Secret demonic codes
+  if (event.key === '6' && event.ctrlKey) {
+    // Unleash more demons
+    for (let i = 0; i < 20; i++) {
+      setTimeout(() => createDemonicParticles(), i * 100);
+    }
+  }
+});
+
+// Randomly corrupt and glitch text
+function corruptText() {
+  const textElements = document.querySelectorAll('.stat-label, .time-label, .stat-description');
+  if (Math.random() < 0.15) { // 15% chance every interval
+    const randomElement = textElements[Math.floor(Math.random() * textElements.length)];
+    const originalText = randomElement.textContent;
+    
+    // Corrupt the text briefly with demonic symbols
+    const corruptedText = originalText.replace(/[aeiou]/gi, '⛧').replace(/[bcdfg]/gi, '💀');
+    randomElement.textContent = corruptedText;
+    randomElement.style.color = '#ff0033';
+    randomElement.style.transform = 'scale(1.2) rotate(2deg)';
+    randomElement.style.textShadow = '0 0 25px #ff3300';
+    
+    setTimeout(() => {
+      randomElement.textContent = originalText;
+      randomElement.style.color = '';
+      randomElement.style.transform = '';
+      randomElement.style.textShadow = '';
+    }, 300);
+  }
+}
+
+// Screen distortion effects
+function triggerScreenDistortion() {
+  if (Math.random() < 0.05) { // 5% chance
+    document.body.style.filter = 'blur(2px) hue-rotate(90deg) saturate(2)';
+    setTimeout(() => {
+      document.body.style.filter = '';
+    }, 150);
+  }
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+  updateTimer();
+  createDemonicParticles();
+  createBloodDrops();
