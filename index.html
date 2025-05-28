@@ -1375,3 +1375,67 @@ document.addEventListener('DOMContentLoaded', () => {
   updateTimer();
   createDemonicParticles();
   createBloodDrops();
+  
+  // Update timer every second for smooth evil progression
+  setInterval(updateTimer, 1000);
+  
+  // Occasionally corrupt text and distort screen
+  setInterval(corruptText, 4000);
+  setInterval(triggerScreenDistortion, 8000);
+});
+
+// Add demonic hover effects
+const cards = document.querySelectorAll('.time-card, .stat-item');
+cards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.filter = 'hue-rotate(180deg) saturate(2) brightness(1.2)';
+    card.style.transform += ' rotateY(5deg)';
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.filter = '';
+    card.style.transform = card.style.transform.replace(' rotateY(5deg)', '');
+  });
+});
+
+// Demonic audio effects (when available)
+function playDemonicSound() {
+  if (audioEnabled && Math.random() < 0.1) {
+    // Create a brief demonic sound effect using Web Audio API
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(66.6, audioContext.currentTime);
+      oscillator.type = 'sawtooth';
+      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+      
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.5);
+    } catch (e) {
+      console.log('Web Audio not supported');
+    }
+  }
+}
+
+// Randomly play demonic sounds
+setInterval(playDemonicSound, 30000);
+
+// Final demonic touch - make the page title flicker
+setInterval(() => {
+  if (Math.random() < 0.2) {
+    document.title = '💀 CORRUPTION SPREADS 💀';
+    setTimeout(() => {
+      document.title = '🔥 ULTIMATE CORRUPTION TIMER OF ETERNAL DAMNATION 🔥';
+    }, 1000);
+  }
+}, 10000);
+</script>
+
+</body>
+</html>
