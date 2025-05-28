@@ -44,6 +44,17 @@
     cursor: crosshair;
   }
 
+  @keyframes audio-pulse {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(255, 51, 0, 0.6);
+    }
+    50% { 
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 51, 0, 0.8), 0 0 50px rgba(204, 0, 0, 0.4);
+    }
+  }
+
   @keyframes roast-pulse {
     0%, 100% { 
       border-color: var(--hell-fire);
@@ -973,10 +984,17 @@
 <body>
 
 <!-- Background Audio -->
-<audio id="backgroundAudio" loop autoplay muted>
+<audio id="backgroundAudio" loop autoplay preload="auto" volume="0.7">
   <source src="background.mp3" type="audio/mpeg">
+  <source src="background.wav" type="audio/wav">
+  <source src="background.ogg" type="audio/ogg">
   Your browser does not support the audio element.
 </audio>
+
+<!-- Audio Control Button -->
+<div style="position: fixed; top: 20px; right: 20px; z-index: 10000; background: linear-gradient(135deg, rgba(255, 51, 0, 0.9), rgba(153, 0, 0, 0.95)); border: 3px solid var(--hell-fire); border-radius: 50px; padding: 15px 25px; cursor: pointer; font-family: 'Metal Mania', cursive; color: var(--bone-white); text-shadow: 0 0 10px var(--demon-red); animation: audio-pulse 2s ease-in-out infinite;" id="audioControl" onclick="toggleAudio()">
+  🔊 DEMONIC AUDIO: ON
+</div>
 
 <!-- Demonic Particles -->
 <div class="demonic-particles" id="demonicParticles"></div>
@@ -1220,21 +1238,78 @@
 // Set the start date and time - May 22, 2025 at 12:01 AM UTC
 const startDate = new Date('2025-05-22T00:01:00.000Z');
 
-// Enable audio after user interaction
+// Enhanced audio management - FORCE BACKGROUND MUSIC TO PLAY
 let audioEnabled = false;
+let audioAttempts = 0;
 const backgroundAudio = document.getElementById('backgroundAudio');
+const audioControl = document.getElementById('audioControl');
 
-function enableAudio() {
-  if (!audioEnabled) {
+// Aggressive audio enabling function
+function forceEnableAudio() {
+  if (!audioEnabled && audioAttempts < 10) {
     backgroundAudio.muted = false;
-    backgroundAudio.play().catch(e => console.log('Audio autoplay prevented:', e));
-    audioEnabled = true;
+    backgroundAudio.volume = 0.7;
+    backgroundAudio.play().then(() => {
+      audioEnabled = true;
+      audioControl.innerHTML = '🔊 DEMONIC AUDIO: ON';
+      audioControl.style.background = 'linear-gradient(135deg, rgba(255, 51, 0, 0.9), rgba(153, 0, 0, 0.95))';
+      console.log('🔥 DEMONIC AUDIO ENABLED! 🔥');
+    }).catch(e => {
+      console.log('Audio attempt', audioAttempts + 1, 'failed:', e);
+      audioAttempts++;
+      // Keep trying every 2 seconds
+      setTimeout(forceEnableAudio, 2000);
+    });
   }
 }
 
-// Try to enable audio on first user interaction
-document.addEventListener('click', enableAudio, { once: true });
-document.addEventListener('keydown', enableAudio, { once: true });
+// Toggle audio function
+function toggleAudio() {
+  if (audioEnabled) {
+    backgroundAudio.pause();
+    audioEnabled = false;
+    audioControl.innerHTML = '🔇 DEMONIC AUDIO: OFF';
+    audioControl.style.background = 'linear-gradient(135deg, rgba(100, 100, 100, 0.9), rgba(50, 50, 50, 0.95))';
+  } else {
+    forceEnableAudio();
+  }
+}
+
+// Multiple event listeners to ensure audio starts
+document.addEventListener('click', forceEnableAudio);
+document.addEventListener('keydown', forceEnableAudio);
+document.addEventListener('touchstart', forceEnableAudio);
+document.addEventListener('mousemove', forceEnableAudio);
+document.addEventListener('scroll', forceEnableAudio);
+
+// Try to start audio immediately when page loads
+document.addEventListener('DOMContentLoaded', () => {
+  // Immediate attempt
+  forceEnableAudio();
+  
+  // Backup attempts every 3 seconds for first 30 seconds
+  const audioInterval = setInterval(() => {
+    if (audioEnabled) {
+      clearInterval(audioInterval);
+    } else {
+      forceEnableAudio();
+    }
+  }, 3000);
+  
+  // Stop trying after 30 seconds
+  setTimeout(() => {
+    clearInterval(audioInterval);
+  }, 30000);
+  
+  // Monitor audio state and restart if it stops
+  setInterval(() => {
+    if (audioEnabled && (backgroundAudio.paused || backgroundAudio.ended)) {
+      console.log('🔥 RESTARTING DEMONIC AUDIO 🔥');
+      backgroundAudio.currentTime = 0;
+      backgroundAudio.play().catch(e => console.log('Restart failed:', e));
+    }
+  }, 5000);
+});
 
 function updateTimer() {
   const now = new Date();
@@ -1462,11 +1537,14 @@ function triggerScreenDistortion() {
   }
 }
 
-// Initialize everything
+// Initialize everything with AGGRESSIVE AUDIO
 document.addEventListener('DOMContentLoaded', () => {
   updateTimer();
   createDemonicParticles();
   createBloodDrops();
+  
+  // FORCE AUDIO TO START IMMEDIATELY
+  forceEnableAudio();
   
   // Update timer every second for smooth evil progression
   setInterval(updateTimer, 1000);
@@ -1474,6 +1552,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Occasionally corrupt text and distort screen
   setInterval(corruptText, 4000);
   setInterval(triggerScreenDistortion, 8000);
+  
+  // Additional audio forcing - try every 5 seconds if not playing
+  setInterval(() => {
+    if (!audioEnabled || backgroundAudio.paused) {
+      console.log('🔥 FORCING AUDIO RESTART 🔥');
+      forceEnableAudio();
+    }
+  }, 5000);
 });
 
 // Add demonic hover effects
