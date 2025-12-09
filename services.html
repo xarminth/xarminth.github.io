@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - iFixTech Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Professional Color Scheme */
+            --primary-navy: #0A1628;
+            --primary-cyan: #00D4FF;
+            --primary-purple: #8B5CF6;
+            --accent-blue: #0066FF;
+            --dark-bg: #0F172A;
+            --darker-bg: #020617;
+            --light: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            
+            /* Typography */
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Animated Grid Background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Decorative Icons */
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: var(--primary-cyan);
+            animation: floatDrift 15s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(2n) {
+            color: var(--primary-purple);
+            animation-duration: 20s;
+        }
+
+        .floating-icon:nth-child(3n) {
+            color: var(--accent-blue);
+            animation-duration: 18s;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatDrift {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% { 
+                transform: translate(20px, -20px) rotate(5deg);
+            }
+            50% { 
+                transform: translate(-15px, 15px) rotate(-5deg);
+            }
+            75% { 
+                transform: translate(15px, 20px) rotate(3deg);
+            }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            text-decoration: none;
+            font-family: var(--font-display);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-cyan);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-cyan);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: var(--font-primary);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--accent-blue));
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-cyan);
+            border: 2px solid var(--primary-cyan);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-cyan);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--darker-bg) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+            line-height: 1.1;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .page-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        /* Services Overview Section */
+        .services-overview {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Main Services Grid */
+        .main-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .main-service-card {
+            background: linear-gradient(135deg, var(--gray-50), var(--light));
+            border: 2px solid var(--gray-200);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(139, 92, 246, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .main-service-card:hover::before {
+            opacity: 1;
+        }
+
+        .main-service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-cyan);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-icon-large {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            transition: transform 0.4s ease;
+        }
+
+        .main-service-card:hover .service-icon-large {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-title-group h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-tagline {
+            color: var(--primary-cyan);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-description-full {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--gray-700);
+            font-size: 0.95rem;
+        }
+
+        .service-features-list i {
+            color: var(--primary-cyan);
+            font-size: 1rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .service-pricing {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-range {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-cyan);
+            font-family: var(--font-display);
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-full {
+            flex: 1;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--light) 100%);
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 2px solid var(--gray-200);
+        }
+
+        .comparison-header {
+            background: linear-gradient(135deg, var(--primary-navy), var(--darker-bg));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .comparison-header h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .comparison-cell {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            border-right: 1px solid var(--gray-200);
+        }
+
+        .comparison-cell:nth-child(4n) {
+            border-right: none;
+        }
+
+        .comparison-row-header {
+            font-weight: 600;
+            color: var(--primary-navy);
+            background: var(--gray-50);
+        }
+
+        .comparison-service-name {
+            font-weight: 600;
+            color: var(--primary-cyan);
+            text-align: center;
+            background: var(--gray-50);
+        }
+
+        .comparison-check {
+            text-align: center;
+            color: var(--success);
+            font-size: 1.5rem;
+        }
+
+        .comparison-dash {
+            text-align: center;
+            color: var(--gray-400);
+            font-size: 1.5rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .process-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-cyan), var(--primary-purple));
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 120px;
+            margin-bottom: 4rem;
+        }
+
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number-circle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .step-content h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.75rem;
+            font-family: var(--font-display);
+        }
+
+        .step-content p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--darker-bg) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+
+        .cta-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-navy);
+            border: 2px solid white;
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-navy), var(--darker-bg));
+            color: white;
+            padding: 80px 0 40px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-cyan), transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+
+        .footer-section p {
+            color: var(--gray-400);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-cyan);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-cell {
+                border-right: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                box-shadow: var(--shadow-xl);
+                gap: 2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header {
+                padding: 140px 0 80px;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .timeline-line {
+                left: 20px;
+            }
+
+            .process-step {
+                padding-left: 80px;
+            }
+
+            .step-number-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+
+    <!-- Floating Decorative Icons -->
+    <div class="floating-icons">
+        <i class="fas fa-shield-alt floating-icon" style="top: 15%; left: 5%; font-size: 3rem; opacity: 0.08;"></i>
+        <i class="fas fa-lock floating-icon" style="top: 25%; right: 8%; font-size: 2.5rem; opacity: 0.06;"></i>
+        <i class="fas fa-code floating-icon" style="top: 45%; left: 3%; font-size: 2rem; opacity: 0.07;"></i>
+        <i class="fas fa-server floating-icon" style="top: 60%; right: 5%; font-size: 3.5rem; opacity: 0.05;"></i>
+        <i class="fas fa-network-wired floating-icon" style="top: 75%; left: 7%; font-size: 2.8rem; opacity: 0.06;"></i>
+        <i class="fas fa-laptop-code floating-icon" style="top: 35%; right: 12%; font-size: 2.2rem; opacity: 0.08;"></i>
+        <i class="fas fa-database floating-icon" style="top: 55%; left: 10%; font-size: 2.5rem; opacity: 0.07;"></i>
+        <i class="fas fa-cloud floating-icon" style="top: 85%; right: 10%; font-size: 3rem; opacity: 0.06;"></i>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">iFixTech</span>
+                        <span class="logo-sub">SOLUTIONS</span>
+                    </div>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Get Consultation
+                    </a>
+                    <button class="mobile-menu" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <div class="page-badge">
+                    <i class="fas fa-th-large"></i>
+                    Complete Service Portfolio
+                </div>
+                <h1 class="page-title">Enterprise IT Solutions</h1>
+                <p class="page-subtitle">
+                    From cybersecurity consulting to full-stack development, we provide comprehensive 
+                    IT services designed to protect, optimize, and accelerate your business.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-badge">
+                    <i class="fas fa-star"></i>
+                    Our Core Services
+                </div>
+                <h2 class="section-title">What We Offer</h2>
+                <p class="section-subtitle">
+                    Comprehensive technology solutions tailored to your business needs, 
+                    delivered by certified experts with proven results.
+                </p>
+            </div>
+
+            <div class="main-services-grid">
+                <!-- Cybersecurity Consulting -->
+                <div class="main-service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon-large">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <div class="service-title-group">
+                            <h3>Cybersecurity Consulting</h3>
+                            <p class="service-tagline">Protect Your Digital Assets</p>
+                        </div>
+                    </div>
+
+                    <p class="service-description-full">
+                        Comprehensive security solutions to identify vulnerabilities, prevent breaches, 
+                        and ensure compliance. Our expert team provides penetration testing, security 
+                        assessments, and 24/7 monitoring to keep your business secure.
+                    </p>
+
+                    <ul class="service-features-list">
+                        <li><i class="fas fa-check-circle"></i> Penetration Testing & Vulnerability Assessments</li>
+                        <li><i class="fas fa-check-circle"></i> Security Audits & Compliance Management (HIPAA, PCI-DSS)</li>
+                        <li><i class="fas fa-check-circle"></i> Incident Response & Digital Forensics</li>
+                        <li><i class="fas fa-check-circle"></i> Security Policy Development & Implementation</li>
+                        <li><i class="fas fa-check-circle"></i> Employee Security Training & Awareness</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Security Monitoring & Threat Detection</li>
+                    </ul>
+
+                    <div class="service-pricing">
+                        <div class="pricing-label">Starting From</div>
+                        <div class="pricing-range">$200+</div>
+                        <div class="pricing-note">Custom pricing based on scope and requirements</div>
+                    </div>
+
+                    <div class="service-actions">
+                        <a href="cybersecurity.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-arrow-right"></i>
+                            Learn More
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-calendar"></i>
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Network Management -->
+                <div class="main-service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon-large">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="service-title-group">
+                            <h3>Network Management</h3>
+                            <p class="service-tagline">Optimize Your Infrastructure</p>
+                        </div>
+                    </div>
+
+                    <p class="service-description-full">
+                        Design, implement, and manage robust network infrastructure with proactive 
+                        monitoring and maintenance. Ensure maximum uptime and performance for your 
+                        business-critical systems.
+                    </p>
+
+                    <ul class="service-features-list">
+                        <li><i class="fas fa-check-circle"></i> Network Design & Architecture Planning</li>
+                        <li><i class="fas fa-check-circle"></i> Managed IT Services & Remote Support</li>
+                        <li><i class="fas fa-check-circle"></i> Cloud Infrastructure Setup & Migration</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Network Monitoring & Maintenance</li>
+                        <li><i class="fas fa-check-circle"></i> Firewall Configuration & VPN Setup</li>
+                        <li><i class="fas fa-check-circle"></i> Disaster Recovery & Business Continuity</li>
+                    </ul>
+
+                    <div class="service-pricing">
+                        <div class="pricing-label">Starting From</div>
+                        <div class="pricing-range">$200+</div>
+                        <div class="pricing-note">Monthly managed services or project-based pricing</div>
+                    </div>
+
+                    <div class="service-actions">
+                        <a href="network-management.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-arrow-right"></i>
+                            Learn More
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-calendar"></i>
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Full-Stack Development -->
+                <div class="main-service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon-large">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="service-title-group">
+                            <h3>Full-Stack Development</h3>
+                            <p class="service-tagline">Enterprise Applications</p>
+                        </div>
+                    </div>
+
+                    <p class="service-description-full">
+                        Complex web and mobile applications built with modern technologies. From enterprise 
+                        systems to SaaS platforms, we create scalable solutions that drive business growth 
+                        and handle high-traffic demands.
+                    </p>
+
+                    <ul class="service-features-list">
+                        <li><i class="fas fa-check-circle"></i> Enterprise Web Application Development</li>
+                        <li><i class="fas fa-check-circle"></i> SaaS Platform Development & Deployment</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile App Development (iOS & Android)</li>
+                        <li><i class="fas fa-check-circle"></i> RESTful API Design & Development</li>
+                        <li><i class="fas fa-check-circle"></i> Database Design & Optimization</li>
+                        <li><i class="fas fa-check-circle"></i> Ongoing Maintenance & Support</li>
+                    </ul>
+
+                    <div class="service-pricing">
+                        <div class="pricing-label">Starting From</div>
+                        <div class="pricing-range">$500+</div>
+                        <div class="pricing-note">Complex applications & enterprise solutions</div>
+                    </div>
+
+                    <div class="service-actions">
+                        <a href="web-development.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-arrow-right"></i>
+                            Learn More
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-calendar"></i>
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Website Development -->
+                <div class="main-service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon-large">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="service-title-group">
+                            <h3>Website Development</h3>
+                            <p class="service-tagline">Professional Web Presence</p>
+                        </div>
+                    </div>
+
+                    <p class="service-description-full">
+                        Beautiful, responsive websites that convert visitors into customers. From landing 
+                        pages to full business sites, we create modern web experiences optimized for 
+                        performance and user engagement.
+                    </p>
+
+                    <ul class="service-features-list">
+                        <li><i class="fas fa-check-circle"></i> Custom Website Design & Development</li>
+                        <li><i class="fas fa-check-circle"></i> E-commerce & Online Store Solutions</li>
+                        <li><i class="fas fa-check-circle"></i> WordPress & CMS Development</li>
+                        <li><i class="fas fa-check-circle"></i> Landing Pages & Marketing Sites</li>
+                        <li><i class="fas fa-check-circle"></i> SEO Optimization & Performance Tuning</li>
+                        <li><i class="fas fa-check-circle"></i> Hosting & Domain Management</li>
+                    </ul>
+
+                    <div class="service-pricing">
+                        <div class="pricing-label">Starting From</div>
+                        <div class="pricing-range">$100+</div>
+                        <div class="pricing-note">Affordable websites for small businesses</div>
+                    </div>
+
+                    <div class="service-actions">
+                        <a href="web-development.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-arrow-right"></i>
+                            Learn More
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-calendar"></i>
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- IT Consulting -->
+                <div class="main-service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon-large">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="service-title-group">
+                            <h3>IT Consulting</h3>
+                            <p class="service-tagline">Strategic Technology Guidance</p>
+                        </div>
+                    </div>
+
+                    <p class="service-description-full">
+                        Expert technology consulting to optimize your IT infrastructure, reduce costs, 
+                        and align technology with business goals. Strategic planning for digital 
+                        transformation and growth.
+                    </p>
+
+                    <ul class="service-features-list">
+                        <li><i class="fas fa-check-circle"></i> Technology Assessment & Roadmap Planning</li>
+                        <li><i class="fas fa-check-circle"></i> Device Procurement & Lifecycle Management</li>
+                        <li><i class="fas fa-check-circle"></i> Digital Transformation Strategy</li>
+                        <li><i class="fas fa-check-circle"></i> IT Budget Planning & Cost Optimization</li>
+                        <li><i class="fas fa-check-circle"></i> Vendor Management & Contract Negotiation</li>
+                        <li><i class="fas fa-check-circle"></i> Employee Training & Change Management</li>
+                    </ul>
+
+                    <div class="service-pricing">
+                        <div class="pricing-label">Starting From</div>
+                        <div class="pricing-range">$100/hr</div>
+                        <div class="pricing-note">Flexible hourly or project-based engagements</div>
+                    </div>
+
+                    <div class="service-actions">
+                        <a href="consulting.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-arrow-right"></i>
+                            Learn More
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-calendar"></i>
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Device Repair & Support -->
+                <div class="main-service-card fade-in">
+                    <div class="service-header">
+                        <div class="service-icon-large">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="service-title-group">
+                            <h3>Device Repair & Support</h3>
+                            <p class="service-tagline">Expert Hardware Services</p>
+                        </div>
+                    </div>
+
+                    <p class="service-description-full">
+                        Professional repair services for all business and consumer devices. Fast 
+                        turnaround times with quality parts and expert workmanship. From smartphones 
+                        to enterprise servers, we've got you covered.
+                    </p>
+
+                    <ul class="service-features-list">
+                        <li><i class="fas fa-check-circle"></i> Laptop & Desktop Repair (All Brands)</li>
+                        <li><i class="fas fa-check-circle"></i> Smartphone & Tablet Services</li>
+                        <li><i class="fas fa-check-circle"></i> Gaming Console Repairs</li>
+                        <li><i class="fas fa-check-circle"></i> Data Recovery & Migration</li>
+                        <li><i class="fas fa-check-circle"></i> Hardware Upgrades (RAM, SSD, GPU)</li>
+                        <li><i class="fas fa-check-circle"></i> 24-48 Hour Turnaround on Most Repairs</li>
+                    </ul>
+
+                    <div class="service-pricing">
+                        <div class="pricing-label">Starting From</div>
+                        <div class="pricing-range">$30+</div>
+                        <div class="pricing-note">Diagnostic fee applies if repair is needed</div>
+                    </div>
+
+                    <div class="service-actions">
+                        <a href="pricing.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-arrow-right"></i>
+                            View Pricing
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-calendar"></i>
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-badge">
+                    <i class="fas fa-chart-line"></i>
+                    Our Process
+                </div>
+                <h2 class="section-title">How We Deliver Results</h2>
+                <p class="section-subtitle">
+                    A proven methodology that ensures quality, efficiency, and exceptional results 
+                    for every project we undertake.
+                </p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="timeline-line"></div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number-circle">1</div>
+                    <div class="step-content">
+                        <h3>Discovery & Consultation</h3>
+                        <p>
+                            We start by understanding your business, challenges, and goals. Our experts 
+                            conduct a thorough assessment of your current infrastructure and identify 
+                            opportunities for improvement.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number-circle">2</div>
+                    <div class="step-content">
+                        <h3>Strategy & Planning</h3>
+                        <p>
+                            Based on our findings, we develop a customized solution with clear timelines, 
+                            milestones, and deliverables. You'll receive a detailed proposal with transparent 
+                            pricing and project scope.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number-circle">3</div>
+                    <div class="step-content">
+                        <h3>Implementation & Testing</h3>
+                        <p>
+                            Our certified technicians execute the plan with minimal disruption to your 
+                            operations. Rigorous testing ensures everything works perfectly before 
+                            deployment.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number-circle">4</div>
+                    <div class="step-content">
+                        <h3>Training & Handoff</h3>
+                        <p>
+                            We provide comprehensive training to your team and detailed documentation. 
+                            You'll have everything needed to make the most of your new systems and processes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number-circle">5</div>
+                    <div class="step-content">
+                        <h3>Ongoing Support & Optimization</h3>
+                        <p>
+                            Our commitment doesn't end at launch. We provide ongoing monitoring, maintenance, 
+                            and optimization to ensure continued success and maximum ROI.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2 class="cta-title">Ready to Transform Your IT Infrastructure?</h2>
+                <p class="cta-subtitle">
+                    Let's discuss how our services can protect, optimize, and accelerate your business. 
+                    Schedule a free consultation to get started.
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-white">
+                        <i class="fas fa-calendar-check"></i>
+                        Schedule Consultation
+                    </a>
+                    <a href="tel:+12692230875" class="btn btn-outline" style="border-color: white; color: white;">
+                        <i class="fas fa-phone"></i>
+                        Call (269) 223-0875
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="color: white; margin-bottom: 1.5rem;">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">iFixTech</span>
+                            <span class="logo-sub">SOLUTIONS</span>
+                        </div>
+                    </div>
+                    <p>
+                        Enterprise IT solutions and cybersecurity consulting for businesses 
+                        that demand excellence. Protect, optimize, and accelerate your digital future.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61572289192480" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ifixtechofficial/" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="cybersecurity.html">Cybersecurity</a></li>
+                        <li><a href="network-management.html">Network Management</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="consulting.html">IT Consulting</a></li>
+                        <li><a href="penetration-testing.html">Penetration Testing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+12692230875"><i class="fas fa-phone"></i> (269) 223-0875</a></li>
+                        <li><a href="mailto:ifixtechofficial@gmail.com"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Hastings, MI</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> 24/7 Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 iFixTech Solutions. All rights reserved. | Enterprise IT & Cybersecurity Consulting</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
