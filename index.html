@@ -1221,6 +1221,233 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-2xl);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 2.5rem 2.5rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            position: relative;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--gray-100);
+            border: none;
+            border-radius: 50%;
+            color: var(--gray-600);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--danger);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+
+        .modal-subtitle {
+            color: var(--gray-600);
+            font-size: 1rem;
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            transition: all 0.3s ease;
+            background: var(--gray-50);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--accent-blue));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .form-submit:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .modal-header {
+                padding: 2rem 1.5rem 1rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1266,10 +1493,10 @@
                 </ul>
 
                 <div style="display: flex; gap: 1rem; align-items: center;">
-                    <a href="contact.html" class="btn btn-primary">
+                    <button class="btn btn-primary" id="openConsultationModal">
                         <i class="fas fa-calendar-check"></i>
                         Get Consultation
-                    </a>
+                    </button>
                     <button class="mobile-menu" id="mobileMenuBtn">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -1699,7 +1926,169 @@
         </div>
     </footer>
 
+    <!-- Consultation Modal -->
+    <div class="modal" id="consultationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title">Get Free Consultation</h2>
+                <p class="modal-subtitle">Tell us about your needs and we'll get back to you within 24 hours</p>
+            </div>
+            <div class="modal-body">
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    Thank you! We've received your consultation request and will contact you shortly.
+                </div>
+
+                <form id="consultationForm" action="https://formspree.io/f/xnnnrgrb" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="(Optional)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company" class="form-label">Company Name</label>
+                        <input type="text" id="company" name="company" class="form-input" placeholder="(Optional)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service" class="form-label">Service Interested In *</label>
+                        <select id="service" name="service" class="form-select" required>
+                            <option value="">Select a service</option>
+                            <option value="cybersecurity">Cybersecurity Consulting</option>
+                            <option value="network-management">Network Management</option>
+                            <option value="web-development">Full-Stack Development</option>
+                            <option value="it-consulting">IT Consulting</option>
+                            <option value="device-repair">Device Repair & Support</option>
+                            <option value="penetration-testing">Penetration Testing</option>
+                            <option value="multiple">Multiple Services</option>
+                            <option value="not-sure">Not Sure Yet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Tell Us About Your Needs *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            class="form-textarea" 
+                            placeholder="Describe your project, security concerns, or what you're looking to achieve..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Request Consultation</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal functionality
+        const consultationModal = document.getElementById('consultationModal');
+        const openModalBtn = document.getElementById('openConsultationModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const consultationForm = document.getElementById('consultationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        // Open modal
+        openModalBtn.addEventListener('click', () => {
+            consultationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal
+        function closeModal() {
+            consultationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        consultationModal.addEventListener('click', (e) => {
+            if (e.target === consultationModal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && consultationModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Form submission
+        consultationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(consultationForm);
+            const submitBtn = consultationForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch(consultationForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    successMessage.classList.add('show');
+                    consultationForm.reset();
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> <span>Request Sent!</span>';
+                    submitBtn.style.background = 'linear-gradient(135deg, var(--success), #059669)';
+                    
+                    setTimeout(() => {
+                        closeModal();
+                        successMessage.classList.remove('show');
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = 'linear-gradient(135deg, var(--primary-cyan), var(--accent-blue))';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <span>Error - Try Again</span>';
+                submitBtn.style.background = 'var(--danger)';
+                submitBtn.disabled = false;
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = 'linear-gradient(135deg, var(--primary-cyan), var(--accent-blue))';
+                }, 3000);
+            }
+        });
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.querySelector('.nav-links');
